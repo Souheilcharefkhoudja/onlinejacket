@@ -464,7 +464,17 @@ footer {
     <p style="font-family:'Noto Serif Arabic',serif;font-size:0.9rem;color:var(--terracotta);direction:rtl;margin-top:0.3rem;opacity:0.8;">أدخل بياناتك لنوصل إليك</p>
   </div>
 
-  <div class="form-card">
+  <!-- 
+  ====================================================
+  SETUP (one-time, 1 minute):
+  1. Go to https://web3forms.com
+  2. Enter souh445@gmail.com → click "Create Access Key"
+  3. Check your email and verify
+  4. Copy your Access Key
+  5. In the JS below, replace YOUR_ACCESS_KEY with it
+  ==================================================== 
+-->
+<div class="form-card">
     <form onsubmit="submitOrder(event)">
       <div class="form-grid">
 
@@ -634,10 +644,48 @@ function toggleAcc(btn) {
   }
 }
 
-function submitOrder(e) {
+async function submitOrder(e) {
   e.preventDefault();
-  document.getElementById('successOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
+
+  const btn = document.querySelector('.btn-order');
+  const originalText = btn.textContent;
+  btn.textContent = '⏳  ENVOI EN COURS...';
+  btn.disabled = true;
+
+  const data = {
+    _subject: '🧥 Nouvelle commande JACKETS.DZ',
+    Nom:       document.getElementById('fname').value,
+    Telephone: document.getElementById('fphone').value,
+    Wilaya:    document.getElementById('fwilaya').value,
+    Adresse:   document.getElementById('faddress').value,
+    Couleur:   selectedColor,
+    Taille:    selectedSize,
+    Livraison: deliveryFee === 400 ? 'Bureau de poste (400 DA)' : 'Domicile (700 DA)',
+    Total:     (BASE + deliveryFee) + ' DA',
+    Note:      document.getElementById('fnote').value || '—',
+  };
+
+  try {
+    // Web3Forms - free email service, no backend needed
+    const payload = { ...data, access_key: '30674636-aca2-4f7c-952c-c3bd20a45594' };
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      document.getElementById('successOverlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+  }
+
+  btn.textContent = originalText;
+  btn.disabled = false;
 }
 
 function closeSuccess() {
@@ -651,4 +699,5 @@ updateTotal();
 </script>
 </body>
 </html>
+
 
