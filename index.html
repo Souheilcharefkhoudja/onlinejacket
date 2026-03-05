@@ -298,6 +298,24 @@ footer {
 .footer-ar { font-family: 'Noto Serif Arabic', serif; font-size: 0.85rem; color: var(--deep-sand); direction: rtl; opacity: 0.7; }
 .footer-copy { font-size: 0.72rem; color: #555; letter-spacing: 0.1em; }
 
+/* VIDEO DIVIDER */
+.video-divider {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 1.5rem;
+  background: var(--dark-emerald);
+  padding: 1.4rem 3rem;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+.video-divider-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.video-divider-text {
+  font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.45em;
+  color: var(--gold); white-space: nowrap;
+}
+
 /* VIDEO BLOCKS */
 .video-hero-block {
   position: relative; z-index: 1; overflow: hidden;
@@ -341,8 +359,8 @@ footer {
   opacity: 0.93;
 }
 .video-mid-block::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 130px;
-  background: linear-gradient(180deg, var(--ivory) 0%, transparent 100%);
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0;
+  background: none;
   z-index: 2; pointer-events: none;
 }
 .video-mid-block::after {
@@ -623,6 +641,13 @@ footer {
       </div>
     </div>
   </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="video-divider">
+  <div class="video-divider-line"></div>
+  <div class="video-divider-text">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp; ✦</div>
+  <div class="video-divider-line"></div>
 </div>
 
 <!-- VIDEO 2 — MID (after product) -->
