@@ -301,17 +301,97 @@ footer {
 .product-wrap > * { animation: fadeUp 0.7s ease both; }
 .product-wrap > *:nth-child(2) { animation-delay: 0.15s; }
 
+/* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .product-wrap { grid-template-columns: 1fr; gap: 2rem; }
-  .gallery { position: static; }
-  header { padding: 0 1rem; }
+  /* Header */
+  header { padding: 0 1rem; height: 54px; }
+  .logo { font-size: 1.05rem; letter-spacing: 0.15em; }
   .header-arabic { display: none; }
-  .form-grid { grid-template-columns: 1fr; }
-  .delivery-box { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 1.6rem; }
-  .color-tabs { overflow-x: auto; }
-  footer { flex-direction: column; text-align: center; }
-  .trust-strip { gap: 2rem; }
+  nav { gap: 0.7rem; }
+  nav a { font-size: 0.58rem; letter-spacing: 0.08em; }
+
+  /* Hero */
+  .hero { padding: 1.8rem 1rem; }
+  .hero h1 { font-size: 1.5rem; letter-spacing: 0.1em; }
+  .hero h1 em { font-size: 0.82rem; letter-spacing: 0.25em; }
+  .hero-flag { font-size: 1.3rem; }
+  .hero-eyebrow { font-size: 0.55rem; padding: 0.25rem 1rem; }
+
+  /* Color tabs */
+  .color-tabs { overflow-x: auto; justify-content: flex-start; }
+  .color-tab { padding: 0.7rem 0.9rem; font-size: 0.6rem; letter-spacing: 0.08em; min-width: fit-content; }
+  .color-tab .swatch { width: 13px; height: 13px; }
+
+  /* Product layout — single column */
+  .product-wrap { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem 1rem; }
+  .gallery { position: static; }
+  .thumbs { gap: 0.4rem; }
+
+  /* Product info */
+  .product-name { font-size: 1.45rem; }
+  .price-main { font-size: 2rem; }
+  .price-main sup { font-size: 0.95rem; }
+
+  /* Color dots */
+  .color-dots { flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+  .cdot { width: 36px; height: 36px; }
+
+  /* Size buttons — bigger tap targets */
+  .sizes { gap: 0.5rem; }
+  .sz { width: 58px; height: 58px; font-size: 0.82rem; }
+
+  /* Qty buttons */
+  #qtyValue { font-size: 1.3rem; min-width: 40px; }
+
+  /* Trust strip */
+  .trust-strip { grid-template-columns: repeat(3, 1fr) !important; gap: 0 !important; padding: 0.8rem 0.5rem !important; }
+  .trust-item { padding: 0.7rem 0.3rem; }
+  .trust-icon { font-size: 1.2rem; }
+  .trust-text { font-size: 0.5rem; letter-spacing: 0.05em; }
+
+  /* Order section */
+  .order-section { padding: 0 1rem 2.5rem; }
+  .form-card { padding: 1.4rem 1rem; }
+
+  /* Form — single column */
+  .form-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+  .form-group.full { grid-column: 1; }
+
+  /* Inputs — 16px prevents iOS auto-zoom */
+  .form-group input,
+  .form-group select,
+  .form-group textarea { font-size: 16px; padding: 0.85rem 0.9rem; }
+
+  /* Delivery box */
+  .delivery-box { grid-column: 1; grid-template-columns: 1fr; }
+  .total-bar { grid-column: 1; padding: 0.9rem 1.2rem; }
+  .total-amount { font-size: 1.4rem; }
+  .order-summary { grid-column: 1; flex-direction: row; flex-wrap: wrap; gap: 0.8rem 1.5rem; }
+
+  /* Order button */
+  .btn-order { grid-column: 1; font-size: 0.72rem; letter-spacing: 0.12em; padding: 1.1rem 1rem; }
+
+  /* Success overlay */
+  .success-box { padding: 2rem 1.2rem; margin: 0 1rem; max-width: 100%; }
+  .success-title { font-size: 1.3rem; letter-spacing: 0.1em; }
+  .success-msg { font-size: 0.95rem; }
+  .btn-close-success { padding: 0.85rem 2rem; font-size: 0.72rem; }
+
+  /* Footer */
+  footer { flex-direction: column; text-align: center; gap: 0.5rem; padding: 1.5rem 1rem; }
+  .footer-logo { font-size: 1rem; }
+  .footer-copy { font-size: 0.6rem; }
+}
+
+@media (max-width: 420px) {
+  .logo { font-size: 0.95rem; }
+  nav a:not(:last-child) { display: none; }
+  .hero h1 { font-size: 1.25rem; }
+  .product-name { font-size: 1.2rem; }
+  .price-main { font-size: 1.8rem; }
+  .trust-strip { grid-template-columns: repeat(2, 1fr) !important; }
+  .cdot { width: 32px; height: 32px; }
+  .sz { width: 52px; height: 52px; }
 }
 </style>
 </head>
