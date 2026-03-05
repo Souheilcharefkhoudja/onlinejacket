@@ -297,6 +297,54 @@ footer {
 .footer-ar { font-family: 'Noto Serif Arabic', serif; font-size: 0.85rem; color: var(--deep-sand); direction: rtl; opacity: 0.7; }
 .footer-copy { font-size: 0.72rem; color: #555; letter-spacing: 0.1em; }
 
+/* VIDEO SECTION */
+.video-section {
+  position: relative; z-index: 1;
+  background: var(--dark); padding: 3rem 2rem;
+  border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+}
+.video-section-header {
+  text-align: center; margin-bottom: 2rem;
+}
+.video-section-eyebrow {
+  display: inline-block; background: var(--terracotta); color: var(--ivory);
+  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.35em;
+  padding: 0.25rem 1.2rem; margin-bottom: 0.8rem;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.video-section-title {
+  font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold);
+  letter-spacing: 0.2em;
+}
+.video-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.video-card {
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(212,168,67,0.4);
+}
+.video-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--emerald), var(--gold), var(--terracotta));
+  z-index: 2;
+}
+.video-card video {
+  width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;
+}
+.video-card-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0.6rem 1rem;
+  background: linear-gradient(0deg, rgba(15,46,37,0.92) 0%, transparent 100%);
+  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em;
+  color: var(--gold); text-align: center;
+}
+@media (max-width: 768px) {
+  .video-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .video-section { padding: 2rem 1rem; }
+  .video-section-title { font-size: 1rem; letter-spacing: 0.12em; }
+}
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 .product-wrap > * { animation: fadeUp 0.7s ease both; }
 .product-wrap > *:nth-child(2) { animation-delay: 0.15s; }
@@ -415,6 +463,28 @@ footer {
   <div class="hero-eyebrow">✦ ÉDITION LIMITÉE 2025 ✦</div>
   <h1>EXCLUSIVE JACKET<em>Chinese New Year · Algeria Edition</em></h1>
   <div class="hero-flag">🇩🇿 &nbsp;✦&nbsp; 🧧</div>
+</div>
+
+<!-- VIDEO SECTION -->
+<div class="video-section">
+  <div class="video-section-header">
+    <div class="video-section-eyebrow">✦ CAMPAGNE OFFICIELLE ✦</div>
+    <div class="video-section-title">ADIDAS × CHINESE NEW YEAR</div>
+  </div>
+  <div class="video-grid">
+    <div class="video-card">
+      <video autoplay muted loop playsinline>
+        <source src="adidas_originals_CNY_2025.mp4" type="video/mp4">
+      </video>
+      <div class="video-card-label">CNY 2025 · ADIDAS ORIGINALS</div>
+    </div>
+    <div class="video-card">
+      <video autoplay muted loop playsinline>
+        <source src="CF___Adidas_新年造萬象_-_Adidas_2020_CNY.mp4" type="video/mp4">
+      </video>
+      <div class="video-card-label">CNY 2020 · 新年造萬象</div>
+    </div>
+  </div>
 </div>
 
 <!-- COLOR TABS -->
