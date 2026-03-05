@@ -398,24 +398,41 @@ footer {
     </div>
 
     <!-- Color -->
-    <div class="opt-label">COULEUR — <span id="colorName">Navy Blue</span></div>
-    <div class="color-dots">
-      <div class="cdot active" style="background:#2c4a6e;" data-label="NAVY BLUE" data-color="blue" onclick="switchColor('blue', document.querySelector('[data-color=blue]'), this)"></div>
-      <div class="cdot" style="background:#a33;" data-label="BORDEAUX" data-color="red" onclick="switchColor('red', document.querySelector('[data-color=red]'), this)"></div>
-      <div class="cdot" style="background:#c8860a;" data-label="SAHARA GOLD" data-color="yellow" onclick="switchColor('yellow', document.querySelector('[data-color=yellow]'), this)"></div>
+    <div class="opt-label">COULEUR — <span id="colorName" style="color:var(--terracotta);">⚠ Sélectionner une couleur</span></div>
+    <div class="color-dots" id="colorDots">
+      <div class="cdot" style="background:#2c4a6e;" data-label="Navy Blue" data-color="navy-blue" onclick="selectColor(this)" title="Navy Blue"></div>
+      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux Red" data-color="bordeaux-red" onclick="selectColor(this)" title="Bordeaux Red"></div>
+      <div class="cdot" style="background:#c8860a;" data-label="Sahara Gold" data-color="sahara-gold" onclick="selectColor(this)" title="Sahara Gold"></div>
+      <div class="cdot" style="background:#1a1a1a;" data-label="Midnight Black" data-color="midnight-black" onclick="selectColor(this)" title="Midnight Black"></div>
+      <div class="cdot" style="background:#f5f0e8;" data-label="Ivory White" data-color="ivory-white" onclick="selectColor(this)" title="Ivory White" style="border:2px solid #ccc;"></div>
+      <div class="cdot" style="background:#1a4a3a;" data-label="Forest Green" data-color="forest-green" onclick="selectColor(this)" title="Forest Green"></div>
+      <div class="cdot" style="background:#6b3a8a;" data-label="Royal Purple" data-color="royal-purple" onclick="selectColor(this)" title="Royal Purple"></div>
+      <div class="cdot" style="background:#b5652a;" data-label="Terracotta" data-color="terracotta" onclick="selectColor(this)" title="Terracotta"></div>
+      <div class="cdot" style="background:#c0392b;" data-label="Crimson Red" data-color="crimson-red" onclick="selectColor(this)" title="Crimson Red"></div>
+      <div class="cdot" style="background:#4a6a8a;" data-label="Steel Blue" data-color="steel-blue" onclick="selectColor(this)" title="Steel Blue"></div>
     </div>
+    <div id="colorError" style="display:none;color:var(--red);font-size:0.78rem;font-family:'Cinzel',serif;margin-top:0.3rem;">⚠ Veuillez sélectionner une couleur</div>
     <br>
 
     <!-- Size -->
-    <div class="opt-label">TAILLE — <span id="sizeName">Sélectionner</span></div>
-    <div class="sizes">
-      <button class="sz out" type="button">XS</button>
+    <div class="opt-label">TAILLE — <span id="sizeName" style="color:var(--terracotta);">⚠ Sélectionner une taille</span></div>
+    <div class="sizes" id="sizeBtns">
       <button class="sz" type="button" onclick="selectSize(this,'S')">S</button>
       <button class="sz" type="button" onclick="selectSize(this,'M')">M</button>
-      <button class="sz active" type="button" onclick="selectSize(this,'L')">L</button>
-      <button class="sz" type="button" onclick="selectSize(this,'XL')">XL</button>
+      <button class="sz" type="button" onclick="selectSize(this,'L')">L</button>
       <button class="sz" type="button" onclick="selectSize(this,'XL')">XL</button>
     </div>
+    <div id="sizeError" style="display:none;color:var(--red);font-size:0.78rem;font-family:'Cinzel',serif;margin-top:0.3rem;">⚠ Veuillez sélectionner une taille</div>
+    <br>
+
+    <!-- Quantity -->
+    <div class="opt-label">QUANTITÉ — <span id="qtyDisplay" style="color:var(--terracotta);">⚠ Indiquer la quantité</span></div>
+    <div style="display:flex;align-items:center;gap:0.8rem;margin-top:0.4rem;">
+      <button type="button" onclick="changeQty(-1)" style="width:36px;height:36px;background:var(--dark-emerald);color:var(--gold);border:none;font-size:1.2rem;cursor:pointer;font-family:'Cinzel',serif;">−</button>
+      <span id="qtyValue" style="font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--dark-emerald);min-width:30px;text-align:center;">1</span>
+      <button type="button" onclick="changeQty(1)" style="width:36px;height:36px;background:var(--dark-emerald);color:var(--gold);border:none;font-size:1.2rem;cursor:pointer;font-family:'Cinzel',serif;">+</button>
+    </div>
+    <div id="qtyError" style="display:none;color:var(--red);font-size:0.78rem;font-family:'Cinzel',serif;margin-top:0.3rem;">⚠ La quantité doit être au moins 1</div>
 
     <!-- Details accordion -->
     <div style="border-top:1px solid #e0d8cc;">
@@ -466,21 +483,29 @@ footer {
 
   <div class="form-card">
     <form onsubmit="submitOrder(event)">
+      <input type="hidden" name="access_key" value="30674636-aca2-4f7c-952c-c3bd20a45594">
+      <input type="hidden" name="subject" value="🧥 Nouvelle Commande - JACKETS.DZ">
+      <input type="hidden" name="from_name" value="JACKETS.DZ">
+      <input type="hidden" id="hidden-color" name="couleur" value="">
+      <input type="hidden" id="hidden-size" name="taille" value="">
+      <input type="hidden" id="hidden-qty" name="quantite" value="1">
+      <input type="hidden" id="hidden-delivery" name="livraison" value="">
+      <input type="hidden" id="hidden-total" name="total" value="">
       <div class="form-grid">
 
         <div class="form-group">
           <label>NOM COMPLET / الاسم الكامل</label>
-          <input type="text" id="fname" placeholder="Ex: Ahmed Benali" required>
+          <input type="text" id="fname" name="nom_complet" placeholder="Ex: Ahmed Benali" required>
         </div>
 
         <div class="form-group">
           <label>NUMÉRO DE TÉLÉPHONE / رقم الهاتف</label>
-          <input type="tel" id="fphone" placeholder="0X XX XX XX XX" required>
+          <input type="tel" id="fphone" name="telephone" placeholder="0X XX XX XX XX" required>
         </div>
 
         <div class="form-group">
           <label>WILAYA / الولاية</label>
-          <select id="fwilaya" required>
+          <select id="fwilaya" name="wilaya" required>
             <option value="">— Choisir une wilaya —</option>
             <option>01 - Adrar</option><option>02 - Chlef</option><option>03 - Laghouat</option>
             <option>04 - Oum El Bouaghi</option><option>05 - Batna</option><option>06 - Béjaïa</option>
@@ -507,7 +532,7 @@ footer {
 
         <div class="form-group">
           <label>ADRESSE / العنوان</label>
-          <input type="text" id="faddress" placeholder="Rue, commune..." required>
+          <input type="text" id="faddress" name="adresse" placeholder="Rue, commune..." required>
         </div>
 
         <!-- Delivery -->
@@ -529,8 +554,9 @@ footer {
 
           <!-- Summary -->
           <div class="order-summary">
-            <div class="summary-item"><strong>COULEUR</strong><span id="sum-color">Navy Blue</span></div>
-            <div class="summary-item"><strong>TAILLE</strong><span id="sum-size">L</span></div>
+            <div class="summary-item"><strong>COULEUR</strong><span id="sum-color">—</span></div>
+            <div class="summary-item"><strong>TAILLE</strong><span id="sum-size">—</span></div>
+            <div class="summary-item"><strong>QUANTITÉ</strong><span id="sum-qty">1</span></div>
             <div class="summary-item"><strong>LIVRAISON</strong><span id="sum-delivery">Bureau (400 DA)</span></div>
           </div>
 
@@ -542,7 +568,7 @@ footer {
 
         <div class="form-group full">
           <label>NOTE / ملاحظة (optionnel)</label>
-          <textarea id="fnote" placeholder="Précisions sur votre commande..."></textarea>
+          <textarea id="fnote" name="note" placeholder="Précisions sur votre commande..."></textarea>
         </div>
 
         <button class="btn-order" type="submit">
@@ -578,34 +604,43 @@ footer {
 <script>
 const BASE = 8500;
 let deliveryFee = 400;
-let selectedColor = 'Navy Blue';
-let selectedSize = 'L';
+let selectedColor = '';
+let selectedSize = '';
+let selectedQty = 1;
 
-// Color switch
-function switchColor(color, tabEl, dotEl) {
-  document.querySelectorAll('.color-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + color).classList.add('active');
-  document.querySelectorAll('.color-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  const tabs = document.querySelectorAll('.color-tab');
-  tabs.forEach(t => { if (t.dataset.color === color) t.classList.add('active'); });
-  const thumbs = document.querySelectorAll('.thumb');
-  const idx = color === 'blue' ? 0 : color === 'red' ? 1 : 2;
-  if (thumbs[idx]) thumbs[idx].classList.add('active');
+// Color select
+function selectColor(dotEl) {
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.cdot').forEach(d => { if (d.dataset.color === color) d.classList.add('active'); });
-  const names = { blue: 'Navy Blue', red: 'Bordeaux Red', yellow: 'Sahara Gold' };
-  selectedColor = names[color];
+  dotEl.classList.add('active');
+  selectedColor = dotEl.dataset.label;
   document.getElementById('colorName').textContent = selectedColor;
+  document.getElementById('colorName').style.color = 'var(--dark-emerald)';
   document.getElementById('sum-color').textContent = selectedColor;
+  document.getElementById('colorError').style.display = 'none';
+  document.getElementById('colorDots').style.outline = 'none';
+  updateTotal();
 }
 
 function selectSize(btn, size) {
-  document.querySelectorAll('.sz:not(.out)').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   selectedSize = size;
   document.getElementById('sizeName').textContent = size;
+  document.getElementById('sizeName').style.color = 'var(--dark-emerald)';
   document.getElementById('sum-size').textContent = size;
+  document.getElementById('sizeError').style.display = 'none';
+  document.getElementById('sizeBtns').style.outline = 'none';
+  updateTotal();
+}
+
+function changeQty(delta) {
+  selectedQty = Math.max(1, selectedQty + delta);
+  document.getElementById('qtyValue').textContent = selectedQty;
+  document.getElementById('qtyDisplay').textContent = selectedQty + ' pièce(s)';
+  document.getElementById('qtyDisplay').style.color = 'var(--dark-emerald)';
+  document.getElementById('sum-qty').textContent = selectedQty;
+  document.getElementById('qtyError').style.display = 'none';
+  updateTotal();
 }
 
 function selectDelivery(el, fee) {
@@ -618,7 +653,8 @@ function selectDelivery(el, fee) {
 }
 
 function updateTotal() {
-  document.getElementById('totalPrice').textContent = (BASE + deliveryFee).toLocaleString('fr-DZ');
+  const total = (BASE * selectedQty) + deliveryFee;
+  document.getElementById('totalPrice').textContent = total.toLocaleString('fr-DZ');
 }
 
 // Accordion
@@ -634,17 +670,90 @@ function toggleAcc(btn) {
   }
 }
 
-function submitOrder(e) {
+async function submitOrder(e) {
   e.preventDefault();
-  document.getElementById('successOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
+
+  // Validate color
+  let hasError = false;
+  if (!selectedColor) {
+    document.getElementById('colorError').style.display = 'block';
+    document.getElementById('colorDots').style.outline = '2px solid var(--red)';
+    hasError = true;
+  }
+  // Validate size
+  if (!selectedSize) {
+    document.getElementById('sizeError').style.display = 'block';
+    document.getElementById('sizeBtns').style.outline = '2px solid var(--red)';
+    hasError = true;
+  }
+  // Validate qty
+  if (!selectedQty || selectedQty < 1) {
+    document.getElementById('qtyError').style.display = 'block';
+    hasError = true;
+  }
+
+  if (hasError) {
+    // Scroll to first error
+    const firstErr = document.querySelector('[id$="Error"]:not([style*="none"])');
+    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Sync hidden fields
+  document.getElementById('hidden-color').value = selectedColor;
+  document.getElementById('hidden-size').value = selectedSize;
+  document.getElementById('hidden-qty').value = selectedQty;
+  document.getElementById('hidden-delivery').value = document.getElementById('sum-delivery').textContent;
+  document.getElementById('hidden-total').value = document.getElementById('totalPrice').textContent + ' DA';
+
+  const form = document.querySelector('form');
+  const btn = form.querySelector('.btn-order');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('successOverlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      form.reset();
+      selectedColor = '';
+      selectedSize = '';
+      selectedQty = 1;
+      document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
+      document.getElementById('colorName').textContent = '⚠ Sélectionner une couleur';
+      document.getElementById('colorName').style.color = 'var(--terracotta)';
+      document.getElementById('sizeName').textContent = '⚠ Sélectionner une taille';
+      document.getElementById('sizeName').style.color = 'var(--terracotta)';
+      document.getElementById('qtyValue').textContent = '1';
+      document.getElementById('qtyDisplay').textContent = '⚠ Indiquer la quantité';
+      document.getElementById('sum-color').textContent = '—';
+      document.getElementById('sum-size').textContent = '—';
+      document.getElementById('sum-qty').textContent = '1';
+      selectedQty = 1;
+      updateTotal();
+    } else {
+      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+    }
+  } catch (err) {
+    alert('Erreur réseau. Veuillez vérifier votre connexion.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '✦ &nbsp; CONFIRMER LA COMMANDE &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦';
+  }
 }
 
 function closeSuccess() {
   document.getElementById('successOverlay').classList.remove('show');
   document.body.style.overflow = '';
-  document.querySelector('form').reset();
-  updateTotal();
 }
 
 updateTotal();
