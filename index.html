@@ -26,6 +26,7 @@ body {
   color: var(--text);
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
+  font-size: 1.08rem;
 }
 
 /* Zellige bg */
@@ -43,11 +44,11 @@ header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 3rem; height: 68px;
 }
-.logo { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); letter-spacing: 0.3em; }
+.logo { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--gold); letter-spacing: 0.3em; }
 .logo span { color: var(--sand); }
-.header-arabic { font-family: 'Noto Serif Arabic', serif; font-size: 0.8rem; color: var(--deep-sand); opacity: 0.8; }
+.header-arabic { font-family: 'Noto Serif Arabic', serif; font-size: 0.95rem; color: var(--deep-sand); opacity: 0.8; }
 nav { display: flex; gap: 1.5rem; align-items: center; }
-nav a { color: var(--sand); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.2em; transition: color 0.3s; }
+nav a { color: var(--sand); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em; transition: color 0.3s; }
 nav a:hover { color: var(--gold); }
 
 /* HERO BANNER */
@@ -64,15 +65,15 @@ nav a:hover { color: var(--gold); }
 .hero-eyebrow {
   position: relative; display: inline-block;
   background: var(--gold); color: var(--dark);
-  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.35em;
+  font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 0.35em;
   padding: 0.3rem 1.5rem; margin-bottom: 1rem;
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
 }
 .hero h1 {
-  position: relative; font-family: 'Cinzel', serif; font-size: 2.4rem;
+  position: relative; font-family: 'Cinzel', serif; font-size: 2.9rem;
   color: var(--ivory); letter-spacing: 0.2em; line-height: 1.2;
 }
-.hero h1 em { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--gold); letter-spacing: 0.5em; margin-top: 0.4rem; opacity: 0.85; }
+.hero h1 em { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold); letter-spacing: 0.5em; margin-top: 0.4rem; opacity: 0.85; }
 .hero-flag { position: relative; font-size: 1.8rem; margin-top: 0.8rem; }
 
 /* COLOR TABS */
@@ -84,7 +85,7 @@ nav a:hover { color: var(--gold); }
 .color-tab {
   flex: 1; max-width: 200px; padding: 1rem 1.5rem;
   display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.2em;
+  font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.2em;
   cursor: pointer; transition: all 0.3s; color: #888; border-bottom: 3px solid transparent;
   border: none; background: none;
 }
@@ -137,14 +138,14 @@ nav a:hover { color: var(--gold); }
 .product-info { padding-top: 0.5rem; }
 .tag {
   display: inline-block; background: var(--terracotta); color: var(--ivory);
-  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em;
+  font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.3em;
   padding: 0.25rem 0.9rem; margin-bottom: 1.2rem;
   clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
 }
 .tag.limited { background: var(--dark-emerald); }
-.product-name { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: var(--dark-emerald); line-height: 1.15; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
-.product-sub { font-family: 'Noto Serif Arabic', serif; font-size: 1rem; color: var(--terracotta); margin-bottom: 1rem; direction: rtl; opacity: 0.8; }
-.stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.1em; }
+.product-name { font-family: 'Cinzel', serif; font-size: 2.3rem; font-weight: 700; color: var(--dark-emerald); line-height: 1.15; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+.product-sub { font-family: 'Noto Serif Arabic', serif; font-size: 1.15rem; color: var(--terracotta); margin-bottom: 1rem; direction: rtl; opacity: 0.8; }
+.stars { color: var(--gold); font-size: 1.05rem; letter-spacing: 0.1em; }
 .divider { width: 100%; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); margin: 1.4rem 0; }
 
 /* Pricing */
@@ -154,7 +155,7 @@ nav a:hover { color: var(--gold); }
 .price-delivery { font-size: 0.88rem; color: #888; margin-top: 0.2rem; font-style: italic; }
 
 /* Color selector */
-.opt-label { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.22em; margin-bottom: 0.7rem; color: #555; }
+.opt-label { font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 0.22em; margin-bottom: 0.7rem; color: #555; }
 .opt-label span { color: var(--terracotta); font-style: italic; }
 .color-dots { display: flex; gap: 0.7rem; margin-bottom: 1.6rem; }
 .cdot {
@@ -194,7 +195,7 @@ nav a:hover { color: var(--gold); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
 .form-group.full { grid-column: 1/-1; }
-.form-group label { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em; color: #666; }
+.form-group label { font-family: 'Cinzel', serif; font-size: 0.74rem; letter-spacing: 0.2em; color: #666; }
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -267,7 +268,7 @@ nav a:hover { color: var(--gold); }
 }
 .trust-item { display: flex; align-items: center; gap: 0.6rem; color: var(--sand); }
 .trust-icon { font-size: 1.2rem; }
-.trust-text { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.15em; }
+.trust-text { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.15em; }
 
 /* Success overlay */
 .success-overlay {
@@ -297,52 +298,74 @@ footer {
 .footer-ar { font-family: 'Noto Serif Arabic', serif; font-size: 0.85rem; color: var(--deep-sand); direction: rtl; opacity: 0.7; }
 .footer-copy { font-size: 0.72rem; color: #555; letter-spacing: 0.1em; }
 
-/* VIDEO SECTION */
-.video-section {
-  position: relative; z-index: 1;
-  background: var(--dark); padding: 3rem 2rem;
-  border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold);
+/* VIDEO BLOCKS */
+.video-hero-block {
+  position: relative; z-index: 1; overflow: hidden;
+  background: var(--dark-emerald);
 }
-.video-section-header {
-  text-align: center; margin-bottom: 2rem;
+.video-hero-block video {
+  width: 100%; display: block;
+  max-height: 80vh; object-fit: cover;
+  opacity: 0.88;
 }
-.video-section-eyebrow {
-  display: inline-block; background: var(--terracotta); color: var(--ivory);
-  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.35em;
-  padding: 0.25rem 1.2rem; margin-bottom: 0.8rem;
-  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-}
-.video-section-title {
-  font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold);
-  letter-spacing: 0.2em;
-}
-.video-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-  max-width: 1100px; margin: 0 auto;
-}
-.video-card {
-  position: relative; overflow: hidden;
-  border: 1px solid rgba(212,168,67,0.4);
-}
-.video-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+.video-hero-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
   background: linear-gradient(90deg, var(--terracotta), var(--gold), var(--emerald), var(--gold), var(--terracotta));
-  z-index: 2;
+  z-index: 3;
 }
-.video-card video {
-  width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;
+.video-hero-block::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+  background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%);
+  z-index: 2; pointer-events: none;
 }
-.video-card-label {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 0.6rem 1rem;
-  background: linear-gradient(0deg, rgba(15,46,37,0.92) 0%, transparent 100%);
-  font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em;
-  color: var(--gold); text-align: center;
+.video-hero-caption {
+  position: absolute; top: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 3; text-align: center; white-space: nowrap;
 }
+.video-hero-caption-eyebrow {
+  display: inline-block; background: rgba(212,168,67,0.18);
+  border: 1px solid rgba(212,168,67,0.5);
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.4em;
+  color: var(--gold); padding: 0.5rem 2rem;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  backdrop-filter: blur(6px);
+}
+
+.video-mid-block {
+  position: relative; z-index: 1; overflow: hidden;
+  background: var(--ivory);
+}
+.video-mid-block video {
+  width: 100%; display: block;
+  max-height: 78vh; object-fit: cover;
+  opacity: 0.93;
+}
+.video-mid-block::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 130px;
+  background: linear-gradient(180deg, var(--ivory) 0%, transparent 100%);
+  z-index: 2; pointer-events: none;
+}
+.video-mid-block::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 130px;
+  background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%);
+  z-index: 2; pointer-events: none;
+}
+.video-mid-caption {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  z-index: 3; text-align: center; white-space: nowrap;
+}
+.video-mid-caption-label {
+  display: inline-block;
+  font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.4em;
+  color: var(--dark-emerald); padding: 0.5rem 2rem;
+  background: rgba(245,239,227,0.82); backdrop-filter: blur(6px);
+  border: 1px solid rgba(26,74,58,0.25);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
 @media (max-width: 768px) {
-  .video-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .video-section { padding: 2rem 1rem; }
-  .video-section-title { font-size: 1rem; letter-spacing: 0.12em; }
+  .video-hero-block video, .video-mid-block video { max-height: 55vw; }
+  .video-hero-caption-eyebrow, .video-mid-caption-label { font-size: 0.7rem; letter-spacing: 0.2em; padding: 0.3rem 1.2rem; }
 }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -465,26 +488,14 @@ footer {
   <div class="hero-flag">🇩🇿 &nbsp;✦&nbsp; 🧧</div>
 </div>
 
-<!-- VIDEO SECTION -->
-<div class="video-section">
-  <div class="video-section-header">
-    <div class="video-section-eyebrow">✦ CAMPAGNE OFFICIELLE ✦</div>
-    <div class="video-section-title">ADIDAS × CHINESE NEW YEAR</div>
+<!-- VIDEO 1 — HERO (after banner) -->
+<div class="video-hero-block">
+  <div class="video-hero-caption">
+    <div class="video-hero-caption-eyebrow">✦ ADIDAS ORIGINALS · CNY 2025 ✦</div>
   </div>
-  <div class="video-grid">
-    <div class="video-card">
-      <video autoplay muted loop playsinline>
-        <source src="adidas%20originals%20CNY%202025.mp4" type="video/mp4">
-      </video>
-      <div class="video-card-label">CNY 2025 · ADIDAS ORIGINALS</div>
-    </div>
-    <div class="video-card">
-      <video autoplay muted loop playsinline>
-        <source src="CF%20_%20Adidas%20%E6%96%B0%E5%B9%B4%E9%80%A0%E8%90%AC%E8%B1%A1%20-%20Adidas%202020%20CNY.mp4" type="video/mp4">
-      </video>
-      <div class="video-card-label">CNY 2020 · 新年造萬象</div>
-    </div>
-  </div>
+  <video autoplay muted loop playsinline>
+    <source src="adidas%20originals%20CNY%202025.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- COLOR TABS -->
@@ -611,6 +622,16 @@ footer {
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- VIDEO 2 — MID (after product) -->
+<div class="video-mid-block">
+  <video autoplay muted loop playsinline>
+    <source src="CF%20_%20Adidas%20%E6%96%B0%E5%B9%B4%E9%80%A0%E8%90%AC%E8%B1%A1%20-%20Adidas%202020%20CNY.mp4" type="video/mp4">
+  </video>
+  <div class="video-mid-caption">
+    <div class="video-mid-caption-label">✦ ADIDAS · 新年造萬象 · CNY 2020 ✦</div>
   </div>
 </div>
 
