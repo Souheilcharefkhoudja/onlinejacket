@@ -4,55 +4,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Jacket Orders</title>
+<title>Online Jacket Order</title>
 
 <style>
-
 body{
-font-family: Arial;
-background:#f5f5f5;
-margin:0;
-padding:0;
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  margin:0;
+  padding:0;
 }
 
 .container{
-max-width:600px;
-margin:40px auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+  max-width:600px;
+  margin:40px auto;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 h1{
-text-align:center;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+label{
+  font-weight:bold;
 }
 
 input, select, textarea{
-width:100%;
-padding:12px;
-margin:10px 0;
-border-radius:6px;
-border:1px solid #ccc;
+  width:100%;
+  padding:12px;
+  margin:8px 0 15px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:15px;
 }
 
 button{
-width:100%;
-padding:15px;
-background:black;
-color:white;
-border:none;
-border-radius:6px;
-font-size:16px;
-cursor:pointer;
+  width:100%;
+  padding:15px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
 }
 
 button:hover{
-background:#333;
+  background:#333;
 }
 
+.success-message{
+  display:none;
+  margin-top:15px;
+  padding:10px;
+  background:#d4edda;
+  color:#155724;
+  border-radius:6px;
+  text-align:center;
+}
 </style>
-
 </head>
 
 <body>
@@ -61,44 +74,87 @@ background:#333;
 
 <h1>Order Your Jacket</h1>
 
-<form action="https://api.web3forms.com/submit" method="POST">
+<form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
 
-<input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+<input type="hidden" name="access_key" value="YOUR_NEW_ACCESS_KEY">
+<input type="hidden" name="subject" value="New Jacket Order">
 
-<label>Full Name</label>
+<label>Full Name *</label>
 <input type="text" name="name" required>
 
-<label>Phone Number</label>
-<input type="text" name="phone" required>
+<label>Phone Number *</label>
+<input type="tel" name="phone" required>
 
-<label>City</label>
+<label>City *</label>
 <input type="text" name="city" required>
 
-<label>Jacket Size</label>
+<label>Jacket Size *</label>
 <select name="size" required>
-<option value="">Select Size</option>
-<option value="S">S</option>
-<option value="M">M</option>
-<option value="L">L</option>
-<option value="XL">XL</option>
+  <option value="">Select Size</option>
+  <option value="S">S</option>
+  <option value="M">M</option>
+  <option value="L">L</option>
+  <option value="XL">XL</option>
 </select>
 
-<label>Quantity</label>
+<label>Jacket Color *</label>
+<select name="color" required>
+  <option value="">Select Color</option>
+  <option value="Black">Black</option>
+  <option value="Brown">Brown</option>
+  <option value="Grey">Grey</option>
+  <option value="Blue">Blue</option>
+  <option value="Navy">Navy</option>
+  <option value="Green">Green</option>
+  <option value="Red">Red</option>
+  <option value="White">White</option>
+  <option value="Beige">Beige</option>
+  <option value="Dark Grey">Dark Grey</option>
+</select>
+
+<label>Quantity *</label>
 <input type="number" name="quantity" min="1" required>
 
-<label>Delivery Address</label>
-<textarea name="address" required></textarea>
-
-<input type="hidden" name="subject" value="New Jacket Order">
+<label>Delivery Address *</label>
+<textarea name="address" rows="4" required></textarea>
 
 <button type="submit">Place Order</button>
 
 </form>
 
+<div class="success-message" id="successMessage">
+✅ Your order has been sent successfully!
 </div>
+
+</div>
+
+<script>
+const form = document.getElementById("orderForm");
+const successMessage = document.getElementById("successMessage");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if(form.checkValidity()) {
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form)
+    })
+    .then(response => {
+      if(response.ok){
+        form.reset();
+        successMessage.style.display = "block";
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    })
+    .catch(() => {
+      alert("Network error. Please try again.");
+    });
+  }
+});
+</script>
 
 </body>
 </html>
 ```
-
-
