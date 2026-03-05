@@ -4,41 +4,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Jacket Order</title>
+<title>Online Jacket Store</title>
 
 <style>
+
 body{
-  font-family: Arial, sans-serif;
-  background:#f4f4f4;
   margin:0;
-  padding:0;
+  font-family:Arial, sans-serif;
+  background:#f4f4f4;
 }
 
-.container{
-  max-width:600px;
-  margin:40px auto;
+header{
+  background:black;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+.hero{
+  background:url('https://images.unsplash.com/photo-1520975922321-c5b6b3b3a4f3');
+  background-size:cover;
+  background-position:center;
+  height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-align:center;
+}
+
+.hero h1{
+  background:rgba(0,0,0,0.6);
+  padding:20px;
+  border-radius:10px;
+}
+
+.section{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.products{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.product{
   background:white;
-  padding:30px;
+  padding:20px;
+  width:250px;
   border-radius:12px;
   box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-h1{
-  text-align:center;
-  margin-bottom:20px;
+.product img{
+  width:100%;
+  border-radius:8px;
 }
 
-label{
-  font-weight:bold;
+form{
+  max-width:500px;
+  margin:0 auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 input, select, textarea{
   width:100%;
   padding:12px;
-  margin:8px 0 15px 0;
+  margin:10px 0;
   border-radius:8px;
   border:1px solid #ccc;
-  font-size:15px;
 }
 
 button{
@@ -56,77 +96,106 @@ button:hover{
   background:#333;
 }
 
-.success-message{
+.success{
   display:none;
   margin-top:15px;
-  padding:10px;
   background:#d4edda;
-  color:#155724;
+  padding:10px;
   border-radius:6px;
-  text-align:center;
+  color:#155724;
 }
+
+footer{
+  background:black;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
+}
+
+@media(max-width:768px){
+  .products{
+    flex-direction:column;
+    align-items:center;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <h2>Online Jacket Store</h2>
+</header>
 
-<h1>Order Your Jacket</h1>
+<section class="hero">
+  <h1>Premium Jackets Collection 2026</h1>
+</section>
 
-<form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+<section class="section">
+  <h2>Our Jackets</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1544441893-675973e31985">
+      <h3>Classic Black Jacket</h3>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1520975918318-6f9d66bdfc3f">
+      <h3>Modern Winter Jacket</h3>
+    </div>
+  </div>
+</section>
 
-<input type="hidden" name="access_key" value="YOUR_NEW_ACCESS_KEY">
-<input type="hidden" name="subject" value="New Jacket Order">
+<section class="section" style="background:#eaeaea;">
+  <h2>Order Now</h2>
 
-<label>Full Name *</label>
-<input type="text" name="name" required>
+  <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
 
-<label>Phone Number *</label>
-<input type="tel" name="phone" required>
+    <input type="hidden" name="access_key" value="30674636-aca2-4f7c-952c-c3bd20a45594">
+    <input type="hidden" name="subject" value="New Jacket Order">
 
-<label>City *</label>
-<input type="text" name="city" required>
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <input type="text" name="city" placeholder="City" required>
 
-<label>Jacket Size *</label>
-<select name="size" required>
-  <option value="">Select Size</option>
-  <option value="S">S</option>
-  <option value="M">M</option>
-  <option value="L">L</option>
-  <option value="XL">XL</option>
-</select>
+    <select name="size" required>
+      <option value="">Select Size</option>
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
 
-<label>Jacket Color *</label>
-<select name="color" required>
-  <option value="">Select Color</option>
-  <option value="Black">Black</option>
-  <option value="Brown">Brown</option>
-  <option value="Grey">Grey</option>
-  <option value="Blue">Blue</option>
-  <option value="Navy">Navy</option>
-  <option value="Green">Green</option>
-  <option value="Red">Red</option>
-  <option value="White">White</option>
-  <option value="Beige">Beige</option>
-  <option value="Dark Grey">Dark Grey</option>
-</select>
+    <select name="color" required>
+      <option value="">Select Color</option>
+      <option>Black</option>
+      <option>Brown</option>
+      <option>Grey</option>
+      <option>Blue</option>
+      <option>Navy</option>
+      <option>Green</option>
+      <option>Red</option>
+      <option>White</option>
+      <option>Beige</option>
+      <option>Dark Grey</option>
+    </select>
 
-<label>Quantity *</label>
-<input type="number" name="quantity" min="1" required>
+    <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+    <textarea name="address" placeholder="Delivery Address" required></textarea>
 
-<label>Delivery Address *</label>
-<textarea name="address" rows="4" required></textarea>
+    <button type="submit">Place Order</button>
 
-<button type="submit">Place Order</button>
+    <div class="success" id="successMessage">
+      ✅ Order Sent Successfully!
+    </div>
 
-</form>
+  </form>
+</section>
 
-<div class="success-message" id="successMessage">
-✅ Your order has been sent successfully!
-</div>
-
-</div>
+<footer>
+  © 2026 Online Jacket Store
+</footer>
 
 <script>
 const form = document.getElementById("orderForm");
@@ -145,11 +214,11 @@ form.addEventListener("submit", function(e) {
         form.reset();
         successMessage.style.display = "block";
       } else {
-        alert("Something went wrong. Please try again.");
+        alert("Error sending order.");
       }
     })
     .catch(() => {
-      alert("Network error. Please try again.");
+      alert("Network error.");
     });
   }
 });
