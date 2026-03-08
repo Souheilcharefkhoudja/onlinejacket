@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JACKETS.DZ — Exclusive CNY Jacket</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500;600&family=Noto+Serif+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --black: #0a0a0a;
@@ -32,7 +32,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--ivory);
   color: var(--text-dark);
-  font-family: 'Jost', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-weight: 300;
   overflow-x: hidden;
   font-size: 0.95rem;
@@ -53,10 +53,10 @@ body::after {
   color: var(--gold);
   text-align: center;
   padding: 0.55rem 1rem;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--border);
 }
@@ -74,7 +74,7 @@ header {
   transition: all 0.3s;
 }
 .logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--black);
@@ -83,7 +83,7 @@ header {
 }
 .logo-dot { color: var(--gold); }
 .header-arabic {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 0.75rem;
   color: var(--gold-muted);
   letter-spacing: 0.05em;
@@ -158,12 +158,12 @@ nav a:hover::after { transform: scaleX(1); }
   content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
 }
 .hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 900;
+  font-weight: 200;
   color: var(--cream);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
   margin-bottom: 1rem;
 }
 .hero-title em {
@@ -171,13 +171,13 @@ nav a:hover::after { transform: scaleX(1); }
   font-style: italic;
   color: var(--gold);
   font-size: 0.45em;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.15em;
   font-weight: 400;
   margin-top: 0.6rem;
   text-transform: uppercase;
 }
 .hero-sub {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 1.1rem;
   color: rgba(247,243,236,0.5);
   direction: rtl;
@@ -188,7 +188,7 @@ nav a:hover::after { transform: scaleX(1); }
   margin-top: 2rem;
 }
 .hero-badge {
-  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: rgba(201,168,76,0.7);
   display: flex; align-items: center; gap: 0.5rem;
 }
@@ -196,7 +196,7 @@ nav a:hover::after { transform: scaleX(1); }
 .hero-scroll {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   z-index: 3; color: var(--gold); opacity: 0.5;
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
   animation: scrollBounce 2s ease-in-out infinite;
 }
@@ -260,7 +260,7 @@ nav a:hover::after { transform: scaleX(1); }
 .product-info { padding-top: 0.5rem; }
 .tags { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .tag {
-  font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500;
+  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
   padding: 0.3rem 0.9rem; border: 1px solid;
 }
 .tag-red { color: #b5341f; border-color: rgba(181,52,31,0.35); background: rgba(181,52,31,0.06); }
@@ -268,14 +268,14 @@ nav a:hover::after { transform: scaleX(1); }
 .tag-black { color: var(--cream); border-color: rgba(255,255,255,0.15); background: var(--black); }
 
 .product-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem; font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  font-size: 3rem; font-weight: 200;
   color: var(--black); line-height: 1.0;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.04em;
   margin-bottom: 0.4rem;
 }
 .product-name-ar {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 1rem; color: var(--text-light);
   direction: rtl; margin-bottom: 1.2rem;
 }
@@ -294,12 +294,12 @@ nav a:hover::after { transform: scaleX(1); }
 /* Price */
 .price-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
 .price-main {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 2.8rem; font-weight: 500;
   color: var(--black); letter-spacing: -0.02em;
 }
 .price-currency {
-  font-family: 'Jost', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 1rem; font-weight: 400; color: var(--text-light);
   letter-spacing: 0.1em;
 }
@@ -307,7 +307,7 @@ nav a:hover::after { transform: scaleX(1); }
 
 /* Options */
 .opt-label {
-  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--text-light); font-weight: 500;
   margin-bottom: 0.8rem;
   display: flex; align-items: center; gap: 0.6rem;
@@ -326,7 +326,7 @@ nav a:hover::after { transform: scaleX(1); }
   content: attr(data-label);
   position: absolute; bottom: -22px; left: 50%;
   transform: translateX(-50%);
-  font-size: 0.48rem; font-family: 'Jost', sans-serif;
+  font-size: 0.48rem; font-family: 'Outfit', sans-serif;
   letter-spacing: 0.08em; white-space: nowrap;
   color: var(--text-light); opacity: 0; transition: opacity 0.2s;
 }
@@ -339,7 +339,7 @@ nav a:hover::after { transform: scaleX(1); }
   width: 52px; height: 52px;
   border: 1px solid #d0c8bb;
   background: none; cursor: pointer;
-  font-family: 'Jost', sans-serif; font-size: 0.7rem;
+  font-family: 'Outfit', sans-serif; font-size: 0.7rem;
   font-weight: 500; letter-spacing: 0.12em;
   color: var(--text-dark);
   transition: all 0.2s;
@@ -359,7 +359,7 @@ nav a:hover::after { transform: scaleX(1); }
 .qty-btn:hover { background: rgba(10,10,10,0.05); }
 .qty-val {
   width: 48px; text-align: center;
-  font-family: 'Playfair Display', serif; font-size: 1rem;
+  font-family: 'Outfit', sans-serif; font-size: 1rem;
   border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb;
   height: 44px; display: flex; align-items: center; justify-content: center;
   font-weight: 500;
@@ -371,8 +371,8 @@ nav a:hover::after { transform: scaleX(1); }
   width: 100%; padding: 1.1rem 2rem;
   background: var(--black); color: var(--gold);
   border: none; cursor: pointer;
-  font-family: 'Jost', sans-serif; font-size: 0.72rem;
-  font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+  font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
   transition: all 0.3s; position: relative; overflow: hidden;
 }
 .btn-primary::before {
@@ -383,7 +383,7 @@ nav a:hover::after { transform: scaleX(1); }
 .btn-primary:hover::before { left: 100%; }
 .btn-primary:hover { background: var(--charcoal); }
 .btn-arabic {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 0.85rem; letter-spacing: 0; opacity: 0.7;
 }
 
@@ -395,8 +395,8 @@ nav a:hover::after { transform: scaleX(1); }
 .accord-btn {
   width: 100%; display: flex; justify-content: space-between; align-items: center;
   padding: 1rem 0; background: none; border: none; cursor: pointer;
-  font-family: 'Jost', sans-serif; font-size: 0.65rem;
-  letter-spacing: 0.25em; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
   color: var(--text-dark); font-weight: 500;
   transition: color 0.2s;
 }
@@ -458,7 +458,7 @@ nav a:hover::after { transform: scaleX(1); }
 }
 .video-caption-label {
   display: inline-block;
-  font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em;
+  font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em;
   text-transform: uppercase; color: var(--gold);
   padding: 0.5rem 2rem;
   background: rgba(10,10,10,0.7); backdrop-filter: blur(8px);
@@ -487,12 +487,12 @@ nav a:hover::after { transform: scaleX(1); }
 }
 .order-eyebrow::before, .order-eyebrow::after { content: '——'; opacity: 0.4; }
 .order-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 2.2rem; font-weight: 700;
   color: var(--black); letter-spacing: -0.01em;
 }
 .order-title-ar {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 0.9rem; color: var(--text-light);
   direction: rtl; margin-top: 0.4rem;
 }
@@ -517,7 +517,7 @@ nav a:hover::after { transform: scaleX(1); }
   padding: 0.85rem 1rem;
   border: 1px solid #e0dbd4;
   background: #faf9f6;
-  font-family: 'Jost', sans-serif; font-size: 0.9rem;
+  font-family: 'Outfit', sans-serif; font-size: 0.9rem;
   color: var(--text-dark); outline: none;
   transition: border-color 0.25s, background 0.25s;
   -webkit-appearance: none;
@@ -579,13 +579,13 @@ nav a:hover::after { transform: scaleX(1); }
   background: var(--black); margin-top: 0;
 }
 .total-label {
-  font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(247,243,236,0.5);
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5);
 }
 .total-amount {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 1.8rem; color: var(--gold); font-weight: 500;
 }
-.total-amount span { font-family: 'Jost', sans-serif; font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
+.total-amount span { font-family: 'Outfit', sans-serif; font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
 
 /* Submit */
 .btn-submit-wrap { grid-column: 1/-1; margin-top: 0.5rem; }
@@ -593,8 +593,8 @@ nav a:hover::after { transform: scaleX(1); }
   width: 100%; padding: 1.2rem 2rem;
   background: var(--black); color: var(--gold);
   border: none; cursor: pointer;
-  font-family: 'Jost', sans-serif; font-size: 0.72rem;
-  font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+  font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
   transition: all 0.3s; position: relative; overflow: hidden;
 }
 .btn-submit::before {
@@ -618,13 +618,13 @@ nav a:hover::after { transform: scaleX(1); }
 .success-box { max-width: 480px; padding: 3rem 2rem; }
 .success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
 .success-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 2rem; color: var(--gold); font-weight: 700;
   letter-spacing: 0.05em; margin-bottom: 1rem;
 }
 .success-msg { color: rgba(247,243,236,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
 .success-ar {
-  font-family: 'Noto Serif Arabic', serif;
+  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
   font-size: 0.9rem; color: rgba(201,168,76,0.6);
   direction: rtl; margin-bottom: 2rem;
 }
@@ -635,8 +635,8 @@ nav a:hover::after { transform: scaleX(1); }
 }
 .btn-close-success {
   padding: 0.9rem 3rem; background: var(--gold); color: var(--black);
-  border: none; font-family: 'Jost', sans-serif; font-size: 0.7rem;
-  letter-spacing: 0.3em; text-transform: uppercase; cursor: pointer; font-weight: 600;
+  border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem;
+  letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600;
   transition: background 0.3s;
 }
 .btn-close-success:hover { background: var(--gold-light); }
@@ -648,8 +648,8 @@ footer {
   padding: 2.5rem 4rem;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
 }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
-.footer-ar { font-family: 'Noto Serif Arabic', serif; font-size: 0.8rem; color: rgba(201,168,76,0.5); direction: rtl; }
+.footer-logo { font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
+.footer-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.8rem; color: rgba(201,168,76,0.5); direction: rtl; }
 .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ===== MOBILE ===== */
@@ -691,7 +691,7 @@ footer {
 <!-- HEADER -->
 <header>
   <div class="logo">JACKETS<span class="logo-dot">.</span>DZ</div>
-  <div class="header-arabic">الجزائر — أناقة بلا حدود</div>
+
   <nav>
     <a href="#">Collection</a>
     <a href="#">À Propos</a>
@@ -707,9 +707,8 @@ footer {
     <div class="hero-eyebrow">Édition Limitée · 2025</div>
     <h1 class="hero-title">
       CNY<br>Jacket
-      <em>Chinese New Year · الجزائر 🇩🇿</em>
+      <em>Chinese New Year · 2025</em>
     </h1>
-    <div class="hero-sub">جاكيت حصري — إصدار محدود — العام الجديد الصيني</div>
     <div class="hero-badges">
       <div class="hero-badge">Velours Suédé Premium</div>
       <div class="hero-badge">Pièce Numérotée</div>
@@ -728,27 +727,27 @@ footer {
       <!-- Navy Blue panel (default) -->
       <div class="color-panel active" id="panel-navy-blue">
         <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="CNY Jacket Navy Blue" class="jacket-img" id="mainImg0">
-        <div class="img-label">Navy Blue · أزرق</div>
+        <div class="img-label">Navy Blue</div>
       </div>
       <!-- Bordeaux -->
       <div class="color-panel" id="panel-bordeaux-red">
         <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="CNY Jacket Bordeaux" class="jacket-img">
-        <div class="img-label">Bordeaux Red · بورودو</div>
+        <div class="img-label">Bordeaux Red</div>
       </div>
       <!-- Black -->
       <div class="color-panel" id="panel-midnight-black">
         <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="CNY Jacket Black" class="jacket-img">
-        <div class="img-label">Midnight Black · أسود</div>
+        <div class="img-label">Midnight Black</div>
       </div>
       <!-- Gold -->
       <div class="color-panel" id="panel-sahara-gold">
         <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="CNY Jacket Gold" class="jacket-img">
-        <div class="img-label">Sahara Gold · ذهبي</div>
+        <div class="img-label">Sahara Gold</div>
       </div>
       <!-- Green -->
       <div class="color-panel" id="panel-forest-green">
         <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="CNY Jacket Green" class="jacket-img">
-        <div class="img-label">Forest Green · أخضر</div>
+        <div class="img-label">Forest Green</div>
       </div>
     </div>
     <div class="thumbs">
@@ -898,7 +897,7 @@ footer {
 <!-- VIDEO -->
 <div class="video-section">
   <video autoplay muted loop playsinline>
-    <source src="CF%20_%20Adidas%20%E6%96%B0%E5%B9%B4%E9%80%A0%E8%90%AC%E8%B1%A1%20-%20Adidas%202020%20CNY.mp4" type="video/mp4">
+    <source src="adidas_originals_CNY_2025.mp4" type="video/mp4">
   </video>
   <div class="video-caption">
     <div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2020 &nbsp; ✦</div>
