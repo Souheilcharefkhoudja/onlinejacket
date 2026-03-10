@@ -26,9 +26,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--ivory);
   color: var(--text-dark);
@@ -75,60 +73,41 @@ header {
 }
 .logo {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--black); letter-spacing: 0.12em; text-transform: uppercase;
 }
 .logo-dot { color: var(--gold); }
 .header-arabic {
   font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.75rem;
-  color: var(--gold-muted);
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-  text-align: center;
+  font-size: 0.75rem; color: var(--gold-muted);
+  letter-spacing: 0.05em; opacity: 0.8; text-align: center;
 }
 nav { display: flex; gap: 2rem; align-items: center; }
 nav a {
-  color: var(--text-mid);
-  text-decoration: none;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 400;
-  transition: color 0.3s;
-  position: relative;
+  color: var(--text-mid); text-decoration: none;
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 400; transition: color 0.3s; position: relative;
 }
 nav a::after {
-  content: '';
-  position: absolute; bottom: -2px; left: 0; right: 0;
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
   height: 1px; background: var(--gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
 }
 nav a:hover { color: var(--black); }
 nav a:hover::after { transform: scaleX(1); }
 .nav-cta {
-  background: var(--black) !important;
-  color: var(--gold) !important;
-  padding: 0.6rem 1.4rem !important;
-  letter-spacing: 0.15em !important;
-  font-weight: 500 !important;
-  transition: background 0.3s !important;
+  background: var(--black) !important; color: var(--gold) !important;
+  padding: 0.6rem 1.4rem !important; letter-spacing: 0.15em !important;
+  font-weight: 500 !important; transition: background 0.3s !important;
 }
 .nav-cta:hover { background: var(--charcoal) !important; }
 .nav-cta::after { display: none !important; }
 
 /* ===== HERO ===== */
 .hero {
-  position: relative;
-  background: var(--black);
-  min-height: 88vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  text-align: center;
+  position: relative; background: var(--black);
+  min-height: 88vh; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
 }
 .hero-bg {
   position: absolute; inset: 0;
@@ -140,8 +119,7 @@ nav a:hover::after { transform: scaleX(1); }
   background-size: 60px 60px;
 }
 .hero-inner {
-  position: relative; z-index: 2;
-  padding: 4rem 2rem;
+  position: relative; z-index: 2; padding: 4rem 2rem;
   animation: heroFade 1.2s ease both;
 }
 @keyframes heroFade {
@@ -151,46 +129,32 @@ nav a:hover::after { transform: scaleX(1); }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.8rem;
   font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
-  color: var(--gold); font-weight: 400;
-  margin-bottom: 1.8rem;
+  color: var(--gold); font-weight: 400; margin-bottom: 1.8rem;
 }
 .hero-eyebrow::before, .hero-eyebrow::after {
   content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
 }
 .hero-title {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 200;
-  color: var(--cream);
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  margin-bottom: 1rem;
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 200;
+  color: var(--cream); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1rem;
 }
 .hero-title em {
-  display: block;
-  font-style: italic;
-  color: var(--gold);
-  font-size: 0.45em;
-  letter-spacing: 0.15em;
-  font-weight: 400;
-  margin-top: 0.6rem;
-  text-transform: uppercase;
+  display: block; font-style: italic; color: var(--gold);
+  font-size: 0.45em; letter-spacing: 0.15em; font-weight: 400;
+  margin-top: 0.6rem; text-transform: uppercase;
 }
 .hero-sub {
   font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 1.1rem;
-  color: rgba(247,243,236,0.5);
-  direction: rtl;
-  margin: 1.5rem 0 2.5rem;
+  font-size: 1.1rem; color: rgba(247,243,236,0.5);
+  direction: rtl; margin: 1.5rem 0 2.5rem;
 }
 .hero-badges {
-  display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
-  margin-top: 2rem;
+  display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;
 }
 .hero-badge {
   font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(201,168,76,0.7);
-  display: flex; align-items: center; gap: 0.5rem;
+  color: rgba(201,168,76,0.7); display: flex; align-items: center; gap: 0.5rem;
 }
 .hero-badge::before { content: '◆'; font-size: 0.4rem; }
 .hero-scroll {
@@ -209,25 +173,35 @@ nav a:hover::after { transform: scaleX(1); }
   50% { transform: translateX(-50%) translateY(6px); }
 }
 
+/* ===== STOCK COUNTER ===== */
+.stock-bar {
+  background: rgba(201,168,76,0.06);
+  border: 1px solid var(--border);
+  padding: 0.7rem 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.stock-dot { width: 8px; height: 8px; border-radius: 50%; background: #2ecc71; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.stock-text { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-mid); }
+.stock-text strong { color: var(--red); font-weight: 600; }
+
 /* ===== PRODUCT SECTION ===== */
 .product-section {
   max-width: 1280px; margin: 0 auto;
   padding: 6rem 4rem;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem;
-  align-items: start;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start;
 }
 
 /* ===== GALLERY ===== */
 .gallery { position: sticky; top: 90px; }
 .main-img-wrap {
   position: relative; overflow: hidden;
-  background: var(--warm-white);
-  border: 1px solid var(--border);
+  background: var(--warm-white); border: 1px solid var(--border);
 }
 .main-img-wrap::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2;
 }
 .jacket-img {
   width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
@@ -238,21 +212,16 @@ nav a:hover::after { transform: scaleX(1); }
   position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 3;
   font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold);
   background: rgba(10,10,10,0.6); padding: 0.3rem 0.8rem;
-  backdrop-filter: blur(8px);
-  text-transform: uppercase;
+  backdrop-filter: blur(8px); text-transform: uppercase;
 }
 .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
 .thumb {
-  aspect-ratio: 1; overflow: hidden;
-  border: 1px solid transparent; cursor: pointer;
-  transition: border-color 0.3s;
-  background: var(--warm-white);
+  aspect-ratio: 1; overflow: hidden; border: 1px solid transparent; cursor: pointer;
+  transition: border-color 0.3s; background: var(--warm-white);
 }
 .thumb:hover, .thumb.active { border-color: var(--gold); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
 .thumb:hover img { transform: scale(1.05); }
-
-/* Gallery color panel switching */
 .color-panel { display: none; }
 .color-panel.active { display: block; }
 
@@ -268,110 +237,69 @@ nav a:hover::after { transform: scaleX(1); }
 .tag-black { color: var(--cream); border-color: rgba(255,255,255,0.15); background: var(--black); }
 
 .product-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: 3rem; font-weight: 200;
-  color: var(--black); line-height: 1.0;
-  letter-spacing: -0.04em;
-  margin-bottom: 0.4rem;
+  font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 200;
+  color: var(--black); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.4rem;
 }
 .product-name-ar {
   font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 1rem; color: var(--text-light);
-  direction: rtl; margin-bottom: 1.2rem;
+  font-size: 1rem; color: var(--text-light); direction: rtl; margin-bottom: 1.2rem;
 }
-.stars {
-  display: flex; align-items: center; gap: 0.5rem;
-  color: var(--gold); font-size: 0.85rem;
-}
+.stars { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.85rem; }
 .stars span { color: var(--text-light); font-size: 0.78rem; font-weight: 400; }
-
 .sep {
   width: 100%; height: 1px;
-  background: linear-gradient(90deg, var(--border), transparent);
-  margin: 1.8rem 0;
+  background: linear-gradient(90deg, var(--border), transparent); margin: 1.8rem 0;
 }
-
-/* Price */
 .price-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
 .price-main {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.8rem; font-weight: 500;
+  font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 500;
   color: var(--black); letter-spacing: -0.02em;
 }
-.price-currency {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem; font-weight: 400; color: var(--text-light);
-  letter-spacing: 0.1em;
-}
+.price-currency { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.1em; }
 .price-note { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
-
-/* Options */
 .opt-label {
   font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-light); font-weight: 500;
-  margin-bottom: 0.8rem;
+  color: var(--text-light); font-weight: 500; margin-bottom: 0.8rem;
   display: flex; align-items: center; gap: 0.6rem;
 }
 .opt-label strong { color: var(--text-dark); font-weight: 500; }
-
-/* Color dots */
 .color-dots { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
 .cdot {
-  width: 28px; height: 28px; border-radius: 50%;
-  cursor: pointer; border: 2px solid transparent;
-  transition: all 0.25s; position: relative;
+  width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+  border: 2px solid transparent; transition: all 0.25s; position: relative;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 .cdot::after {
-  content: attr(data-label);
-  position: absolute; bottom: -22px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.48rem; font-family: 'Outfit', sans-serif;
-  letter-spacing: 0.08em; white-space: nowrap;
-  color: var(--text-light); opacity: 0; transition: opacity 0.2s;
+  content: attr(data-label); position: absolute; bottom: -22px; left: 50%;
+  transform: translateX(-50%); font-size: 0.48rem; font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.08em; white-space: nowrap; color: var(--text-light);
+  opacity: 0; transition: opacity 0.2s;
 }
 .cdot:hover::after, .cdot.active::after { opacity: 1; }
 .cdot.active, .cdot:hover { border-color: var(--black); transform: scale(1.18); }
-
-/* Sizes */
 .sizes { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
 .sz {
-  width: 52px; height: 52px;
-  border: 1px solid #d0c8bb;
-  background: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.7rem;
-  font-weight: 500; letter-spacing: 0.12em;
-  color: var(--text-dark);
-  transition: all 0.2s;
-  text-transform: uppercase;
+  width: 52px; height: 52px; border: 1px solid #d0c8bb; background: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.12em; color: var(--text-dark); transition: all 0.2s; text-transform: uppercase;
 }
 .sz:hover { border-color: var(--black); background: rgba(10,10,10,0.04); }
 .sz.active { background: var(--black); color: var(--gold); border-color: var(--black); }
-.sz.out { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
-
-/* Quantity */
 .qty-row { display: flex; align-items: center; gap: 0; border: 1px solid #d0c8bb; width: fit-content; }
 .qty-btn {
-  width: 44px; height: 44px; background: none; border: none;
-  font-size: 1.1rem; cursor: pointer; color: var(--text-dark);
-  transition: background 0.2s; font-weight: 300;
+  width: 44px; height: 44px; background: none; border: none; font-size: 1.1rem;
+  cursor: pointer; color: var(--text-dark); transition: background 0.2s; font-weight: 300;
 }
 .qty-btn:hover { background: rgba(10,10,10,0.05); }
 .qty-val {
-  width: 48px; text-align: center;
-  font-family: 'Outfit', sans-serif; font-size: 1rem;
-  border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb;
-  height: 44px; display: flex; align-items: center; justify-content: center;
-  font-weight: 500;
+  width: 48px; text-align: center; font-family: 'Outfit', sans-serif; font-size: 1rem;
+  border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb; height: 44px;
+  display: flex; align-items: center; justify-content: center; font-weight: 500;
 }
-
-/* CTA */
 .cta-group { display: flex; gap: 0.8rem; margin-top: 2rem; flex-direction: column; }
 .btn-primary {
-  width: 100%; padding: 1.1rem 2rem;
-  background: var(--black); color: var(--gold);
-  border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+  width: 100%; padding: 1.1rem 2rem; background: var(--black); color: var(--gold);
+  border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem;
   font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
   transition: all 0.3s; position: relative; overflow: hidden;
 }
@@ -382,231 +310,135 @@ nav a:hover::after { transform: scaleX(1); }
 }
 .btn-primary:hover::before { left: 100%; }
 .btn-primary:hover { background: var(--charcoal); }
-.btn-arabic {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.85rem; letter-spacing: 0; opacity: 0.7;
-}
-
-/* Accordion */
+.btn-arabic { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.85rem; letter-spacing: 0; opacity: 0.7; }
 .accords { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
-.accord {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
+.accord { border-bottom: 1px solid rgba(0,0,0,0.08); }
 .accord-btn {
   width: 100%; display: flex; justify-content: space-between; align-items: center;
   padding: 1rem 0; background: none; border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.65rem;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-dark); font-weight: 500;
-  transition: color 0.2s;
+  font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-dark); font-weight: 500; transition: color 0.2s;
 }
 .accord-btn:hover { color: var(--gold-muted); }
 .accord-icon { font-size: 1.1rem; font-weight: 200; color: var(--gold); transition: transform 0.3s; }
 .accord-icon.open { transform: rotate(45deg); }
-.accord-body {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.4s ease;
-  font-size: 0.88rem; color: var(--text-mid);
-  line-height: 1.8;
-}
+.accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
 .accord-body p { padding-bottom: 1.2rem; }
 
 /* ===== TRUST BAR ===== */
 .trust-bar {
-  background: var(--black);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: flex; justify-content: center; gap: 0;
-  overflow: hidden;
+  background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: flex; justify-content: center; gap: 0; overflow: hidden;
 }
 .trust-item {
-  flex: 1; max-width: 220px;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 0.4rem; padding: 1.6rem 1rem; text-align: center;
+  flex: 1; max-width: 220px; display: flex; flex-direction: column;
+  align-items: center; gap: 0.4rem; padding: 1.6rem 1rem; text-align: center;
   border-right: 1px solid var(--border);
 }
 .trust-item:last-child { border-right: none; }
 .trust-icon { font-size: 1.3rem; }
-.trust-label {
-  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--gold); font-weight: 500; line-height: 1.5;
-}
+.trust-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; line-height: 1.5; }
 .trust-sub { font-size: 0.7rem; color: rgba(247,243,236,0.35); }
 
 /* ===== VIDEO SECTION ===== */
-.video-section {
-  position: relative; overflow: hidden;
-  background: var(--black);
-}
-.video-section video {
-  width: 100%; display: block; max-height: 75vh;
-  object-fit: cover; opacity: 0.82;
-}
+.video-section { position: relative; overflow: hidden; background: var(--black); }
+.video-section video { width: 100%; display: block; max-height: 75vh; object-fit: cover; opacity: 0.82; }
 .video-section::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2;
 }
 .video-section::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
-  background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%);
-  z-index: 2; pointer-events: none;
+  background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%); z-index: 2; pointer-events: none;
 }
-.video-caption {
-  position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
-  z-index: 3; text-align: center; white-space: nowrap;
-}
+.video-caption { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; white-space: nowrap; }
 .video-caption-label {
-  display: inline-block;
-  font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em;
-  text-transform: uppercase; color: var(--gold);
-  padding: 0.5rem 2rem;
-  background: rgba(10,10,10,0.7); backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
+  display: inline-block; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold); padding: 0.5rem 2rem;
+  background: rgba(10,10,10,0.7); backdrop-filter: blur(8px); border: 1px solid var(--border);
 }
 
 /* ===== DIVIDER ===== */
 .section-divider {
-  display: flex; align-items: center; gap: 1.5rem;
-  padding: 2rem 4rem;
-  background: transparent;
+  display: flex; align-items: center; gap: 1.5rem; padding: 2rem 4rem; background: transparent;
 }
 .div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 .div-text { font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
 .div-diamond { color: var(--gold); font-size: 0.5rem; }
 
 /* ===== ORDER SECTION ===== */
-.order-section {
-  max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem;
-}
+.order-section { max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem; }
 .order-header { text-align: center; margin-bottom: 3rem; }
 .order-eyebrow {
-  font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.8rem;
-  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+  font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem;
 }
 .order-eyebrow::before, .order-eyebrow::after { content: '——'; opacity: 0.4; }
-.order-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.2rem; font-weight: 700;
-  color: var(--black); letter-spacing: -0.01em;
-}
-.order-title-ar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.9rem; color: var(--text-light);
-  direction: rtl; margin-top: 0.4rem;
-}
+.order-title { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--black); letter-spacing: -0.01em; }
+.order-title-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: var(--text-light); direction: rtl; margin-top: 0.4rem; }
 
-/* Form */
-.form-card {
-  background: white;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 4px 40px rgba(0,0,0,0.06);
-}
+/* ===== FORM ===== */
+.form-card { background: white; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 40px rgba(0,0,0,0.06); }
 .form-inner { padding: 2.5rem; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
 .form-group.full { grid-column: 1/-1; }
-.form-group label {
-  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--text-light); font-weight: 500;
-}
+.form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); font-weight: 500; }
 .form-group input,
 .form-group select,
 .form-group textarea {
-  padding: 0.85rem 1rem;
-  border: 1px solid #e0dbd4;
-  background: #faf9f6;
-  font-family: 'Outfit', sans-serif; font-size: 0.9rem;
-  color: var(--text-dark); outline: none;
-  transition: border-color 0.25s, background 0.25s;
-  -webkit-appearance: none;
+  padding: 0.85rem 1rem; border: 1px solid #e0dbd4; background: #faf9f6;
+  font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-dark);
+  outline: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none;
 }
 .form-group input:focus,
 .form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--gold);
-  background: white;
-}
+.form-group textarea:focus { border-color: var(--gold); background: white; }
 .form-group textarea { resize: vertical; min-height: 80px; }
-
-/* Delivery */
-.delivery-wrap {
-  grid-column: 1/-1;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
-  margin-top: 0.4rem;
-}
+.delivery-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
 .delivery-opt {
-  display: flex; align-items: center; gap: 0.8rem;
-  padding: 1rem 1.2rem;
-  border: 1px solid #e0dbd4;
-  cursor: pointer; transition: all 0.25s;
-  background: #faf9f6;
+  display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem;
+  border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6;
 }
 .delivery-opt:hover { border-color: #c0b8a8; }
-.delivery-opt.selected {
-  border-color: var(--gold); background: rgba(201,168,76,0.05);
-}
+.delivery-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
 .delivery-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; }
-.delivery-name {
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem;
-}
+.delivery-name { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
 .delivery-price { font-size: 0.82rem; color: var(--gold-muted); }
-
-/* Summary bar */
 .summary-bar {
-  grid-column: 1/-1;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 0.8rem;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: var(--warm-white);
+  grid-column: 1/-1; display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 0.8rem; border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white);
 }
-.summary-cell {
-  padding: 0.9rem 1rem;
-  border-right: 1px solid rgba(0,0,0,0.06);
-  display: flex; flex-direction: column; gap: 0.2rem;
-}
+.summary-cell { padding: 0.9rem 1rem; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.2rem; }
 .summary-cell:last-child { border-right: none; }
 .summary-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
 .summary-val { font-size: 0.85rem; color: var(--text-dark); font-weight: 400; }
-
-/* Total */
 .total-bar {
-  grid-column: 1/-1;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.2rem 1.5rem;
-  background: var(--black); margin-top: 0;
+  grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 1.5rem; background: var(--black); margin-top: 0;
 }
-.total-label {
-  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5);
-}
-.total-amount {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.8rem; color: var(--gold); font-weight: 500;
-}
+.total-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5); }
+.total-amount { font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: var(--gold); font-weight: 500; }
 .total-amount span { font-family: 'Outfit', sans-serif; font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
-
-/* Submit */
 .btn-submit-wrap { grid-column: 1/-1; margin-top: 0.5rem; }
 .btn-submit {
-  width: 100%; padding: 1.2rem 2rem;
-  background: var(--black); color: var(--gold);
-  border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+  width: 100%; padding: 1.2rem 2rem; background: var(--black); color: var(--gold);
+  border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem;
   font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
   transition: all 0.3s; position: relative; overflow: hidden;
 }
-.btn-submit::before {
-  content: ''; position: absolute; inset: 1px;
-  border: 1px solid rgba(201,168,76,0.15);
-  pointer-events: none;
-}
+.btn-submit::before { content: ''; position: absolute; inset: 1px; border: 1px solid rgba(201,168,76,0.15); pointer-events: none; }
 .btn-submit:hover { background: #1a1a1a; }
 .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-
-/* Error */
 .field-error { display: none; color: var(--red); font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+/* ===== LOADING SPINNER ===== */
+.spinner {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid rgba(201,168,76,0.3); border-top-color: var(--gold);
+  border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 8px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===== SUCCESS OVERLAY ===== */
 .success-overlay {
@@ -617,35 +449,24 @@ nav a:hover::after { transform: scaleX(1); }
 .success-overlay.show { display: flex; }
 .success-box { max-width: 480px; padding: 3rem 2rem; }
 .success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
-.success-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem; color: var(--gold); font-weight: 700;
-  letter-spacing: 0.05em; margin-bottom: 1rem;
-}
+.success-title { font-family: 'Outfit', sans-serif; font-size: 2rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1rem; }
 .success-msg { color: rgba(247,243,236,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-.success-ar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.9rem; color: rgba(201,168,76,0.6);
-  direction: rtl; margin-bottom: 2rem;
-}
-.success-note {
-  font-size: 0.75rem; color: var(--gold); opacity: 0.7;
-  border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-}
+.success-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: rgba(201,168,76,0.6); direction: rtl; margin-bottom: 2rem; }
+.success-note { font-size: 0.75rem; color: var(--gold); opacity: 0.7; border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem; letter-spacing: 0.1em; }
+
+/* Order ref number */
+.success-ref { font-size: 0.7rem; color: rgba(201,168,76,0.5); letter-spacing: 0.2em; margin-bottom: 1.5rem; }
+
 .btn-close-success {
   padding: 0.9rem 3rem; background: var(--gold); color: var(--black);
   border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem;
-  letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600;
-  transition: background 0.3s;
+  letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: background 0.3s;
 }
 .btn-close-success:hover { background: var(--gold-light); }
 
 /* ===== FOOTER ===== */
 footer {
-  background: var(--black);
-  border-top: 1px solid var(--border);
-  padding: 2.5rem 4rem;
+  background: var(--black); border-top: 1px solid var(--border); padding: 2.5rem 4rem;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
 }
 .footer-logo { font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
@@ -691,7 +512,6 @@ footer {
 <!-- HEADER -->
 <header>
   <div class="logo">JACKETS<span class="logo-dot">.</span>DZ</div>
-
   <nav>
     <a href="#">Collection</a>
     <a href="#">À Propos</a>
@@ -704,10 +524,10 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Édition Limitée · 2025</div>
+    <div class="hero-eyebrow">Édition Limitée · 2026</div>
     <h1 class="hero-title">
       CNY<br>Jacket
-      <em>Chinese New Year · 2025</em>
+      <em>Chinese New Year · 2026</em>
     </h1>
     <div class="hero-badges">
       <div class="hero-badge">Velours Suédé Premium</div>
@@ -724,27 +544,22 @@ footer {
   <!-- GALLERY -->
   <div class="gallery">
     <div class="main-img-wrap" id="mainImgWrap">
-      <!-- Navy Blue panel (default) -->
       <div class="color-panel active" id="panel-navy-blue">
-        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="CNY Jacket Navy Blue" class="jacket-img" id="mainImg0">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="CNY Jacket Navy Blue" class="jacket-img">
         <div class="img-label">Navy Blue</div>
       </div>
-      <!-- Bordeaux -->
       <div class="color-panel" id="panel-bordeaux-red">
         <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="CNY Jacket Bordeaux" class="jacket-img">
         <div class="img-label">Bordeaux Red</div>
       </div>
-      <!-- Black -->
       <div class="color-panel" id="panel-midnight-black">
         <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="CNY Jacket Black" class="jacket-img">
         <div class="img-label">Midnight Black</div>
       </div>
-      <!-- Gold -->
       <div class="color-panel" id="panel-sahara-gold">
         <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="CNY Jacket Gold" class="jacket-img">
         <div class="img-label">Sahara Gold</div>
       </div>
-      <!-- Green -->
       <div class="color-panel" id="panel-forest-green">
         <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="CNY Jacket Green" class="jacket-img">
         <div class="img-label">Forest Green</div>
@@ -770,15 +585,21 @@ footer {
   <div class="product-info">
     <div class="tags">
       <span class="tag tag-red">Édition Limitée</span>
-      <span class="tag tag-gold">Chinese New Year 2025</span>
+      <span class="tag tag-gold">Chinese New Year 2026</span>
       <span class="tag tag-black">🇩🇿 Algérie</span>
+    </div>
+
+    <!-- ✅ LIVE STOCK COUNTER -->
+    <div class="stock-bar">
+      <div class="stock-dot"></div>
+      <div class="stock-text">
+        Stock limité — <strong id="stockCount">400</strong> pièces restantes · <strong>متوفر</strong>
+      </div>
     </div>
 
     <h2 class="product-name">Exclusive<br>CNY Jacket</h2>
     <div class="product-name-ar">جاكيت حصري · نوفي العام الصيني الجديد</div>
-    <div class="stars">
-      ★★★★★ <span>214 avis · مراجعة</span>
-    </div>
+    <div class="stars">★★★★★ <span>214 avis · مراجعة</span></div>
 
     <div class="sep"></div>
 
@@ -793,16 +614,16 @@ footer {
     <!-- Color -->
     <div class="opt-label">Couleur — <strong id="colorName">Sélectionner</strong></div>
     <div class="color-dots" id="colorDots">
-      <div class="cdot" style="background:#2c4a6e;" data-label="Navy Blue" data-color="navy-blue" onclick="selectColor(this)" title="Navy Blue"></div>
-      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux" data-color="bordeaux-red" onclick="selectColor(this)" title="Bordeaux Red"></div>
-      <div class="cdot" style="background:#c8860a;" data-label="Sahara Gold" data-color="sahara-gold" onclick="selectColor(this)" title="Sahara Gold"></div>
-      <div class="cdot" style="background:#1a1a1a;" data-label="Midnight Black" data-color="midnight-black" onclick="selectColor(this)" title="Midnight Black"></div>
-      <div class="cdot" style="background:#f5f0e8;border:2px solid #ccc;" data-label="Ivory White" data-color="ivory-white" onclick="selectColor(this)" title="Ivory White"></div>
-      <div class="cdot" style="background:#1a4a3a;" data-label="Forest Green" data-color="forest-green" onclick="selectColor(this)" title="Forest Green"></div>
-      <div class="cdot" style="background:#6b3a8a;" data-label="Royal Purple" data-color="royal-purple" onclick="selectColor(this)" title="Royal Purple"></div>
-      <div class="cdot" style="background:#b5652a;" data-label="Terracotta" data-color="terracotta" onclick="selectColor(this)" title="Terracotta"></div>
-      <div class="cdot" style="background:#c0392b;" data-label="Crimson Red" data-color="crimson-red" onclick="selectColor(this)" title="Crimson Red"></div>
-      <div class="cdot" style="background:#4a6a8a;" data-label="Steel Blue" data-color="steel-blue" onclick="selectColor(this)" title="Steel Blue"></div>
+      <div class="cdot" style="background:#2c4a6e;" data-label="Navy Blue" data-color="navy-blue" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux" data-color="bordeaux-red" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#c8860a;" data-label="Sahara Gold" data-color="sahara-gold" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#1a1a1a;" data-label="Midnight Black" data-color="midnight-black" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#f5f0e8;border:2px solid #ccc;" data-label="Ivory White" data-color="ivory-white" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#1a4a3a;" data-label="Forest Green" data-color="forest-green" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#6b3a8a;" data-label="Royal Purple" data-color="royal-purple" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#b5652a;" data-label="Terracotta" data-color="terracotta" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#c0392b;" data-label="Crimson Red" data-color="crimson-red" onclick="selectColor(this)"></div>
+      <div class="cdot" style="background:#4a6a8a;" data-label="Steel Blue" data-color="steel-blue" onclick="selectColor(this)"></div>
     </div>
     <div class="field-error" id="colorError">⚠ Veuillez sélectionner une couleur</div>
     <br>
@@ -834,14 +655,14 @@ footer {
       </a>
     </div>
 
-    <!-- Accordion details -->
+    <!-- Accordion -->
     <div class="accords">
       <div class="accord">
         <button class="accord-btn" onclick="toggleAcc(this)">
           Description du Produit <span class="accord-icon">+</span>
         </button>
         <div class="accord-body">
-          <p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p>
+          <p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois 2026, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle. Pièce numérotée, fabriquée en quantité limitée.</p>
         </div>
       </div>
       <div class="accord">
@@ -849,7 +670,7 @@ footer {
           Livraison en Algérie <span class="accord-icon">+</span>
         </button>
         <div class="accord-body">
-          <p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau de poste / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p>
+          <p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p>
         </div>
       </div>
       <div class="accord">
@@ -867,31 +688,11 @@ footer {
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">
-    <div class="trust-icon">💵</div>
-    <div class="trust-label">Paiement à<br>la Livraison</div>
-    <div class="trust-sub">Cash uniquement</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">🚚</div>
-    <div class="trust-label">58 Wilayas<br>Couvertes</div>
-    <div class="trust-sub">Tout le territoire</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">📦</div>
-    <div class="trust-label">Expédition<br>3–7 Jours</div>
-    <div class="trust-sub">Jours ouvrables</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">↩️</div>
-    <div class="trust-label">Retours<br>14 Jours</div>
-    <div class="trust-sub">Satisfait ou remboursé</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">🔢</div>
-    <div class="trust-label">Pièce<br>Numérotée</div>
-    <div class="trust-sub">Édition limitée</div>
-  </div>
+  <div class="trust-item"><div class="trust-icon">💵</div><div class="trust-label">Paiement à<br>la Livraison</div><div class="trust-sub">Cash uniquement</div></div>
+  <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">58 Wilayas<br>Couvertes</div><div class="trust-sub">Tout le territoire</div></div>
+  <div class="trust-item"><div class="trust-icon">📦</div><div class="trust-label">Expédition<br>3–7 Jours</div><div class="trust-sub">Jours ouvrables</div></div>
+  <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">Retours<br>14 Jours</div><div class="trust-sub">Satisfait ou remboursé</div></div>
+  <div class="trust-item"><div class="trust-icon">🔢</div><div class="trust-label">Pièce<br>Numérotée</div><div class="trust-sub">Édition limitée</div></div>
 </div>
 
 <!-- VIDEO -->
@@ -900,7 +701,7 @@ footer {
     <source src="adidas_originals_CNY_2025.mp4" type="video/mp4">
   </video>
   <div class="video-caption">
-    <div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2020 &nbsp; ✦</div>
+    <div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; CNY 2026 &nbsp; ✦</div>
   </div>
 </div>
 
@@ -923,28 +724,20 @@ footer {
 
   <div class="form-card">
     <div class="form-inner">
-      <form onsubmit="submitOrder(event)">
-        <input type="hidden" name="access_key" value="30674636-aca2-4f7c-952c-c3bd20a45594">
-        <input type="hidden" name="subject" value="🧥 Nouvelle Commande - JACKETS.DZ">
-        <input type="hidden" name="from_name" value="JACKETS.DZ">
-        <input type="hidden" id="hidden-color" name="couleur" value="">
-        <input type="hidden" id="hidden-size" name="taille" value="">
-        <input type="hidden" id="hidden-qty" name="quantite" value="1">
-        <input type="hidden" id="hidden-delivery" name="livraison" value="">
-        <input type="hidden" id="hidden-total" name="total" value="">
+      <form id="orderForm" onsubmit="submitOrder(event)">
 
         <div class="form-grid">
           <div class="form-group">
-            <label>Nom Complet / الاسم الكامل</label>
-            <input type="text" name="nom_complet" placeholder="Ahmed Benali" required>
+            <label>Nom Complet / الاسم الكامل *</label>
+            <input type="text" id="f-name" placeholder="Ahmed Benali" required>
           </div>
           <div class="form-group">
-            <label>Numéro de Téléphone / رقم الهاتف</label>
-            <input type="tel" name="telephone" placeholder="0X XX XX XX XX" required>
+            <label>Numéro de Téléphone / رقم الهاتف *</label>
+            <input type="tel" id="f-phone" placeholder="0X XX XX XX XX" required>
           </div>
           <div class="form-group">
-            <label>Wilaya / الولاية</label>
-            <select name="wilaya" required>
+            <label>Wilaya / الولاية *</label>
+            <select id="f-wilaya" required>
               <option value="">— Choisir une wilaya —</option>
               <option>01 - Adrar</option><option>02 - Chlef</option><option>03 - Laghouat</option>
               <option>04 - Oum El Bouaghi</option><option>05 - Batna</option><option>06 - Béjaïa</option>
@@ -969,8 +762,8 @@ footer {
             </select>
           </div>
           <div class="form-group">
-            <label>Adresse / العنوان</label>
-            <input type="text" name="adresse" placeholder="Rue, commune..." required>
+            <label>Adresse / العنوان *</label>
+            <input type="text" id="f-address" placeholder="Rue, commune..." required>
           </div>
 
           <!-- Delivery options -->
@@ -1006,11 +799,11 @@ footer {
 
           <div class="form-group full">
             <label>Note / ملاحظة (optionnel)</label>
-            <textarea name="note" placeholder="Précisions sur votre commande..."></textarea>
+            <textarea id="f-note" placeholder="Précisions sur votre commande..."></textarea>
           </div>
 
           <div class="btn-submit-wrap">
-            <button type="submit" class="btn-submit">
+            <button type="submit" class="btn-submit" id="submitBtn">
               ✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦
             </button>
           </div>
@@ -1027,6 +820,7 @@ footer {
     <div class="success-title">Commande Confirmée</div>
     <div class="success-msg">Merci pour votre commande ! Nous vous contacterons dans les <strong>24 heures</strong> pour confirmer et organiser la livraison.</div>
     <div class="success-ar">شكراً لطلبك! سنتصل بك خلال 24 ساعة لتأكيد الطلب وترتيب التوصيل.</div>
+    <div class="success-ref" id="orderRef"></div>
     <div class="success-note">💵 Paiement à la livraison uniquement — Pas de paiement en ligne requis</div>
     <button class="btn-close-success" onclick="closeSuccess()">Retour à la Boutique</button>
   </div>
@@ -1036,26 +830,42 @@ footer {
 <footer>
   <div class="footer-logo">JACKETS.DZ</div>
   <div class="footer-ar">الجزائر — أناقة بلا حدود · 58 ولاية</div>
-  <div class="footer-copy">© 2025 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
+  <div class="footer-copy">© 2026 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
 </footer>
 
 <script>
-const BASE = 8500;
-let deliveryFee = 400;
-let selectedColor = '';
-let selectedSize = '';
-let selectedQty = 1;
-const thumbPanelMap = ['navy-blue', 'bordeaux-red', 'midnight-black', 'sahara-gold', 'forest-green'];
+// ═══════════════════════════════════════════════════
+//  CONFIG — your endpoints
+// ═══════════════════════════════════════════════════
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbycK0MHNwfZR6E0vrUtfhYdzEVO7WMi63ShzLTbqbT_VVSF9C33biQrRjO76Hd00K6W_w/exec';
+const WEB3FORMS_KEY   = '30674636-aca2-4f7c-952c-c3bd20a45594'; // email backup to souh445@gmail.com
 
+// ═══════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════
+const BASE = 8500;
+let deliveryFee   = 400;
+let selectedColor = '';
+let selectedSize  = '';
+let selectedQty   = 1;
+let orderCount    = 0; // tracks orders this session for stock display
+
+const thumbPanelMap = ['navy-blue','bordeaux-red','midnight-black','sahara-gold','forest-green'];
+
+// ═══════════════════════════════════════════════════
+//  GALLERY
+// ═══════════════════════════════════════════════════
 function switchThumb(el, idx) {
   document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.color-panel').forEach(p => p.classList.remove('active'));
-  const panelId = 'panel-' + thumbPanelMap[idx];
-  const panel = document.getElementById(panelId);
+  const panel = document.getElementById('panel-' + thumbPanelMap[idx]);
   if (panel) panel.classList.add('active');
 }
 
+// ═══════════════════════════════════════════════════
+//  COLOR / SIZE / QTY
+// ═══════════════════════════════════════════════════
 function selectColor(dotEl) {
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
   dotEl.classList.add('active');
@@ -1063,9 +873,7 @@ function selectColor(dotEl) {
   document.getElementById('colorName').textContent = selectedColor;
   document.getElementById('sum-color').textContent = selectedColor;
   document.getElementById('colorError').style.display = 'none';
-  // Also switch image panel if matching
-  const panelId = 'panel-' + dotEl.dataset.color;
-  const panel = document.getElementById(panelId);
+  const panel = document.getElementById('panel-' + dotEl.dataset.color);
   if (panel) {
     document.querySelectorAll('.color-panel').forEach(p => p.classList.remove('active'));
     panel.classList.add('active');
@@ -1097,7 +905,6 @@ function selectDelivery(el, fee) {
   el.querySelector('input').checked = true;
   deliveryFee = fee;
   document.getElementById('sum-delivery').textContent = fee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
-  document.getElementById('hidden-delivery').value = fee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
   updateTotal();
 }
 
@@ -1112,73 +919,109 @@ function toggleAcc(btn) {
   const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
   document.querySelectorAll('.accord-body').forEach(b => b.style.maxHeight = '0px');
   document.querySelectorAll('.accord-icon').forEach(i => { i.textContent = '+'; i.classList.remove('open'); });
-  if (!isOpen) {
-    body.style.maxHeight = '300px';
-    icon.textContent = '+';
-    icon.classList.add('open');
-  }
+  if (!isOpen) { body.style.maxHeight = '300px'; icon.classList.add('open'); }
 }
 
+// ═══════════════════════════════════════════════════
+//  ORDER SUBMISSION — Google Sheets + Web3Forms
+// ═══════════════════════════════════════════════════
 async function submitOrder(e) {
   e.preventDefault();
-  let hasError = false;
 
-  if (!selectedColor) {
-    document.getElementById('colorError').style.display = 'block';
-    hasError = true;
-  }
-  if (!selectedSize) {
-    document.getElementById('sizeError').style.display = 'block';
-    hasError = true;
-  }
-  if (!selectedQty || selectedQty < 1) {
-    document.getElementById('qtyError').style.display = 'block';
-    hasError = true;
-  }
+  // Validate product selection
+  let hasError = false;
+  if (!selectedColor) { document.getElementById('colorError').style.display = 'block'; hasError = true; }
+  if (!selectedSize)  { document.getElementById('sizeError').style.display = 'block'; hasError = true; }
   if (hasError) {
-    const firstErr = document.querySelector('.field-error:not([style*="none"])');
-    if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.querySelector('.field-error:not([style*="display: none"])').scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
-  document.getElementById('hidden-color').value = selectedColor;
-  document.getElementById('hidden-size').value = selectedSize;
-  document.getElementById('hidden-qty').value = selectedQty;
-  document.getElementById('hidden-total').value = document.getElementById('totalPrice').textContent + ' DA';
+  // Collect form data
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const wilaya  = document.getElementById('f-wilaya').value;
+  const address = document.getElementById('f-address').value.trim();
+  const note    = document.getElementById('f-note').value.trim();
+  const total   = document.getElementById('totalPrice').textContent + ' DA';
+  const delivery = deliveryFee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
+  const orderRef = 'DZ-' + Date.now().toString().slice(-6);
+  const timestamp = new Date().toLocaleString('fr-DZ');
 
-  const form = e.target;
-  const btn = form.querySelector('.btn-submit');
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours...';
-
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST', body: new FormData(form)
-    });
-    const data = await res.json();
-    if (data.success) {
-      document.getElementById('successOverlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
-      form.reset();
-      selectedColor = ''; selectedSize = ''; selectedQty = 1;
-      document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
-      document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
-      document.getElementById('colorName').textContent = 'Sélectionner';
-      document.getElementById('sizeName').textContent = 'Sélectionner';
-      document.getElementById('qtyValue').textContent = '1';
-      document.getElementById('sum-color').textContent = '—';
-      document.getElementById('sum-size').textContent = '—';
-      document.getElementById('sum-qty').textContent = '1';
-      updateTotal();
-    } else {
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
-    }
-  } catch {
-    alert('Erreur réseau. Veuillez vérifier votre connexion.');
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = '✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦';
+  if (!name || !phone || !wilaya || !address) {
+    alert('Veuillez remplir tous les champs obligatoires.');
+    return;
   }
+
+  // Disable button + show spinner
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
+
+  const orderData = {
+    timestamp, name, phone, wilaya, address,
+    color: selectedColor, size: selectedSize,
+    quantity: selectedQty, total, delivery, note: note || '—',
+    status: 'Pending', ref: orderRef
+  };
+
+  // ── 1. Send to Google Sheets ──
+  const sheetPromise = fetch(GOOGLE_SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(orderData)
+  }).catch(() => null); // silent fail — web3forms is backup
+
+  // ── 2. Send email via Web3Forms (backup) ──
+  const w3fData = new FormData();
+  w3fData.append('access_key', WEB3FORMS_KEY);
+  w3fData.append('subject', `🧥 Nouvelle Commande #${orderRef} — JACKETS.DZ`);
+  w3fData.append('from_name', 'JACKETS.DZ');
+  w3fData.append('name', name);
+  w3fData.append('email', 'noreply@jackets.dz');
+  w3fData.append('message',
+    `NOUVELLE COMMANDE #${orderRef}\n\n` +
+    `Client: ${name}\nTéléphone: ${phone}\nWilaya: ${wilaya}\nAdresse: ${address}\n\n` +
+    `Couleur: ${selectedColor}\nTaille: ${selectedSize}\nQuantité: ${selectedQty}\n` +
+    `Livraison: ${delivery}\nTotal: ${total}\nNote: ${note || '—'}\n\nDate: ${timestamp}`
+  );
+
+  const emailPromise = fetch('https://api.web3forms.com/submit', {
+    method: 'POST', body: w3fData
+  }).catch(() => null);
+
+  // ── Wait for both ──
+  await Promise.all([sheetPromise, emailPromise]);
+
+  // ── Show success ──
+  document.getElementById('orderRef').textContent = `Référence commande: #${orderRef}`;
+  document.getElementById('successOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  // Update stock counter
+  orderCount += selectedQty;
+  const remaining = Math.max(0, 400 - orderCount);
+  document.getElementById('stockCount').textContent = remaining;
+
+  // Reset form
+  document.getElementById('orderForm').reset();
+  selectedColor = ''; selectedSize = ''; selectedQty = 1;
+  document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
+  document.getElementById('colorName').textContent = 'Sélectionner';
+  document.getElementById('sizeName').textContent = 'Sélectionner';
+  document.getElementById('qtyValue').textContent = '1';
+  document.getElementById('sum-color').textContent = '—';
+  document.getElementById('sum-size').textContent = '—';
+  document.getElementById('sum-qty').textContent = '1';
+  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
+  document.querySelector('.delivery-opt').classList.add('selected');
+  deliveryFee = 400;
+  updateTotal();
+
+  btn.disabled = false;
+  btn.innerHTML = '✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦';
 }
 
 function closeSuccess() {
