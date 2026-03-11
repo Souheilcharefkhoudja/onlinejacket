@@ -26,9 +26,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--ivory);
   color: var(--text-dark);
@@ -38,8 +36,6 @@ body {
   font-size: 0.95rem;
   line-height: 1.6;
 }
-
-/* ===== NOISE OVERLAY ===== */
 body::after {
   content: '';
   position: fixed; inset: 0;
@@ -47,13 +43,11 @@ body::after {
   pointer-events: none; z-index: 9999; opacity: 0.4;
 }
 
-/* ===== ANNOUNCEMENT BAR ===== */
 .announce {
   background: var(--black);
   color: var(--gold);
   text-align: center;
   padding: 0.55rem 1rem;
-  font-family: 'Outfit', sans-serif;
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.15em;
@@ -62,136 +56,59 @@ body::after {
 }
 .announce span { opacity: 0.6; margin: 0 1rem; }
 
-/* ===== HEADER ===== */
 header {
   position: sticky; top: 0; z-index: 200;
   background: rgba(250,248,244,0.96);
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 4rem; height: 72px;
-  transition: all 0.3s;
 }
-.logo {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--black); letter-spacing: 0.12em; text-transform: uppercase; }
 .logo-dot { color: var(--gold); }
-.header-arabic {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.75rem;
-  color: var(--gold-muted);
-  letter-spacing: 0.05em;
-  opacity: 0.8;
-  text-align: center;
-}
 nav { display: flex; gap: 2rem; align-items: center; }
 nav a {
-  color: var(--text-mid);
-  text-decoration: none;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 400;
-  transition: color 0.3s;
-  position: relative;
+  color: var(--text-mid); text-decoration: none;
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400;
+  transition: color 0.3s; position: relative;
 }
 nav a::after {
-  content: '';
-  position: absolute; bottom: -2px; left: 0; right: 0;
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
   height: 1px; background: var(--gold);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
+  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
 }
 nav a:hover { color: var(--black); }
 nav a:hover::after { transform: scaleX(1); }
 .nav-cta {
-  background: var(--black) !important;
-  color: var(--gold) !important;
-  padding: 0.6rem 1.4rem !important;
-  letter-spacing: 0.15em !important;
+  background: var(--black) !important; color: var(--gold) !important;
+  padding: 0.6rem 1.4rem !important; letter-spacing: 0.15em !important;
   font-weight: 500 !important;
-  transition: background 0.3s !important;
 }
-.nav-cta:hover { background: var(--charcoal) !important; }
 .nav-cta::after { display: none !important; }
 
-/* ===== HERO ===== */
 .hero {
-  position: relative;
-  background: var(--black);
-  min-height: 88vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  text-align: center;
+  position: relative; background: var(--black);
+  min-height: 88vh; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, #1e1612 0%, var(--black) 70%);
-}
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, #1e1612 0%, var(--black) 70%); }
 .hero-pattern {
   position: absolute; inset: 0; opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.6'%3E%3Cpath d='M30 2 L58 17 L58 43 L30 58 L2 43 L2 17 Z'/%3E%3Cpath d='M30 10 L50 22 L50 38 L30 50 L10 38 L10 22 Z'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 60px 60px;
 }
-.hero-inner {
-  position: relative; z-index: 2;
-  padding: 4rem 2rem;
-  animation: heroFade 1.2s ease both;
-}
-@keyframes heroFade {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+.hero-inner { position: relative; z-index: 2; padding: 4rem 2rem; animation: heroFade 1.2s ease both; }
+@keyframes heroFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.8rem;
   font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
-  color: var(--gold); font-weight: 400;
-  margin-bottom: 1.8rem;
+  color: var(--gold); font-weight: 400; margin-bottom: 1.8rem;
 }
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5;
-}
-.hero-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 200;
-  color: var(--cream);
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  margin-bottom: 1rem;
-}
-.hero-title em {
-  display: block;
-  font-style: italic;
-  color: var(--gold);
-  font-size: 0.45em;
-  letter-spacing: 0.15em;
-  font-weight: 400;
-  margin-top: 0.6rem;
-  text-transform: uppercase;
-}
-.hero-sub {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 1.1rem;
-  color: rgba(247,243,236,0.5);
-  direction: rtl;
-  margin: 1.5rem 0 2.5rem;
-}
-.hero-badges {
-  display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
-  margin-top: 2rem;
-}
-.hero-badge {
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(201,168,76,0.7);
-  display: flex; align-items: center; gap: 0.5rem;
-}
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero-title { font-size: clamp(3rem, 8vw, 7rem); font-weight: 200; color: var(--cream); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1rem; }
+.hero-title em { display: block; font-style: italic; color: var(--gold); font-size: 0.45em; letter-spacing: 0.15em; font-weight: 400; margin-top: 0.6rem; text-transform: uppercase; }
+.hero-badges { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.hero-badge { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,168,76,0.7); display: flex; align-items: center; gap: 0.5rem; }
 .hero-badge::before { content: '◆'; font-size: 0.4rem; }
 .hero-scroll {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
@@ -200,121 +117,43 @@ nav a:hover::after { transform: scaleX(1); }
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
   animation: scrollBounce 2s ease-in-out infinite;
 }
-.hero-scroll::after {
-  content: ''; display: block; width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-}
-@keyframes scrollBounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
-}
+.hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+@keyframes scrollBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
 
-/* ===== PRODUCT SECTION ===== */
-.product-section {
-  max-width: 1280px; margin: 0 auto;
-  padding: 6rem 4rem;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem;
-  align-items: start;
-}
-
-/* ===== GALLERY ===== */
+.product-section { max-width: 1280px; margin: 0 auto; padding: 6rem 4rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start; }
 .gallery { position: sticky; top: 90px; }
-.main-img-wrap {
-  position: relative; overflow: hidden;
-  background: var(--warm-white);
-  border: 1px solid var(--border);
-}
-.main-img-wrap::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  z-index: 2;
-}
-.jacket-img {
-  width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
-  transition: transform 0.6s ease, opacity 0.4s;
-}
+.main-img-wrap { position: relative; overflow: hidden; background: var(--warm-white); border: 1px solid var(--border); }
+.main-img-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
+.jacket-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: transform 0.6s ease, opacity 0.4s; }
 .main-img-wrap:hover .jacket-img { transform: scale(1.03); }
-.img-label {
-  position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 3;
-  font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold);
-  background: rgba(10,10,10,0.6); padding: 0.3rem 0.8rem;
-  backdrop-filter: blur(8px);
-  text-transform: uppercase;
-}
+.img-label { position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 3; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); background: rgba(10,10,10,0.6); padding: 0.3rem 0.8rem; backdrop-filter: blur(8px); text-transform: uppercase; }
 .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
-.thumb {
-  aspect-ratio: 1; overflow: hidden;
-  border: 1px solid transparent; cursor: pointer;
-  transition: border-color 0.3s;
-  background: var(--warm-white);
-}
+.thumb { aspect-ratio: 1; overflow: hidden; border: 1px solid transparent; cursor: pointer; transition: border-color 0.3s; background: var(--warm-white); }
 .thumb:hover, .thumb.active { border-color: var(--gold); }
 .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
 .thumb:hover img { transform: scale(1.05); }
-
-/* Gallery color panel switching */
 .color-panel { display: none; }
 .color-panel.active { display: block; }
 
-/* ===== PRODUCT INFO ===== */
 .product-info { padding-top: 0.5rem; }
 .tags { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
-.tag {
-  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
-  padding: 0.3rem 0.9rem; border: 1px solid;
-}
+.tag { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; padding: 0.3rem 0.9rem; border: 1px solid; }
 .tag-red { color: #b5341f; border-color: rgba(181,52,31,0.35); background: rgba(181,52,31,0.06); }
 .tag-gold { color: var(--gold-muted); border-color: var(--border); background: rgba(201,168,76,0.06); }
 .tag-black { color: var(--cream); border-color: rgba(255,255,255,0.15); background: var(--black); }
-
-.product-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: 3rem; font-weight: 200;
-  color: var(--black); line-height: 1.0;
-  letter-spacing: -0.04em;
-  margin-bottom: 0.4rem;
-}
-.product-name-ar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 1rem; color: var(--text-light);
-  direction: rtl; margin-bottom: 1.2rem;
-}
-.stars {
-  display: flex; align-items: center; gap: 0.5rem;
-  color: var(--gold); font-size: 0.85rem;
-}
-.stars span { color: var(--text-light); font-size: 0.78rem; font-weight: 400; }
-
-.sep {
-  width: 100%; height: 1px;
-  background: linear-gradient(90deg, var(--border), transparent);
-  margin: 1.8rem 0;
-}
-
-/* Price */
+.product-name { font-size: 3rem; font-weight: 200; color: var(--black); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.4rem; }
+.product-name-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 1rem; color: var(--text-light); direction: rtl; margin-bottom: 1.2rem; }
+.stars { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.85rem; }
+.stars span { color: var(--text-light); font-size: 0.78rem; }
+.sep { width: 100%; height: 1px; background: linear-gradient(90deg, var(--border), transparent); margin: 1.8rem 0; }
 .price-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
-.price-main {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.8rem; font-weight: 500;
-  color: var(--black); letter-spacing: -0.02em;
-}
-.price-currency {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem; font-weight: 400; color: var(--text-light);
-  letter-spacing: 0.1em;
-}
+.price-main { font-size: 2.8rem; font-weight: 500; color: var(--black); letter-spacing: -0.02em; }
+.price-currency { font-size: 1rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.1em; }
 .price-note { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
 
-/* Options */
-.opt-label {
-  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-light); font-weight: 500;
-  margin-bottom: 0.8rem;
-  display: flex; align-items: center; gap: 0.6rem;
-}
+.opt-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); font-weight: 500; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
 .opt-label strong { color: var(--text-dark); font-weight: 500; }
 
-/* Color dots */
 .color-dots { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
 .cdot {
   width: 28px; height: 28px; border-radius: 50%;
@@ -322,50 +161,22 @@ nav a:hover::after { transform: scaleX(1); }
   transition: all 0.25s; position: relative;
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
-.cdot::after {
-  content: attr(data-label);
-  position: absolute; bottom: -22px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.48rem; font-family: 'Outfit', sans-serif;
-  letter-spacing: 0.08em; white-space: nowrap;
-  color: var(--text-light); opacity: 0; transition: opacity 0.2s;
-}
-.cdot:hover::after, .cdot.active::after { opacity: 1; }
-.cdot.active, .cdot:hover { border-color: var(--black); transform: scale(1.18); }
+.cdot:hover, .cdot.active { border-color: var(--black); transform: scale(1.18); }
 
-/* Sizes */
 .sizes { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
 .sz {
-  width: 52px; height: 52px;
-  border: 1px solid #d0c8bb;
-  background: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.7rem;
-  font-weight: 500; letter-spacing: 0.12em;
-  color: var(--text-dark);
-  transition: all 0.2s;
-  text-transform: uppercase;
+  width: 52px; height: 52px; border: 1px solid #d0c8bb; background: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
+  color: var(--text-dark); transition: all 0.2s; text-transform: uppercase;
 }
 .sz:hover { border-color: var(--black); background: rgba(10,10,10,0.04); }
 .sz.active { background: var(--black); color: var(--gold); border-color: var(--black); }
-.sz.out { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
 
-/* Quantity */
-.qty-row { display: flex; align-items: center; gap: 0; border: 1px solid #d0c8bb; width: fit-content; }
-.qty-btn {
-  width: 44px; height: 44px; background: none; border: none;
-  font-size: 1.1rem; cursor: pointer; color: var(--text-dark);
-  transition: background 0.2s; font-weight: 300;
-}
+.qty-row { display: flex; align-items: center; border: 1px solid #d0c8bb; width: fit-content; }
+.qty-btn { width: 44px; height: 44px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-dark); transition: background 0.2s; font-weight: 300; }
 .qty-btn:hover { background: rgba(10,10,10,0.05); }
-.qty-val {
-  width: 48px; text-align: center;
-  font-family: 'Outfit', sans-serif; font-size: 1rem;
-  border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb;
-  height: 44px; display: flex; align-items: center; justify-content: center;
-  font-weight: 500;
-}
+.qty-val { width: 48px; text-align: center; font-size: 1rem; border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
 
-/* CTA */
 .cta-group { display: flex; gap: 0.8rem; margin-top: 2rem; flex-direction: column; }
 .btn-primary {
   width: 100%; padding: 1.1rem 2rem;
@@ -374,292 +185,133 @@ nav a:hover::after { transform: scaleX(1); }
   font-family: 'Outfit', sans-serif; font-size: 0.72rem;
   font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
   transition: all 0.3s; position: relative; overflow: hidden;
+  text-decoration: none; display: block; text-align: center;
 }
-.btn-primary::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.12), transparent);
-  transition: left 0.5s;
-}
-.btn-primary:hover::before { left: 100%; }
 .btn-primary:hover { background: var(--charcoal); }
-.btn-arabic {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.85rem; letter-spacing: 0; opacity: 0.7;
-}
 
-/* Accordion */
 .accords { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
-.accord {
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-.accord-btn {
-  width: 100%; display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 0; background: none; border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.65rem;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-dark); font-weight: 500;
-  transition: color 0.2s;
-}
+.accord { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.accord-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; transition: color 0.2s; }
 .accord-btn:hover { color: var(--gold-muted); }
 .accord-icon { font-size: 1.1rem; font-weight: 200; color: var(--gold); transition: transform 0.3s; }
 .accord-icon.open { transform: rotate(45deg); }
-.accord-body {
-  max-height: 0; overflow: hidden;
-  transition: max-height 0.4s ease;
-  font-size: 0.88rem; color: var(--text-mid);
-  line-height: 1.8;
-}
+.accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
 .accord-body p { padding-bottom: 1.2rem; }
 
-/* ===== TRUST BAR ===== */
-.trust-bar {
-  background: var(--black);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: flex; justify-content: center; gap: 0;
-  overflow: hidden;
-}
-.trust-item {
-  flex: 1; max-width: 220px;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 0.4rem; padding: 1.6rem 1rem; text-align: center;
-  border-right: 1px solid var(--border);
-}
+.field-error { display: none; color: var(--red); font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+.trust-bar { background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
+.trust-item { flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.6rem 1rem; text-align: center; border-right: 1px solid var(--border); }
 .trust-item:last-child { border-right: none; }
 .trust-icon { font-size: 1.3rem; }
-.trust-label {
-  font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--gold); font-weight: 500; line-height: 1.5;
-}
+.trust-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; line-height: 1.5; }
 .trust-sub { font-size: 0.7rem; color: rgba(247,243,236,0.35); }
 
-/* ===== VIDEO SECTION ===== */
-.video-section {
-  position: relative; overflow: hidden;
-  background: var(--black);
-}
-.video-section video {
-  width: 100%; display: block; max-height: 75vh;
-  object-fit: cover; opacity: 0.82;
-}
-.video-section::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  z-index: 2;
-}
-.video-section::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
-  background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%);
-  z-index: 2; pointer-events: none;
-}
-.video-caption {
-  position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
-  z-index: 3; text-align: center; white-space: nowrap;
-}
-.video-caption-label {
-  display: inline-block;
-  font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em;
-  text-transform: uppercase; color: var(--gold);
-  padding: 0.5rem 2rem;
-  background: rgba(10,10,10,0.7); backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
-}
+.video-section { position: relative; overflow: hidden; background: var(--black); }
+.video-section video { width: 100%; display: block; max-height: 75vh; object-fit: cover; opacity: 0.82; }
+.video-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
+.video-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%); z-index: 2; pointer-events: none; }
+.video-caption { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; white-space: nowrap; }
+.video-caption-label { display: inline-block; font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); padding: 0.5rem 2rem; background: rgba(10,10,10,0.7); backdrop-filter: blur(8px); border: 1px solid var(--border); }
 
-/* ===== DIVIDER ===== */
-.section-divider {
-  display: flex; align-items: center; gap: 1.5rem;
-  padding: 2rem 4rem;
-  background: transparent;
-}
+.section-divider { display: flex; align-items: center; gap: 1.5rem; padding: 2rem 4rem; }
 .div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 .div-text { font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
 .div-diamond { color: var(--gold); font-size: 0.5rem; }
 
-/* ===== ORDER SECTION ===== */
-.order-section {
-  max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem;
-}
+.order-section { max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem; }
 .order-header { text-align: center; margin-bottom: 3rem; }
-.order-eyebrow {
-  font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 0.8rem;
-  display: flex; align-items: center; justify-content: center; gap: 0.8rem;
-}
+.order-eyebrow { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
 .order-eyebrow::before, .order-eyebrow::after { content: '——'; opacity: 0.4; }
-.order-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.2rem; font-weight: 700;
-  color: var(--black); letter-spacing: -0.01em;
-}
-.order-title-ar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.9rem; color: var(--text-light);
-  direction: rtl; margin-top: 0.4rem;
-}
+.order-title { font-size: 2.2rem; font-weight: 700; color: var(--black); letter-spacing: -0.01em; }
+.order-title-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: var(--text-light); direction: rtl; margin-top: 0.4rem; }
 
-/* Form */
-.form-card {
-  background: white;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 4px 40px rgba(0,0,0,0.06);
-}
+.form-card { background: white; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 40px rgba(0,0,0,0.06); }
 .form-inner { padding: 2.5rem; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
 .form-group.full { grid-column: 1/-1; }
-.form-group label {
-  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--text-light); font-weight: 500;
-}
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 0.85rem 1rem;
-  border: 1px solid #e0dbd4;
-  background: #faf9f6;
-  font-family: 'Outfit', sans-serif; font-size: 0.9rem;
-  color: var(--text-dark); outline: none;
-  transition: border-color 0.25s, background 0.25s;
-  -webkit-appearance: none;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: var(--gold);
-  background: white;
-}
+.form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); font-weight: 500; }
+.form-group input, .form-group select, .form-group textarea { padding: 0.85rem 1rem; border: 1px solid #e0dbd4; background: #faf9f6; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: white; }
 .form-group textarea { resize: vertical; min-height: 80px; }
 
-/* Delivery */
-.delivery-wrap {
-  grid-column: 1/-1;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;
-  margin-top: 0.4rem;
-}
-.delivery-opt {
-  display: flex; align-items: center; gap: 0.8rem;
-  padding: 1rem 1.2rem;
-  border: 1px solid #e0dbd4;
-  cursor: pointer; transition: all 0.25s;
-  background: #faf9f6;
-}
+.delivery-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
+.delivery-opt { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
 .delivery-opt:hover { border-color: #c0b8a8; }
-.delivery-opt.selected {
-  border-color: var(--gold); background: rgba(201,168,76,0.05);
-}
+.delivery-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
 .delivery-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; }
-.delivery-name {
-  font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem;
-}
+.delivery-name { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
 .delivery-price { font-size: 0.82rem; color: var(--gold-muted); }
 
-/* Summary bar */
-.summary-bar {
-  grid-column: 1/-1;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0; margin-top: 0.8rem;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: var(--warm-white);
-}
-.summary-cell {
-  padding: 0.9rem 1rem;
-  border-right: 1px solid rgba(0,0,0,0.06);
-  display: flex; flex-direction: column; gap: 0.2rem;
-}
+.summary-bar { grid-column: 1/-1; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white); margin-top: 0.8rem; }
+.summary-cell { padding: 0.9rem 1rem; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.2rem; }
 .summary-cell:last-child { border-right: none; }
 .summary-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
 .summary-val { font-size: 0.85rem; color: var(--text-dark); font-weight: 400; }
 
-/* Total */
-.total-bar {
-  grid-column: 1/-1;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1.2rem 1.5rem;
-  background: var(--black); margin-top: 0;
-}
-.total-label {
-  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5);
-}
-.total-amount {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.8rem; color: var(--gold); font-weight: 500;
-}
-.total-amount span { font-family: 'Outfit', sans-serif; font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
+.total-bar { grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: var(--black); }
+.total-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5); }
+.total-amount { font-size: 1.8rem; color: var(--gold); font-weight: 500; }
+.total-amount span { font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
 
-/* Submit */
-.btn-submit-wrap { grid-column: 1/-1; margin-top: 0.5rem; }
+/* ===== CONFIRM BUTTON — POPS OUT ===== */
+.btn-submit-wrap { grid-column: 1/-1; margin-top: 1rem; }
 .btn-submit {
-  width: 100%; padding: 1.2rem 2rem;
-  background: var(--black); color: var(--gold);
+  width: 100%; padding: 1.4rem 2rem;
+  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 50%, #c9a84c 100%);
+  background-size: 200% 200%;
+  color: var(--black);
   border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
-  font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-  transition: all 0.3s; position: relative; overflow: hidden;
+  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
+  font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(201,168,76,0.4), 0 0 0 0 rgba(201,168,76,0.3);
+  animation: btnPulse 2.5s ease-in-out infinite;
 }
-.btn-submit::before {
-  content: ''; position: absolute; inset: 1px;
-  border: 1px solid rgba(201,168,76,0.15);
-  pointer-events: none;
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(201,168,76,0.4), 0 0 0 0 rgba(201,168,76,0.3); background-position: 0% 50%; }
+  50% { box-shadow: 0 4px 32px rgba(201,168,76,0.6), 0 0 0 10px rgba(201,168,76,0); background-position: 100% 50%; }
 }
-.btn-submit:hover { background: #1a1a1a; }
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 36px rgba(201,168,76,0.6);
+  animation: none;
+  background-position: 100% 50%;
+}
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; animation: none; transform: none; }
+.btn-submit-inner { display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+.btn-submit-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 400; font-size: 0.9rem; opacity: 0.75; }
 
-/* Error */
-.field-error { display: none; color: var(--red); font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
+/* Spinner */
+.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.2); border-top-color: var(--black); border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* ===== SUCCESS OVERLAY ===== */
-.success-overlay {
-  display: none; position: fixed; inset: 0; z-index: 999;
-  background: rgba(10,10,10,0.97); backdrop-filter: blur(20px);
-  align-items: center; justify-content: center; text-align: center;
-}
+.success-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); align-items: center; justify-content: center; text-align: center; }
 .success-overlay.show { display: flex; }
 .success-box { max-width: 480px; padding: 3rem 2rem; }
 .success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
-.success-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem; color: var(--gold); font-weight: 700;
-  letter-spacing: 0.05em; margin-bottom: 1rem;
-}
+.success-title { font-size: 2rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1rem; }
+.success-ref { font-size: 0.75rem; color: rgba(201,168,76,0.6); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
 .success-msg { color: rgba(247,243,236,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-.success-ar {
-  font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200;
-  font-size: 0.9rem; color: rgba(201,168,76,0.6);
-  direction: rtl; margin-bottom: 2rem;
-}
-.success-note {
-  font-size: 0.75rem; color: var(--gold); opacity: 0.7;
-  border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-}
-.btn-close-success {
-  padding: 0.9rem 3rem; background: var(--gold); color: var(--black);
-  border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem;
-  letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600;
-  transition: background 0.3s;
-}
+.success-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: rgba(201,168,76,0.6); direction: rtl; margin-bottom: 2rem; }
+.success-note { font-size: 0.75rem; color: var(--gold); opacity: 0.7; border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem; letter-spacing: 0.1em; }
+.btn-close-success { padding: 0.9rem 3rem; background: var(--gold); color: var(--black); border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: background 0.3s; }
 .btn-close-success:hover { background: var(--gold-light); }
 
-/* ===== FOOTER ===== */
-footer {
-  background: var(--black);
-  border-top: 1px solid var(--border);
-  padding: 2.5rem 4rem;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-}
-.footer-logo { font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
+footer { background: var(--black); border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
 .footer-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.8rem; color: rgba(201,168,76,0.5); direction: rtl; }
 .footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* ===== MOBILE ===== */
 @media (max-width: 900px) {
   header { padding: 0 1.5rem; height: 60px; }
   .logo { font-size: 1.15rem; }
-  .header-arabic { display: none; }
   nav { gap: 1rem; }
   nav a { font-size: 0.6rem; }
-  .hero-title { font-size: clamp(2.2rem, 10vw, 4rem); }
   .product-section { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
   .gallery { position: static; }
   .product-name { font-size: 2.2rem; }
@@ -667,31 +319,22 @@ footer {
   .form-group.full { grid-column: 1; }
   .delivery-wrap { grid-template-columns: 1fr; }
   .summary-bar { grid-template-columns: repeat(2,1fr); }
-  .summary-cell:nth-child(2) { border-right: none; }
   .order-section { padding: 2rem 1.5rem 4rem; }
-  .section-divider { padding: 1.5rem 1.5rem; }
+  .section-divider { padding: 1.5rem; }
   .trust-bar { flex-wrap: wrap; }
-  .trust-item { max-width: 50%; border-right: 1px solid var(--border); }
+  .trust-item { max-width: 50%; }
   footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-}
-@media (max-width: 600px) {
-  .thumbs { grid-template-columns: repeat(4,1fr); }
-  .sizes { flex-wrap: wrap; }
-  .hero-badges { gap: 1rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCE -->
 <div class="announce">
   Livraison dans les 58 Wilayas <span>◆</span> Paiement à la Livraison <span>◆</span> التوصيل إلى 58 ولاية
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="logo">JACKETS<span class="logo-dot">.</span>DZ</div>
-
   <nav>
     <a href="#">Collection</a>
     <a href="#">À Propos</a>
@@ -699,16 +342,12 @@ footer {
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Édition Limitée · 2025</div>
-    <h1 class="hero-title">
-      CNY<br>Jacket
-      <em>Chinese New Year · 2025</em>
-    </h1>
+    <div class="hero-eyebrow">Édition Limitée · 2026</div>
+    <h1 class="hero-title">CNY<br>Jacket<em>Chinese New Year · 2026</em></h1>
     <div class="hero-badges">
       <div class="hero-badge">Velours Suédé Premium</div>
       <div class="hero-badge">Pièce Numérotée</div>
@@ -718,83 +357,59 @@ footer {
   <div class="hero-scroll">Découvrir</div>
 </section>
 
-<!-- PRODUCT SECTION -->
 <section class="product-section">
-
-  <!-- GALLERY -->
   <div class="gallery">
-    <div class="main-img-wrap" id="mainImgWrap">
-      <!-- Navy Blue panel (default) -->
+    <div class="main-img-wrap">
       <div class="color-panel active" id="panel-navy-blue">
-        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="CNY Jacket Navy Blue" class="jacket-img" id="mainImg0">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="Navy Blue" class="jacket-img">
         <div class="img-label">Navy Blue</div>
       </div>
-      <!-- Bordeaux -->
       <div class="color-panel" id="panel-bordeaux-red">
-        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="CNY Jacket Bordeaux" class="jacket-img">
+        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="Bordeaux Red" class="jacket-img">
         <div class="img-label">Bordeaux Red</div>
       </div>
-      <!-- Black -->
       <div class="color-panel" id="panel-midnight-black">
-        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="CNY Jacket Black" class="jacket-img">
+        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="Midnight Black" class="jacket-img">
         <div class="img-label">Midnight Black</div>
       </div>
-      <!-- Gold -->
       <div class="color-panel" id="panel-sahara-gold">
-        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="CNY Jacket Gold" class="jacket-img">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="Sahara Gold" class="jacket-img">
         <div class="img-label">Sahara Gold</div>
       </div>
-      <!-- Green -->
       <div class="color-panel" id="panel-forest-green">
-        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="CNY Jacket Green" class="jacket-img">
+        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="Forest Green" class="jacket-img">
         <div class="img-label">Forest Green</div>
       </div>
     </div>
     <div class="thumbs">
-      <div class="thumb active" onclick="switchThumb(this, 0)">
-        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80" alt="">
-      </div>
-      <div class="thumb" onclick="switchThumb(this, 1)">
-        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=200&q=80" alt="">
-      </div>
-      <div class="thumb" onclick="switchThumb(this, 2)">
-        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&q=80" alt="">
-      </div>
-      <div class="thumb" onclick="switchThumb(this, 3)">
-        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80" alt="">
-      </div>
+      <div class="thumb active" onclick="switchThumb(this,0)"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,1)"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,2)"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,3)"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80" alt=""></div>
     </div>
   </div>
 
-  <!-- INFO -->
   <div class="product-info">
     <div class="tags">
       <span class="tag tag-red">Édition Limitée</span>
-      <span class="tag tag-gold">Chinese New Year 2025</span>
+      <span class="tag tag-gold">Chinese New Year 2026</span>
       <span class="tag tag-black">🇩🇿 Algérie</span>
     </div>
-
     <h2 class="product-name">Exclusive<br>CNY Jacket</h2>
     <div class="product-name-ar">جاكيت حصري · نوفي العام الصيني الجديد</div>
-    <div class="stars">
-      ★★★★★ <span>214 avis · مراجعة</span>
-    </div>
-
+    <div class="stars">★★★★★ <span>214 avis · مراجعة</span></div>
     <div class="sep"></div>
-
     <div class="price-row">
       <span class="price-main">8 500</span>
       <span class="price-currency">DA</span>
     </div>
     <div class="price-note">+ Frais de livraison selon wilaya · + رسوم التوصيل</div>
-
     <div class="sep"></div>
 
-    <!-- Color -->
     <div class="opt-label">Couleur — <strong id="colorName">Sélectionner</strong></div>
     <div class="color-dots" id="colorDots">
       <div class="cdot" style="background:#2c4a6e;" data-label="Navy Blue" data-color="navy-blue" onclick="selectColor(this)" title="Navy Blue"></div>
-      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux" data-color="bordeaux-red" onclick="selectColor(this)" title="Bordeaux Red"></div>
+      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux Red" data-color="bordeaux-red" onclick="selectColor(this)" title="Bordeaux Red"></div>
       <div class="cdot" style="background:#c8860a;" data-label="Sahara Gold" data-color="sahara-gold" onclick="selectColor(this)" title="Sahara Gold"></div>
       <div class="cdot" style="background:#1a1a1a;" data-label="Midnight Black" data-color="midnight-black" onclick="selectColor(this)" title="Midnight Black"></div>
       <div class="cdot" style="background:#f5f0e8;border:2px solid #ccc;" data-label="Ivory White" data-color="ivory-white" onclick="selectColor(this)" title="Ivory White"></div>
@@ -807,9 +422,8 @@ footer {
     <div class="field-error" id="colorError">⚠ Veuillez sélectionner une couleur</div>
     <br>
 
-    <!-- Size -->
     <div class="opt-label">Taille — <strong id="sizeName">Sélectionner</strong></div>
-    <div class="sizes" id="sizeBtns">
+    <div class="sizes">
       <button class="sz" type="button" onclick="selectSize(this,'S')">S</button>
       <button class="sz" type="button" onclick="selectSize(this,'M')">M</button>
       <button class="sz" type="button" onclick="selectSize(this,'L')">L</button>
@@ -818,93 +432,49 @@ footer {
     <div class="field-error" id="sizeError">⚠ Veuillez sélectionner une taille</div>
     <br>
 
-    <!-- Quantity -->
     <div class="opt-label">Quantité</div>
     <div class="qty-row">
       <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
       <div class="qty-val" id="qtyValue">1</div>
       <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
-    <div class="field-error" id="qtyError">⚠ Quantité invalide</div>
 
-    <!-- CTA -->
     <div class="cta-group">
-      <a href="#order" class="btn-primary" style="text-decoration:none;display:block;text-align:center;color:var(--gold);">
-        Commander Maintenant &nbsp;·&nbsp; <span class="btn-arabic">اطلب الآن</span>
-      </a>
+      <a href="#order" class="btn-primary">Commander Maintenant &nbsp;·&nbsp; اطلب الآن</a>
     </div>
 
-    <!-- Accordion details -->
     <div class="accords">
       <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">
-          Description du Produit <span class="accord-icon">+</span>
-        </button>
-        <div class="accord-body">
-          <p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p>
-        </div>
+        <button class="accord-btn" onclick="toggleAcc(this)">Description du Produit <span class="accord-icon">+</span></button>
+        <div class="accord-body"><p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p></div>
       </div>
       <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">
-          Livraison en Algérie <span class="accord-icon">+</span>
-        </button>
-        <div class="accord-body">
-          <p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau de poste / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p>
-        </div>
+        <button class="accord-btn" onclick="toggleAcc(this)">Livraison en Algérie <span class="accord-icon">+</span></button>
+        <div class="accord-body"><p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau de poste / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p></div>
       </div>
       <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">
-          Guide des Tailles <span class="accord-icon">+</span>
-        </button>
-        <div class="accord-body">
-          <p>S: 86–91 cm &nbsp;·&nbsp; M: 91–97 cm &nbsp;·&nbsp; L: 97–102 cm &nbsp;·&nbsp; XL: 102–109 cm. Coupe oversized recommandée — prenez votre taille habituelle.</p>
-        </div>
+        <button class="accord-btn" onclick="toggleAcc(this)">Guide des Tailles <span class="accord-icon">+</span></button>
+        <div class="accord-body"><p>S: 86–91 cm &nbsp;·&nbsp; M: 91–97 cm &nbsp;·&nbsp; L: 97–102 cm &nbsp;·&nbsp; XL: 102–109 cm. Coupe oversized recommandée — prenez votre taille habituelle.</p></div>
       </div>
     </div>
   </div>
-
 </section>
 
-<!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">
-    <div class="trust-icon">💵</div>
-    <div class="trust-label">Paiement à<br>la Livraison</div>
-    <div class="trust-sub">Cash uniquement</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">🚚</div>
-    <div class="trust-label">58 Wilayas<br>Couvertes</div>
-    <div class="trust-sub">Tout le territoire</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">📦</div>
-    <div class="trust-label">Expédition<br>3–7 Jours</div>
-    <div class="trust-sub">Jours ouvrables</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">↩️</div>
-    <div class="trust-label">Retours<br>14 Jours</div>
-    <div class="trust-sub">Satisfait ou remboursé</div>
-  </div>
-  <div class="trust-item">
-    <div class="trust-icon">🔢</div>
-    <div class="trust-label">Pièce<br>Numérotée</div>
-    <div class="trust-sub">Édition limitée</div>
-  </div>
+  <div class="trust-item"><div class="trust-icon">💵</div><div class="trust-label">Paiement à<br>la Livraison</div><div class="trust-sub">Cash uniquement</div></div>
+  <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">58 Wilayas<br>Couvertes</div><div class="trust-sub">Tout le territoire</div></div>
+  <div class="trust-item"><div class="trust-icon">📦</div><div class="trust-label">Expédition<br>3–7 Jours</div><div class="trust-sub">Jours ouvrables</div></div>
+  <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">Retours<br>14 Jours</div><div class="trust-sub">Satisfait ou remboursé</div></div>
+  <div class="trust-item"><div class="trust-icon">🔢</div><div class="trust-label">Pièce<br>Numérotée</div><div class="trust-sub">Édition limitée</div></div>
 </div>
 
-<!-- VIDEO -->
 <div class="video-section">
   <video autoplay muted loop playsinline>
     <source src="adidas_originals_CNY_2025.mp4" type="video/mp4">
   </video>
-  <div class="video-caption">
-    <div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2020 &nbsp; ✦</div>
-  </div>
+  <div class="video-caption"><div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2020 &nbsp; ✦</div></div>
 </div>
 
-<!-- DIVIDER -->
 <div class="section-divider">
   <div class="div-line"></div>
   <span class="div-diamond">◆</span>
@@ -913,14 +483,12 @@ footer {
   <div class="div-line"></div>
 </div>
 
-<!-- ORDER SECTION -->
 <div class="order-section" id="order">
   <div class="order-header">
     <div class="order-eyebrow">Commander</div>
     <h2 class="order-title">Passer votre Commande</h2>
     <div class="order-title-ar">أدخل بياناتك لنوصل إليك في أي مكان بالجزائر</div>
   </div>
-
   <div class="form-card">
     <div class="form-inner">
       <form id="orderForm" onsubmit="submitOrder(event)">
@@ -964,25 +532,17 @@ footer {
             <input type="text" id="f-address" placeholder="Rue, commune..." required>
           </div>
 
-          <!-- Delivery options -->
           <div class="delivery-wrap">
             <div class="delivery-opt selected" onclick="selectDelivery(this, 400)">
               <input type="radio" name="delivery_type" value="400" checked>
-              <div>
-                <div class="delivery-name">🏢 Bureau / Yalitsal</div>
-                <div class="delivery-price">400 DA</div>
-              </div>
+              <div><div class="delivery-name">🏢 Bureau / Yalitsal</div><div class="delivery-price">400 DA</div></div>
             </div>
             <div class="delivery-opt" onclick="selectDelivery(this, 700)">
               <input type="radio" name="delivery_type" value="700">
-              <div>
-                <div class="delivery-name">🏠 Livraison à Domicile</div>
-                <div class="delivery-price">700 DA</div>
-              </div>
+              <div><div class="delivery-name">🏠 Livraison à Domicile</div><div class="delivery-price">700 DA</div></div>
             </div>
           </div>
 
-          <!-- Summary -->
           <div class="summary-bar">
             <div class="summary-cell"><div class="summary-label">Couleur</div><div class="summary-val" id="sum-color">—</div></div>
             <div class="summary-cell"><div class="summary-label">Taille</div><div class="summary-val" id="sum-size">—</div></div>
@@ -990,7 +550,7 @@ footer {
             <div class="summary-cell"><div class="summary-label">Livraison</div><div class="summary-val" id="sum-delivery">Bureau (400 DA)</div></div>
           </div>
 
-          <div class="total-bar" style="grid-column:1/-1;">
+          <div class="total-bar">
             <span class="total-label">Total à Payer · المبلغ الإجمالي</span>
             <span class="total-amount"><span id="totalPrice">8 900</span> <span>DA</span></span>
           </div>
@@ -1002,7 +562,10 @@ footer {
 
           <div class="btn-submit-wrap">
             <button type="submit" class="btn-submit" id="submitBtn">
-              ✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦
+              <span class="btn-submit-inner">
+                <span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span>
+                <span class="btn-submit-ar">تأكيد الطلب</span>
+              </span>
             </button>
           </div>
         </div>
@@ -1011,11 +574,12 @@ footer {
   </div>
 </div>
 
-<!-- SUCCESS -->
+<!-- SUCCESS OVERLAY -->
 <div class="success-overlay" id="successOverlay">
   <div class="success-box">
     <div class="success-icon">✅</div>
     <div class="success-title">Commande Confirmée</div>
+    <div class="success-ref" id="orderRef"></div>
     <div class="success-msg">Merci pour votre commande ! Nous vous contacterons dans les <strong>24 heures</strong> pour confirmer et organiser la livraison.</div>
     <div class="success-ar">شكراً لطلبك! سنتصل بك خلال 24 ساعة لتأكيد الطلب وترتيب التوصيل.</div>
     <div class="success-note">💵 Paiement à la livraison uniquement — Pas de paiement en ligne requis</div>
@@ -1023,21 +587,17 @@ footer {
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">JACKETS.DZ</div>
   <div class="footer-ar">الجزائر — أناقة بلا حدود · 58 ولاية</div>
-  <div class="footer-copy">© 2025 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
+  <div class="footer-copy">© 2026 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════
-//  CONFIG
-// ═══════════════════════════════════════════════════
 const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxWO_rzqdCq9ri84sFBhSWokQJVA0yLbbbFSsCOYwWP6WL4Jm5sjHA2DTLNPzK6VRSRBg/exec';
 const WEB3FORMS_KEY    = '30674636-aca2-4f7c-952c-c3bd20a45594';
-const TOTAL_STOCK      = 400;
 const BASE = 8500;
+const TOTAL_STOCK = 400;
 
 let deliveryFee   = 400;
 let selectedColor = '';
@@ -1045,30 +605,12 @@ let selectedSize  = '';
 let selectedQty   = 1;
 const thumbPanelMap = ['navy-blue','bordeaux-red','midnight-black','sahara-gold','forest-green'];
 
-// ── Stock persists across page reloads via localStorage ──
 function getSoldCount()    { return parseInt(localStorage.getItem('jdz_sold') || '0'); }
 function addSoldCount(qty) { localStorage.setItem('jdz_sold', getSoldCount() + qty); }
-function updateStockDisplay() {
-  const el = document.getElementById('stockCount');
-  if (!el) return;
-  const remaining = Math.max(0, TOTAL_STOCK - getSoldCount());
-  el.textContent = remaining;
-  el.style.color = remaining < 50 ? 'var(--red)' : '';
-  if (remaining === 0) {
-    el.closest('.stock-bar').innerHTML =
-      '<div class="stock-dot" style="background:var(--red)"></div>' +
-      '<div class="stock-text"><strong>ÉPUISÉ — نفذ المخزون</strong></div>';
-  }
-}
+function getOrderedPhones(){ return JSON.parse(localStorage.getItem('jdz_phones') || '[]'); }
+function savePhone(phone)  { const p = getOrderedPhones(); p.push(phone.replace(/ /g,'')); localStorage.setItem('jdz_phones', JSON.stringify(p)); }
+function phoneOrdered(p)   { return getOrderedPhones().includes(p.replace(/ /g,'')); }
 
-// ── Duplicate phone detection ──
-function getOrderedPhones() { return JSON.parse(localStorage.getItem('jdz_phones') || '[]'); }
-function savePhone(phone)   { const p = getOrderedPhones(); p.push(phone.replace(/ /g,'')); localStorage.setItem('jdz_phones', JSON.stringify(p)); }
-function phoneOrdered(phone){ return getOrderedPhones().includes(phone.replace(/ /g,'')); }
-
-// ═══════════════════════════════════════════════════
-//  GALLERY
-// ═══════════════════════════════════════════════════
 function switchThumb(el, idx) {
   document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
@@ -1077,9 +619,6 @@ function switchThumb(el, idx) {
   if (panel) panel.classList.add('active');
 }
 
-// ═══════════════════════════════════════════════════
-//  COLOR / SIZE / QTY / DELIVERY
-// ═══════════════════════════════════════════════════
 function selectColor(dotEl) {
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
   dotEl.classList.add('active');
@@ -1109,7 +648,6 @@ function changeQty(delta) {
   selectedQty = Math.max(1, Math.min(5, selectedQty + delta));
   document.getElementById('qtyValue').textContent = selectedQty;
   document.getElementById('sum-qty').textContent = selectedQty;
-  document.getElementById('qtyError').style.display = 'none';
   updateTotal();
 }
 
@@ -1136,13 +674,9 @@ function toggleAcc(btn) {
   if (!isOpen) { body.style.maxHeight = '300px'; icon.classList.add('open'); }
 }
 
-// ═══════════════════════════════════════════════════
-//  ORDER SUBMISSION — Google Sheets (primary) + Web3Forms (email backup)
-// ═══════════════════════════════════════════════════
 async function submitOrder(e) {
   e.preventDefault();
 
-  // 1. Validate color & size
   let hasError = false;
   if (!selectedColor) { document.getElementById('colorError').style.display = 'block'; hasError = true; }
   if (!selectedSize)  { document.getElementById('sizeError').style.display = 'block'; hasError = true; }
@@ -1151,7 +685,6 @@ async function submitOrder(e) {
     return;
   }
 
-  // 2. Read form fields
   const name     = document.getElementById('f-name').value.trim();
   const phone    = document.getElementById('f-phone').value.trim();
   const wilaya   = document.getElementById('f-wilaya').value;
@@ -1167,35 +700,30 @@ async function submitOrder(e) {
     return;
   }
 
-  // 3. Duplicate phone warning
   if (phoneOrdered(phone)) {
-    const go = confirm('Ce numero (' + phone + ') a deja passe une commande. Continuer quand meme ?');
+    const go = confirm('Ce numéro (' + phone + ') a déjà passé une commande. Continuer quand même ?');
     if (!go) return;
   }
 
-  // 4. Stock check
   if (getSoldCount() >= TOTAL_STOCK) {
-    alert('Desole — le stock est epuise ! - نفذ المخزون');
+    alert('Désolé — le stock est épuisé ! نفذ المخزون');
     return;
   }
 
-  // 5. Disable button
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
+  btn.innerHTML = '<span class="btn-submit-inner"><span class="spinner"></span><span>Envoi en cours...</span></span>';
 
   const orderData = {
-    timestamp: timestamp, ref: orderRef,
-    nom: name, telephone: phone, wilaya: wilaya, adresse: address,
+    timestamp, ref: orderRef,
+    nom: name, telephone: phone, wilaya, adresse: address,
     couleur: selectedColor, taille: selectedSize,
-    quantite: selectedQty, livraison: delivery, total: total,
-    note: note || '—', statut: 'Nouveau ✅'
+    quantite: selectedQty, livraison: delivery, total,
+    note: note || '—', statut: 'Pending'
   };
 
-  let sheetOk = false;
-  let emailOk = false;
+  let sheetOk = false, emailOk = false;
 
-  // 6a. Google Sheets — text/plain bypasses CORS preflight
   try {
     const res = await fetch(GOOGLE_SHEET_URL, {
       method: 'POST',
@@ -1206,7 +734,6 @@ async function submitOrder(e) {
     sheetOk = data.success === true;
   } catch (err) { console.warn('Sheets error:', err); }
 
-  // 6b. Web3Forms email — always runs as backup
   try {
     const fd = new FormData();
     fd.append('access_key', WEB3FORMS_KEY);
@@ -1215,62 +742,49 @@ async function submitOrder(e) {
     fd.append('name', name);
     fd.append('email', 'noreply@jackets.dz');
     fd.append('message',
-      'NOUVELLE COMMANDE #' + orderRef + '
-
-' +
-      'Client   : ' + name + '
-Tel      : ' + phone + '
-Wilaya   : ' + wilaya + '
-Adresse  : ' + address + '
-
-' +
-      'Couleur  : ' + selectedColor + '
-Taille   : ' + selectedSize + '
-Quantite : ' + selectedQty + '
-' +
-      'Livraison: ' + delivery + '
-Total    : ' + total + '
-Note     : ' + (note || '—') + '
-Date     : ' + timestamp
+      'NOUVELLE COMMANDE #' + orderRef + '\n\n' +
+      'Client   : ' + name + '\nTel      : ' + phone + '\nWilaya   : ' + wilaya + '\nAdresse  : ' + address + '\n\n' +
+      'Couleur  : ' + selectedColor + '\nTaille   : ' + selectedSize + '\nQuantite : ' + selectedQty + '\n' +
+      'Livraison: ' + delivery + '\nTotal    : ' + total + '\nNote     : ' + (note || '—') + '\nDate     : ' + timestamp
     );
     const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
     const data = await res.json();
     emailOk = data.success === true;
   } catch (err) { console.warn('Email error:', err); }
 
-  // 7. Both failed → show error
   if (!sheetOk && !emailOk) {
     btn.disabled = false;
-    btn.innerHTML = '✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦';
-    alert('Erreur reseau. Verifiez votre connexion et reessayez.');
+    btn.innerHTML = '<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
+    alert('Erreur réseau. Vérifiez votre connexion et réessayez.');
     return;
   }
 
-  // 8. Success
   savePhone(phone);
   addSoldCount(selectedQty);
-  updateStockDisplay();
 
-  document.getElementById('orderRef').textContent = 'Reference : #' + orderRef;
+  // Show success with ref number
+  document.getElementById('orderRef').textContent = 'Référence : #' + orderRef;
   document.getElementById('successOverlay').classList.add('show');
   document.body.style.overflow = 'hidden';
 
-  // 9. Reset form
+  // Reset
   document.getElementById('orderForm').reset();
   selectedColor = ''; selectedSize = ''; selectedQty = 1; deliveryFee = 400;
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
   document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
   document.querySelector('.delivery-opt').classList.add('selected');
-  ['colorName','sizeName'].forEach(function(id){ document.getElementById(id).textContent = 'Selectionner'; });
+  document.getElementById('colorName').textContent = 'Sélectionner';
+  document.getElementById('sizeName').textContent = 'Sélectionner';
   document.getElementById('qtyValue').textContent = '1';
   document.getElementById('sum-color').textContent = '—';
   document.getElementById('sum-size').textContent = '—';
   document.getElementById('sum-qty').textContent = '1';
+  document.getElementById('sum-delivery').textContent = 'Bureau (400 DA)';
   updateTotal();
 
   btn.disabled = false;
-  btn.innerHTML = '✦ &nbsp; Confirmer la Commande &nbsp;·&nbsp; تأكيد الطلب &nbsp; ✦';
+  btn.innerHTML = '<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
 }
 
 function closeSuccess() {
@@ -1278,9 +792,7 @@ function closeSuccess() {
   document.body.style.overflow = '';
 }
 
-// ── Init ──
 updateTotal();
-updateStockDisplay();
 </script>
 </body>
 </html>
