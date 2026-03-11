@@ -594,7 +594,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 </footer>
 
 <script>
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwcloNZPNhq7R2dVwazYUWNmApzSTDpKn54vGhxOS-WeXkbF45gWanmwQFpDkHhnvtfEw/exec';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwmLvi59rtql8n9luKmkNlDhDcCFVMyxlay02hGSZSOga-92_bFO_FD5Yb2wZShGslIVw/exec';
 const WEB3FORMS_KEY    = '30674636-aca2-4f7c-952c-c3bd20a45594';
 const BASE = 8500;
 const TOTAL_STOCK = 400;
@@ -725,13 +725,13 @@ async function submitOrder(e) {
   let sheetOk = false, emailOk = false;
 
   try {
-    const res = await fetch(GOOGLE_SHEET_URL, {
+    await fetch(GOOGLE_SHEET_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(orderData)
     });
-    const data = await res.json();
-    sheetOk = data.success === true;
+    sheetOk = true; // no-cors doesn't return readable response, assume success
   } catch (err) { console.warn('Sheets error:', err); }
 
   try {
