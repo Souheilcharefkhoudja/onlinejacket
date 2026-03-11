@@ -1,798 +1,262 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JACKETS.DZ — Exclusive CNY Jacket</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --black: #0a0a0a;
-  --off-black: #111111;
-  --charcoal: #1c1c1c;
-  --mid: #2e2e2e;
-  --gold: #c9a84c;
-  --gold-light: #e8c96a;
-  --gold-muted: #9a7a38;
-  --cream: #f7f3ec;
-  --ivory: #faf8f4;
-  --warm-white: #f2ede5;
-  --text-dark: #1a1714;
-  --text-mid: #4a4540;
-  --text-light: #8a8076;
-  --red: #c0392b;
-  --border: rgba(201,168,76,0.2);
-  --border-light: rgba(201,168,76,0.1);
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--ivory);
-  color: var(--text-dark);
-  font-family: 'Outfit', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-body::after {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9999; opacity: 0.4;
-}
-
-.announce {
-  background: var(--black);
-  color: var(--gold);
-  text-align: center;
-  padding: 0.55rem 1rem;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--border);
-}
-.announce span { opacity: 0.6; margin: 0 1rem; }
-
-header {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(250,248,244,0.96);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 4rem; height: 72px;
-}
-.logo { font-size: 1.5rem; font-weight: 700; color: var(--black); letter-spacing: 0.12em; text-transform: uppercase; }
-.logo-dot { color: var(--gold); }
-nav { display: flex; gap: 2rem; align-items: center; }
-nav a {
-  color: var(--text-mid); text-decoration: none;
-  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400;
-  transition: color 0.3s; position: relative;
-}
-nav a::after {
-  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 1px; background: var(--gold);
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
-}
-nav a:hover { color: var(--black); }
-nav a:hover::after { transform: scaleX(1); }
-.nav-cta {
-  background: var(--black) !important; color: var(--gold) !important;
-  padding: 0.6rem 1.4rem !important; letter-spacing: 0.15em !important;
-  font-weight: 500 !important;
-}
-.nav-cta::after { display: none !important; }
-
-.hero {
-  position: relative; background: var(--black);
-  min-height: 88vh; display: flex; align-items: center; justify-content: center;
-  overflow: hidden; text-align: center;
-}
-.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, #1e1612 0%, var(--black) 70%); }
-.hero-pattern {
-  position: absolute; inset: 0; opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.6'%3E%3Cpath d='M30 2 L58 17 L58 43 L30 58 L2 43 L2 17 Z'/%3E%3Cpath d='M30 10 L50 22 L50 38 L30 50 L10 38 L10 22 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 60px 60px;
-}
-.hero-inner { position: relative; z-index: 2; padding: 4rem 2rem; animation: heroFade 1.2s ease both; }
-@keyframes heroFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.8rem;
-  font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase;
-  color: var(--gold); font-weight: 400; margin-bottom: 1.8rem;
-}
-.hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5; }
-.hero-title { font-size: clamp(3rem, 8vw, 7rem); font-weight: 200; color: var(--cream); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1rem; }
-.hero-title em { display: block; font-style: italic; color: var(--gold); font-size: 0.45em; letter-spacing: 0.15em; font-weight: 400; margin-top: 0.6rem; text-transform: uppercase; }
-.hero-badges { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-.hero-badge { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,168,76,0.7); display: flex; align-items: center; gap: 0.5rem; }
-.hero-badge::before { content: '◆'; font-size: 0.4rem; }
-.hero-scroll {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  z-index: 3; color: var(--gold); opacity: 0.5;
-  font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  animation: scrollBounce 2s ease-in-out infinite;
-}
-.hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
-@keyframes scrollBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
-
-.product-section { max-width: 1280px; margin: 0 auto; padding: 6rem 4rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start; }
-.gallery { position: sticky; top: 90px; }
-.main-img-wrap { position: relative; overflow: hidden; background: var(--warm-white); border: 1px solid var(--border); }
-.main-img-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
-.jacket-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: transform 0.6s ease, opacity 0.4s; }
-.main-img-wrap:hover .jacket-img { transform: scale(1.03); }
-.img-label { position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 3; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); background: rgba(10,10,10,0.6); padding: 0.3rem 0.8rem; backdrop-filter: blur(8px); text-transform: uppercase; }
-.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
-.thumb { aspect-ratio: 1; overflow: hidden; border: 1px solid transparent; cursor: pointer; transition: border-color 0.3s; background: var(--warm-white); }
-.thumb:hover, .thumb.active { border-color: var(--gold); }
-.thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.thumb:hover img { transform: scale(1.05); }
-.color-panel { display: none; }
-.color-panel.active { display: block; }
-
-.product-info { padding-top: 0.5rem; }
-.tags { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
-.tag { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; padding: 0.3rem 0.9rem; border: 1px solid; }
-.tag-red { color: #b5341f; border-color: rgba(181,52,31,0.35); background: rgba(181,52,31,0.06); }
-.tag-gold { color: var(--gold-muted); border-color: var(--border); background: rgba(201,168,76,0.06); }
-.tag-black { color: var(--cream); border-color: rgba(255,255,255,0.15); background: var(--black); }
-.product-name { font-size: 3rem; font-weight: 200; color: var(--black); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.4rem; }
-.product-name-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 1rem; color: var(--text-light); direction: rtl; margin-bottom: 1.2rem; }
-.stars { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.85rem; }
-.stars span { color: var(--text-light); font-size: 0.78rem; }
-.sep { width: 100%; height: 1px; background: linear-gradient(90deg, var(--border), transparent); margin: 1.8rem 0; }
-.price-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
-.price-main { font-size: 2.8rem; font-weight: 500; color: var(--black); letter-spacing: -0.02em; }
-.price-currency { font-size: 1rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.1em; }
-.price-note { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
-
-.opt-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); font-weight: 500; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
-.opt-label strong { color: var(--text-dark); font-weight: 500; }
-
-.color-dots { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-.cdot {
-  width: 28px; height: 28px; border-radius: 50%;
-  cursor: pointer; border: 2px solid transparent;
-  transition: all 0.25s; position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-.cdot:hover, .cdot.active { border-color: var(--black); transform: scale(1.18); }
-
-.sizes { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
-.sz {
-  width: 52px; height: 52px; border: 1px solid #d0c8bb; background: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em;
-  color: var(--text-dark); transition: all 0.2s; text-transform: uppercase;
-}
-.sz:hover { border-color: var(--black); background: rgba(10,10,10,0.04); }
-.sz.active { background: var(--black); color: var(--gold); border-color: var(--black); }
-
-.qty-row { display: flex; align-items: center; border: 1px solid #d0c8bb; width: fit-content; }
-.qty-btn { width: 44px; height: 44px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-dark); transition: background 0.2s; font-weight: 300; }
-.qty-btn:hover { background: rgba(10,10,10,0.05); }
-.qty-val { width: 48px; text-align: center; font-size: 1rem; border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
-
-.cta-group { display: flex; gap: 0.8rem; margin-top: 2rem; flex-direction: column; }
-.btn-primary {
-  width: 100%; padding: 1.1rem 2rem;
-  background: var(--black); color: var(--gold);
-  border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
-  font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-  transition: all 0.3s; position: relative; overflow: hidden;
-  text-decoration: none; display: block; text-align: center;
-}
-.btn-primary:hover { background: var(--charcoal); }
-
-.accords { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
-.accord { border-bottom: 1px solid rgba(0,0,0,0.08); }
-.accord-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; transition: color 0.2s; }
-.accord-btn:hover { color: var(--gold-muted); }
-.accord-icon { font-size: 1.1rem; font-weight: 200; color: var(--gold); transition: transform 0.3s; }
-.accord-icon.open { transform: rotate(45deg); }
-.accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
-.accord-body p { padding-bottom: 1.2rem; }
-
-.field-error { display: none; color: var(--red); font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
-
-.trust-bar { background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
-.trust-item { flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.6rem 1rem; text-align: center; border-right: 1px solid var(--border); }
-.trust-item:last-child { border-right: none; }
-.trust-icon { font-size: 1.3rem; }
-.trust-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; line-height: 1.5; }
-.trust-sub { font-size: 0.7rem; color: rgba(247,243,236,0.35); }
-
-.video-section { position: relative; overflow: hidden; background: var(--black); }
-.video-section video { width: 100%; display: block; max-height: 75vh; object-fit: cover; opacity: 0.82; }
-.video-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
-.video-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%); z-index: 2; pointer-events: none; }
-.video-caption { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; white-space: nowrap; }
-.video-caption-label { display: inline-block; font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); padding: 0.5rem 2rem; background: rgba(10,10,10,0.7); backdrop-filter: blur(8px); border: 1px solid var(--border); }
-
-.section-divider { display: flex; align-items: center; gap: 1.5rem; padding: 2rem 4rem; }
-.div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-.div-text { font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
-.div-diamond { color: var(--gold); font-size: 0.5rem; }
-
-.order-section { max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem; }
-.order-header { text-align: center; margin-bottom: 3rem; }
-.order-eyebrow { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
-.order-eyebrow::before, .order-eyebrow::after { content: '——'; opacity: 0.4; }
-.order-title { font-size: 2.2rem; font-weight: 700; color: var(--black); letter-spacing: -0.01em; }
-.order-title-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: var(--text-light); direction: rtl; margin-top: 0.4rem; }
-
-.form-card { background: white; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 40px rgba(0,0,0,0.06); }
-.form-inner { padding: 2.5rem; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-group.full { grid-column: 1/-1; }
-.form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); font-weight: 500; }
-.form-group input, .form-group select, .form-group textarea { padding: 0.85rem 1rem; border: 1px solid #e0dbd4; background: #faf9f6; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: white; }
-.form-group textarea { resize: vertical; min-height: 80px; }
-
-.delivery-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
-.delivery-opt { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
-.delivery-opt:hover { border-color: #c0b8a8; }
-.delivery-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
-.delivery-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; }
-.delivery-name { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
-.delivery-price { font-size: 0.82rem; color: var(--gold-muted); }
-
-.summary-bar { grid-column: 1/-1; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white); margin-top: 0.8rem; }
-.summary-cell { padding: 0.9rem 1rem; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.2rem; }
-.summary-cell:last-child { border-right: none; }
-.summary-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
-.summary-val { font-size: 0.85rem; color: var(--text-dark); font-weight: 400; }
-
-.total-bar { grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: var(--black); }
-.total-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5); }
-.total-amount { font-size: 1.8rem; color: var(--gold); font-weight: 500; }
-.total-amount span { font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
-
-/* ===== CONFIRM BUTTON — POPS OUT ===== */
-.btn-submit-wrap { grid-column: 1/-1; margin-top: 1rem; }
-.btn-submit {
-  width: 100%; padding: 1.4rem 2rem;
-  background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 50%, #c9a84c 100%);
-  background-size: 200% 200%;
-  color: var(--black);
-  border: none; cursor: pointer;
-  font-family: 'Outfit', sans-serif; font-size: 0.82rem;
-  font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-  transition: all 0.3s;
-  position: relative; overflow: hidden;
-  box-shadow: 0 4px 24px rgba(201,168,76,0.4), 0 0 0 0 rgba(201,168,76,0.3);
-  animation: btnPulse 2.5s ease-in-out infinite;
-}
-@keyframes btnPulse {
-  0%, 100% { box-shadow: 0 4px 24px rgba(201,168,76,0.4), 0 0 0 0 rgba(201,168,76,0.3); background-position: 0% 50%; }
-  50% { box-shadow: 0 4px 32px rgba(201,168,76,0.6), 0 0 0 10px rgba(201,168,76,0); background-position: 100% 50%; }
-}
-.btn-submit:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 36px rgba(201,168,76,0.6);
-  animation: none;
-  background-position: 100% 50%;
-}
-.btn-submit:active { transform: translateY(0); }
-.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; animation: none; transform: none; }
-.btn-submit-inner { display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
-.btn-submit-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 400; font-size: 0.9rem; opacity: 0.75; }
-
-/* Spinner */
-.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.2); border-top-color: var(--black); border-radius: 50%; animation: spin 0.7s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ===== SUCCESS OVERLAY ===== */
-.success-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); align-items: center; justify-content: center; text-align: center; }
-.success-overlay.show { display: flex; }
-.success-box { max-width: 480px; padding: 3rem 2rem; }
-.success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
-.success-title { font-size: 2rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1rem; }
-.success-ref { font-size: 0.75rem; color: rgba(201,168,76,0.6); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
-.success-msg { color: rgba(247,243,236,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-.success-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: rgba(201,168,76,0.6); direction: rtl; margin-bottom: 2rem; }
-.success-note { font-size: 0.75rem; color: var(--gold); opacity: 0.7; border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem; letter-spacing: 0.1em; }
-.btn-close-success { padding: 0.9rem 3rem; background: var(--gold); color: var(--black); border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: background 0.3s; }
-.btn-close-success:hover { background: var(--gold-light); }
-
-footer { background: var(--black); border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.footer-logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
-.footer-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.8rem; color: rgba(201,168,76,0.5); direction: rtl; }
-.footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
-
-@media (max-width: 900px) {
-  header { padding: 0 1.5rem; height: 60px; }
-  .logo { font-size: 1.15rem; }
-  nav { gap: 1rem; }
-  nav a { font-size: 0.6rem; }
-  .product-section { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
-  .gallery { position: static; }
-  .product-name { font-size: 2.2rem; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-group.full { grid-column: 1; }
-  .delivery-wrap { grid-template-columns: 1fr; }
-  .summary-bar { grid-template-columns: repeat(2,1fr); }
-  .order-section { padding: 2rem 1.5rem 4rem; }
-  .section-divider { padding: 1.5rem; }
-  .trust-bar { flex-wrap: wrap; }
-  .trust-item { max-width: 50%; }
-  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
-}
-</style>
-</head>
-<body>
-
-<div class="announce">
-  Livraison dans les 58 Wilayas <span>◆</span> Paiement à la Livraison <span>◆</span> التوصيل إلى 58 ولاية
-</div>
-
-<header>
-  <div class="logo">JACKETS<span class="logo-dot">.</span>DZ</div>
-  <nav>
-    <a href="#">Collection</a>
-    <a href="#">À Propos</a>
-    <a href="#order" class="nav-cta">Commander</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Édition Limitée · 2026</div>
-    <h1 class="hero-title">CNY<br>Jacket<em>Chinese New Year · 2026</em></h1>
-    <div class="hero-badges">
-      <div class="hero-badge">Velours Suédé Premium</div>
-      <div class="hero-badge">Pièce Numérotée</div>
-      <div class="hero-badge">8 500 DA</div>
-    </div>
-  </div>
-  <div class="hero-scroll">Découvrir</div>
-</section>
-
-<section class="product-section">
-  <div class="gallery">
-    <div class="main-img-wrap">
-      <div class="color-panel active" id="panel-navy-blue">
-        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="Navy Blue" class="jacket-img">
-        <div class="img-label">Navy Blue</div>
-      </div>
-      <div class="color-panel" id="panel-bordeaux-red">
-        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="Bordeaux Red" class="jacket-img">
-        <div class="img-label">Bordeaux Red</div>
-      </div>
-      <div class="color-panel" id="panel-midnight-black">
-        <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="Midnight Black" class="jacket-img">
-        <div class="img-label">Midnight Black</div>
-      </div>
-      <div class="color-panel" id="panel-sahara-gold">
-        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="Sahara Gold" class="jacket-img">
-        <div class="img-label">Sahara Gold</div>
-      </div>
-      <div class="color-panel" id="panel-forest-green">
-        <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="Forest Green" class="jacket-img">
-        <div class="img-label">Forest Green</div>
-      </div>
-    </div>
-    <div class="thumbs">
-      <div class="thumb active" onclick="switchThumb(this,0)"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80" alt=""></div>
-      <div class="thumb" onclick="switchThumb(this,1)"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=200&q=80" alt=""></div>
-      <div class="thumb" onclick="switchThumb(this,2)"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&q=80" alt=""></div>
-      <div class="thumb" onclick="switchThumb(this,3)"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80" alt=""></div>
-    </div>
-  </div>
-
-  <div class="product-info">
-    <div class="tags">
-      <span class="tag tag-red">Édition Limitée</span>
-      <span class="tag tag-gold">Chinese New Year 2026</span>
-      <span class="tag tag-black">🇩🇿 Algérie</span>
-    </div>
-    <h2 class="product-name">Exclusive<br>CNY Jacket</h2>
-    <div class="product-name-ar">جاكيت حصري · نوفي العام الصيني الجديد</div>
-    <div class="stars">★★★★★ <span>214 avis · مراجعة</span></div>
-    <div class="sep"></div>
-    <div class="price-row">
-      <span class="price-main">8 500</span>
-      <span class="price-currency">DA</span>
-    </div>
-    <div class="price-note">+ Frais de livraison selon wilaya · + رسوم التوصيل</div>
-    <div class="sep"></div>
-
-    <div class="opt-label">Couleur — <strong id="colorName">Sélectionner</strong></div>
-    <div class="color-dots" id="colorDots">
-      <div class="cdot" style="background:#2c4a6e;" data-label="Navy Blue" data-color="navy-blue" onclick="selectColor(this)" title="Navy Blue"></div>
-      <div class="cdot" style="background:#8b1a1a;" data-label="Bordeaux Red" data-color="bordeaux-red" onclick="selectColor(this)" title="Bordeaux Red"></div>
-      <div class="cdot" style="background:#c8860a;" data-label="Sahara Gold" data-color="sahara-gold" onclick="selectColor(this)" title="Sahara Gold"></div>
-      <div class="cdot" style="background:#1a1a1a;" data-label="Midnight Black" data-color="midnight-black" onclick="selectColor(this)" title="Midnight Black"></div>
-      <div class="cdot" style="background:#f5f0e8;border:2px solid #ccc;" data-label="Ivory White" data-color="ivory-white" onclick="selectColor(this)" title="Ivory White"></div>
-      <div class="cdot" style="background:#1a4a3a;" data-label="Forest Green" data-color="forest-green" onclick="selectColor(this)" title="Forest Green"></div>
-      <div class="cdot" style="background:#6b3a8a;" data-label="Royal Purple" data-color="royal-purple" onclick="selectColor(this)" title="Royal Purple"></div>
-      <div class="cdot" style="background:#b5652a;" data-label="Terracotta" data-color="terracotta" onclick="selectColor(this)" title="Terracotta"></div>
-      <div class="cdot" style="background:#c0392b;" data-label="Crimson Red" data-color="crimson-red" onclick="selectColor(this)" title="Crimson Red"></div>
-      <div class="cdot" style="background:#4a6a8a;" data-label="Steel Blue" data-color="steel-blue" onclick="selectColor(this)" title="Steel Blue"></div>
-    </div>
-    <div class="field-error" id="colorError">⚠ Veuillez sélectionner une couleur</div>
-    <br>
-
-    <div class="opt-label">Taille — <strong id="sizeName">Sélectionner</strong></div>
-    <div class="sizes">
-      <button class="sz" type="button" onclick="selectSize(this,'S')">S</button>
-      <button class="sz" type="button" onclick="selectSize(this,'M')">M</button>
-      <button class="sz" type="button" onclick="selectSize(this,'L')">L</button>
-      <button class="sz" type="button" onclick="selectSize(this,'XL')">XL</button>
-    </div>
-    <div class="field-error" id="sizeError">⚠ Veuillez sélectionner une taille</div>
-    <br>
-
-    <div class="opt-label">Quantité</div>
-    <div class="qty-row">
-      <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-      <div class="qty-val" id="qtyValue">1</div>
-      <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-    </div>
-
-    <div class="cta-group">
-      <a href="#order" class="btn-primary">Commander Maintenant &nbsp;·&nbsp; اطلب الآن</a>
-    </div>
-
-    <div class="accords">
-      <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">Description du Produit <span class="accord-icon">+</span></button>
-        <div class="accord-body"><p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p></div>
-      </div>
-      <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">Livraison en Algérie <span class="accord-icon">+</span></button>
-        <div class="accord-body"><p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau de poste / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p></div>
-      </div>
-      <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">Guide des Tailles <span class="accord-icon">+</span></button>
-        <div class="accord-body"><p>S: 86–91 cm &nbsp;·&nbsp; M: 91–97 cm &nbsp;·&nbsp; L: 97–102 cm &nbsp;·&nbsp; XL: 102–109 cm. Coupe oversized recommandée — prenez votre taille habituelle.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-icon">💵</div><div class="trust-label">Paiement à<br>la Livraison</div><div class="trust-sub">Cash uniquement</div></div>
-  <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">58 Wilayas<br>Couvertes</div><div class="trust-sub">Tout le territoire</div></div>
-  <div class="trust-item"><div class="trust-icon">📦</div><div class="trust-label">Expédition<br>3–7 Jours</div><div class="trust-sub">Jours ouvrables</div></div>
-  <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">Retours<br>14 Jours</div><div class="trust-sub">Satisfait ou remboursé</div></div>
-  <div class="trust-item"><div class="trust-icon">🔢</div><div class="trust-label">Pièce<br>Numérotée</div><div class="trust-sub">Édition limitée</div></div>
-</div>
-
-<div class="video-section">
-  <video autoplay muted loop playsinline>
-    <source src="adidas_originals_CNY_2025.mp4" type="video/mp4">
-  </video>
-  <div class="video-caption"><div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2020 &nbsp; ✦</div></div>
-</div>
-
-<div class="section-divider">
-  <div class="div-line"></div>
-  <span class="div-diamond">◆</span>
-  <span class="div-text">Passer votre Commande</span>
-  <span class="div-diamond">◆</span>
-  <div class="div-line"></div>
-</div>
-
-<div class="order-section" id="order">
-  <div class="order-header">
-    <div class="order-eyebrow">Commander</div>
-    <h2 class="order-title">Passer votre Commande</h2>
-    <div class="order-title-ar">أدخل بياناتك لنوصل إليك في أي مكان بالجزائر</div>
-  </div>
-  <div class="form-card">
-    <div class="form-inner">
-      <form id="orderForm" onsubmit="submitOrder(event)">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Nom Complet / الاسم الكامل *</label>
-            <input type="text" id="f-name" placeholder="Ahmed Benali" required>
-          </div>
-          <div class="form-group">
-            <label>Numéro de Téléphone / رقم الهاتف *</label>
-            <input type="tel" id="f-phone" placeholder="0X XX XX XX XX" required>
-          </div>
-          <div class="form-group">
-            <label>Wilaya / الولاية *</label>
-            <select id="f-wilaya" required>
-              <option value="">— Choisir une wilaya —</option>
-              <option>01 - Adrar</option><option>02 - Chlef</option><option>03 - Laghouat</option>
-              <option>04 - Oum El Bouaghi</option><option>05 - Batna</option><option>06 - Béjaïa</option>
-              <option>07 - Biskra</option><option>08 - Béchar</option><option>09 - Blida</option>
-              <option>10 - Bouira</option><option>11 - Tamanrasset</option><option>12 - Tébessa</option>
-              <option>13 - Tlemcen</option><option>14 - Tiaret</option><option>15 - Tizi Ouzou</option>
-              <option>16 - Alger</option><option>17 - Djelfa</option><option>18 - Jijel</option>
-              <option>19 - Sétif</option><option>20 - Saïda</option><option>21 - Skikda</option>
-              <option>22 - Sidi Bel Abbès</option><option>23 - Annaba</option><option>24 - Guelma</option>
-              <option>25 - Constantine</option><option>26 - Médéa</option><option>27 - Mostaganem</option>
-              <option>28 - M'Sila</option><option>29 - Mascara</option><option>30 - Ouargla</option>
-              <option>31 - Oran</option><option>32 - El Bayadh</option><option>33 - Illizi</option>
-              <option>34 - Bordj Bou Arréridj</option><option>35 - Boumerdès</option><option>36 - El Tarf</option>
-              <option>37 - Tindouf</option><option>38 - Tissemsilt</option><option>39 - El Oued</option>
-              <option>40 - Khenchela</option><option>41 - Souk Ahras</option><option>42 - Tipaza</option>
-              <option>43 - Mila</option><option>44 - Aïn Defla</option><option>45 - Naâma</option>
-              <option>46 - Aïn Témouchent</option><option>47 - Ghardaïa</option><option>48 - Relizane</option>
-              <option>49 - El M'Ghair</option><option>50 - El Meniaa</option><option>51 - Ouled Djellal</option>
-              <option>52 - Bordj Badji Mokhtar</option><option>53 - Béni Abbès</option><option>54 - Timimoun</option>
-              <option>55 - Touggourt</option><option>56 - Djanet</option><option>57 - In Salah</option>
-              <option>58 - In Guezzam</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Adresse / العنوان *</label>
-            <input type="text" id="f-address" placeholder="Rue, commune..." required>
-          </div>
-
-          <div class="delivery-wrap">
-            <div class="delivery-opt selected" onclick="selectDelivery(this, 400)">
-              <input type="radio" name="delivery_type" value="400" checked>
-              <div><div class="delivery-name">🏢 Bureau / Yalitsal</div><div class="delivery-price">400 DA</div></div>
-            </div>
-            <div class="delivery-opt" onclick="selectDelivery(this, 700)">
-              <input type="radio" name="delivery_type" value="700">
-              <div><div class="delivery-name">🏠 Livraison à Domicile</div><div class="delivery-price">700 DA</div></div>
-            </div>
-          </div>
-
-          <div class="summary-bar">
-            <div class="summary-cell"><div class="summary-label">Couleur</div><div class="summary-val" id="sum-color">—</div></div>
-            <div class="summary-cell"><div class="summary-label">Taille</div><div class="summary-val" id="sum-size">—</div></div>
-            <div class="summary-cell"><div class="summary-label">Quantité</div><div class="summary-val" id="sum-qty">1</div></div>
-            <div class="summary-cell"><div class="summary-label">Livraison</div><div class="summary-val" id="sum-delivery">Bureau (400 DA)</div></div>
-          </div>
-
-          <div class="total-bar">
-            <span class="total-label">Total à Payer · المبلغ الإجمالي</span>
-            <span class="total-amount"><span id="totalPrice">8 900</span> <span>DA</span></span>
-          </div>
-
-          <div class="form-group full">
-            <label>Note / ملاحظة (optionnel)</label>
-            <textarea id="f-note" placeholder="Précisions sur votre commande..."></textarea>
-          </div>
-
-          <div class="btn-submit-wrap">
-            <button type="submit" class="btn-submit" id="submitBtn">
-              <span class="btn-submit-inner">
-                <span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span>
-                <span class="btn-submit-ar">تأكيد الطلب</span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- SUCCESS OVERLAY -->
-<div class="success-overlay" id="successOverlay">
-  <div class="success-box">
-    <div class="success-icon">✅</div>
-    <div class="success-title">Commande Confirmée</div>
-    <div class="success-ref" id="orderRef"></div>
-    <div class="success-msg">Merci pour votre commande ! Nous vous contacterons dans les <strong>24 heures</strong> pour confirmer et organiser la livraison.</div>
-    <div class="success-ar">شكراً لطلبك! سنتصل بك خلال 24 ساعة لتأكيد الطلب وترتيب التوصيل.</div>
-    <div class="success-note">💵 Paiement à la livraison uniquement — Pas de paiement en ligne requis</div>
-    <button class="btn-close-success" onclick="closeSuccess()">Retour à la Boutique</button>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-logo">JACKETS.DZ</div>
-  <div class="footer-ar">الجزائر — أناقة بلا حدود · 58 ولاية</div>
-  <div class="footer-copy">© 2026 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
-</footer>
-
-<script>
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwmLvi59rtql8n9luKmkNlDhDcCFVMyxlay02hGSZSOga-92_bFO_FD5Yb2wZShGslIVw/exec';
-const WEB3FORMS_KEY    = '30674636-aca2-4f7c-952c-c3bd20a45594';
-const BASE = 8500;
-const TOTAL_STOCK = 400;
-
-let deliveryFee   = 400;
-let selectedColor = '';
-let selectedSize  = '';
-let selectedQty   = 1;
-const thumbPanelMap = ['navy-blue','bordeaux-red','midnight-black','sahara-gold','forest-green'];
-
-function getSoldCount()    { return parseInt(localStorage.getItem('jdz_sold') || '0'); }
-function addSoldCount(qty) { localStorage.setItem('jdz_sold', getSoldCount() + qty); }
-function getOrderedPhones(){ return JSON.parse(localStorage.getItem('jdz_phones') || '[]'); }
-function savePhone(phone)  { const p = getOrderedPhones(); p.push(phone.replace(/ /g,'')); localStorage.setItem('jdz_phones', JSON.stringify(p)); }
-function phoneOrdered(p)   { return getOrderedPhones().includes(p.replace(/ /g,'')); }
-
-function switchThumb(el, idx) {
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.color-panel').forEach(p => p.classList.remove('active'));
-  const panel = document.getElementById('panel-' + thumbPanelMap[idx]);
-  if (panel) panel.classList.add('active');
-}
-
-function selectColor(dotEl) {
-  document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
-  dotEl.classList.add('active');
-  selectedColor = dotEl.dataset.label;
-  document.getElementById('colorName').textContent = selectedColor;
-  document.getElementById('sum-color').textContent = selectedColor;
-  document.getElementById('colorError').style.display = 'none';
-  const panel = document.getElementById('panel-' + dotEl.dataset.color);
-  if (panel) {
-    document.querySelectorAll('.color-panel').forEach(p => p.classList.remove('active'));
-    panel.classList.add('active');
-  }
-  updateTotal();
-}
-
-function selectSize(btn, size) {
-  document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  selectedSize = size;
-  document.getElementById('sizeName').textContent = size;
-  document.getElementById('sum-size').textContent = size;
-  document.getElementById('sizeError').style.display = 'none';
-  updateTotal();
-}
-
-function changeQty(delta) {
-  selectedQty = Math.max(1, Math.min(5, selectedQty + delta));
-  document.getElementById('qtyValue').textContent = selectedQty;
-  document.getElementById('sum-qty').textContent = selectedQty;
-  updateTotal();
-}
-
-function selectDelivery(el, fee) {
-  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
-  el.classList.add('selected');
-  el.querySelector('input').checked = true;
-  deliveryFee = fee;
-  document.getElementById('sum-delivery').textContent = fee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
-  updateTotal();
-}
-
-function updateTotal() {
-  const total = (BASE * selectedQty) + deliveryFee;
-  document.getElementById('totalPrice').textContent = total.toLocaleString('fr-DZ');
-}
-
-function toggleAcc(btn) {
-  const body = btn.nextElementSibling;
-  const icon = btn.querySelector('.accord-icon');
-  const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
-  document.querySelectorAll('.accord-body').forEach(b => b.style.maxHeight = '0px');
-  document.querySelectorAll('.accord-icon').forEach(i => { i.textContent = '+'; i.classList.remove('open'); });
-  if (!isOpen) { body.style.maxHeight = '300px'; icon.classList.add('open'); }
-}
-
-async function submitOrder(e) {
-  e.preventDefault();
-
-  let hasError = false;
-  if (!selectedColor) { document.getElementById('colorError').style.display = 'block'; hasError = true; }
-  if (!selectedSize)  { document.getElementById('sizeError').style.display = 'block'; hasError = true; }
-  if (hasError) {
-    document.querySelector('.field-error[style*="block"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    return;
-  }
-
-  const name     = document.getElementById('f-name').value.trim();
-  const phone    = document.getElementById('f-phone').value.trim();
-  const wilaya   = document.getElementById('f-wilaya').value;
-  const address  = document.getElementById('f-address').value.trim();
-  const note     = document.getElementById('f-note').value.trim();
-  const total    = document.getElementById('totalPrice').textContent + ' DA';
-  const delivery = deliveryFee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
-  const orderRef = 'DZ-' + Date.now().toString().slice(-6);
-  const timestamp = new Date().toLocaleString('fr-DZ');
-
-  if (!name || !phone || !wilaya || !address) {
-    alert('Veuillez remplir tous les champs obligatoires.');
-    return;
-  }
-
-  if (phoneOrdered(phone)) {
-    const go = confirm('Ce numéro (' + phone + ') a déjà passé une commande. Continuer quand même ?');
-    if (!go) return;
-  }
-
-  if (getSoldCount() >= TOTAL_STOCK) {
-    alert('Désolé — le stock est épuisé ! نفذ المخزون');
-    return;
-  }
-
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="btn-submit-inner"><span class="spinner"></span><span>Envoi en cours...</span></span>';
-
-  const orderData = {
-    timestamp, ref: orderRef,
-    nom: name, telephone: phone, wilaya, adresse: address,
-    couleur: selectedColor, taille: selectedSize,
-    quantite: selectedQty, livraison: delivery, total,
-    note: note || '—', statut: 'Pending'
-  };
-
-  let sheetOk = false, emailOk = false;
+// ============================================================
+//  JACKETS.DZ — Complete Script
+//  Receives orders from website + generates confirmation docs
+// ============================================================
+
+const COL_DATE     = 1;
+const COL_NAME     = 2;
+const COL_PHONE    = 3;
+const COL_WILAYA   = 4;
+const COL_ADDRESS  = 5;
+const COL_COLOR    = 6;
+const COL_SIZE     = 7;
+const COL_QTY      = 8;
+const COL_TOTAL    = 9;
+const COL_NOTE     = 10;
+const COL_STATUS   = 11;
+const COL_DOC_LINK = 12;
+
+
+// ============================================================
+//  RECEIVE ORDERS FROM WEBSITE (doPost)
+//  This runs every time someone submits the order form
+// ============================================================
+function doPost(e) {
+  const output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
 
   try {
-    await fetch(GOOGLE_SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(orderData)
-    });
-    sheetOk = true; // no-cors doesn't return readable response, assume success
-  } catch (err) { console.warn('Sheets error:', err); }
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-  try {
-    const fd = new FormData();
-    fd.append('access_key', WEB3FORMS_KEY);
-    fd.append('subject', 'Commande #' + orderRef + ' — JACKETS.DZ');
-    fd.append('from_name', 'JACKETS.DZ');
-    fd.append('name', name);
-    fd.append('email', 'noreply@jackets.dz');
-    fd.append('message',
-      'NOUVELLE COMMANDE #' + orderRef + '\n\n' +
-      'Client   : ' + name + '\nTel      : ' + phone + '\nWilaya   : ' + wilaya + '\nAdresse  : ' + address + '\n\n' +
-      'Couleur  : ' + selectedColor + '\nTaille   : ' + selectedSize + '\nQuantite : ' + selectedQty + '\n' +
-      'Livraison: ' + delivery + '\nTotal    : ' + total + '\nNote     : ' + (note || '—') + '\nDate     : ' + timestamp
+    // Add header row if sheet is empty
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        '📅 Date', '👤 Name', '📞 Phone', '📍 Wilaya', '🏠 Address',
+        '🎨 Color', '📐 Size', '🔢 Quantity', '💰 Total', '📝 Note', '🚦 Status'
+      ]);
+      const header = sheet.getRange(1, 1, 1, 11);
+      header.setBackground('#1a1a1a').setFontColor('#ffffff').setFontWeight('bold');
+      sheet.setFrozenRows(1);
+    }
+
+    // Handle both JSON and form-encoded data
+    let data;
+    try {
+      data = JSON.parse(e.postData.contents);
+    } catch(_) {
+      data = e.parameter;
+    }
+
+    sheet.appendRow([
+      data.timestamp || new Date().toLocaleString(),
+      data.nom        || '',
+      data.telephone  || '',
+      data.wilaya     || '',
+      data.adresse    || '',
+      data.couleur    || '',
+      data.taille     || '',
+      data.quantite   || 1,
+      data.total      || '',
+      data.note       || '—',
+      'Pending'
+    ]);
+
+    const lastRow = sheet.getLastRow();
+    sheet.getRange(lastRow, 11)
+      .setBackground('#FFA000').setFontColor('#ffffff')
+      .setFontWeight('bold').setHorizontalAlignment('center');
+
+    sheet.autoResizeColumns(1, 11);
+
+    output.setContent(JSON.stringify({ success: true }));
+  } catch (err) {
+    output.setContent(JSON.stringify({ success: false, error: err.message }));
+  }
+
+  return output;
+}
+
+// Handles preflight CORS requests
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok' }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+
+// ============================================================
+//  GENERATE DOC FOR SELECTED ROW
+// ============================================================
+function generateDocForSelectedRow() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const row   = sheet.getActiveRange().getRow();
+
+  if (row < 2) {
+    SpreadsheetApp.getUi().alert("⚠️ Please click on a data row first (not the header).");
+    return;
+  }
+
+  const status = sheet.getRange(row, COL_STATUS).getValue();
+  if (status !== "Confirmed") {
+    SpreadsheetApp.getUi().alert(`⚠️ Row ${row}: Status is "${status}".\nOnly Confirmed orders can generate a doc.`);
+    return;
+  }
+
+  const existingLink = sheet.getRange(row, COL_DOC_LINK).getValue();
+  if (existingLink) {
+    const response = SpreadsheetApp.getUi().alert(
+      "Doc already exists",
+      "A doc was already created for this order. Open it?",
+      SpreadsheetApp.getUi().ButtonSet.YES_NO
     );
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd });
-    const data = await res.json();
-    emailOk = data.success === true;
-  } catch (err) { console.warn('Email error:', err); }
-
-  if (!sheetOk && !emailOk) {
-    btn.disabled = false;
-    btn.innerHTML = '<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
-    alert('Erreur réseau. Vérifiez votre connexion et réessayez.');
+    if (response === SpreadsheetApp.getUi().Button.YES) openUrl(existingLink);
     return;
   }
 
-  savePhone(phone);
-  addSoldCount(selectedQty);
+  const order  = getOrderFromRow(sheet, row);
+  const docUrl = createOrderDoc(order, row);
 
-  // Show success with ref number
-  document.getElementById('orderRef').textContent = 'Référence : #' + orderRef;
-  document.getElementById('successOverlay').classList.add('show');
-  document.body.style.overflow = 'hidden';
+  sheet.getRange(row, COL_DOC_LINK).setValue(docUrl).setFontColor("#1565C0");
+  sheet.getRange(row, COL_STATUS).setBackground("#2E7D32").setFontColor("#FFFFFF").setFontWeight("bold");
 
-  // Reset
-  document.getElementById('orderForm').reset();
-  selectedColor = ''; selectedSize = ''; selectedQty = 1; deliveryFee = 400;
-  document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
-  document.querySelector('.delivery-opt').classList.add('selected');
-  document.getElementById('colorName').textContent = 'Sélectionner';
-  document.getElementById('sizeName').textContent = 'Sélectionner';
-  document.getElementById('qtyValue').textContent = '1';
-  document.getElementById('sum-color').textContent = '—';
-  document.getElementById('sum-size').textContent = '—';
-  document.getElementById('sum-qty').textContent = '1';
-  document.getElementById('sum-delivery').textContent = 'Bureau (400 DA)';
-  updateTotal();
-
-  btn.disabled = false;
-  btn.innerHTML = '<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
+  openUrl(docUrl);
+  SpreadsheetApp.getUi().alert(`✅ Doc created for ${order.name}!\nLink saved in column L.`);
 }
 
-function closeSuccess() {
-  document.getElementById('successOverlay').classList.remove('show');
-  document.body.style.overflow = '';
+
+// ============================================================
+//  GENERATE DOCS FOR ALL CONFIRMED ROWS
+// ============================================================
+function generateAllConfirmedDocs() {
+  const sheet   = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const lastRow = sheet.getLastRow();
+  let count = 0;
+
+  for (let row = 2; row <= lastRow; row++) {
+    const status    = sheet.getRange(row, COL_STATUS).getValue();
+    const existLink = sheet.getRange(row, COL_DOC_LINK).getValue();
+
+    if (status === "Confirmed" && !existLink) {
+      const order  = getOrderFromRow(sheet, row);
+      const docUrl = createOrderDoc(order, row);
+      sheet.getRange(row, COL_DOC_LINK).setValue(docUrl).setFontColor("#1565C0");
+      sheet.getRange(row, COL_STATUS).setBackground("#2E7D32").setFontColor("#FFFFFF").setFontWeight("bold");
+      count++;
+    }
+  }
+
+  SpreadsheetApp.getUi().alert(
+    count > 0 ? `✅ Done! Generated ${count} doc(s). Check column L for links.` : "No new confirmed orders found."
+  );
 }
 
-updateTotal();
-</script>
-</body>
-</html>
+
+// ============================================================
+//  CREATE ORDER DOC
+// ============================================================
+function createOrderDoc(order, rowNum) {
+  const docTitle = `Order #${rowNum} — ${order.name} — ${formatDate(order.date)}`;
+  const doc  = DocumentApp.create(docTitle);
+  const body = doc.getBody();
+
+  body.setMarginTop(50).setMarginBottom(50).setMarginLeft(60).setMarginRight(60);
+
+  const title = body.appendParagraph("🧾  ORDER CONFIRMATION");
+  title.setHeading(DocumentApp.ParagraphHeading.HEADING1);
+  title.getChild(0).asText().setFontFamily("Arial").setFontSize(22).setBold(true).setForegroundColor("#1A1A1A");
+
+  body.appendParagraph("✅  CONFIRMED").getChild(0).asText()
+    .setFontFamily("Arial").setFontSize(13).setBold(true).setForegroundColor("#2E7D32");
+
+  body.appendParagraph(`Order date: ${formatDate(order.date)}`).getChild(0).asText()
+    .setFontFamily("Arial").setFontSize(10).setForegroundColor("#888888");
+
+  body.appendParagraph("");
+
+  const fields = [
+    ["👤 Customer Name", order.name],
+    ["📞 Phone",         String(order.phone)],
+    ["📍 Wilaya",        order.wilaya],
+    ["🏠 Address",       order.address],
+    ["🎨 Color",         order.color],
+    ["📐 Size",          order.size],
+    ["🔢 Quantity",      String(order.quantity)],
+    ["💰 Total",         order.total],
+    ["📝 Note",          order.note],
+  ];
+
+  const table = body.appendTable();
+  table.setBorderColor("#DDDDDD").setBorderWidth(1);
+
+  fields.forEach(([label, value]) => {
+    const tr = table.appendTableRow();
+    const lc = tr.appendTableCell(label);
+    lc.setBackgroundColor("#1A1A1A");
+    lc.getChild(0).asText().setFontFamily("Arial").setFontSize(10).setBold(true).setForegroundColor("#FFFFFF");
+    lc.setPaddingTop(7).setPaddingBottom(7).setPaddingLeft(10).setPaddingRight(10);
+    const vc = tr.appendTableCell(value || "—");
+    vc.setBackgroundColor("#F5F5F5");
+    vc.getChild(0).asText().setFontFamily("Arial").setFontSize(10).setForegroundColor("#222222");
+    vc.setPaddingTop(7).setPaddingBottom(7).setPaddingLeft(10).setPaddingRight(10);
+  });
+
+  body.appendParagraph("");
+  body.appendParagraph("Bon de commande confidentiel · À traiter dans les meilleurs délais.")
+    .getChild(0).asText().setFontFamily("Arial").setFontSize(10).setItalic(true).setForegroundColor("#666666");
+
+  doc.saveAndClose();
+  return doc.getUrl();
+}
+
+
+// ============================================================
+//  onOpen: menu on sheet load
+// ============================================================
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu("🧾 Orders")
+    .addItem("📄 Generate doc for selected row", "generateDocForSelectedRow")
+    .addSeparator()
+    .addItem("📦 Generate ALL confirmed docs",   "generateAllConfirmedDocs")
+    .addSeparator()
+    .addItem("⚙️ Setup status dropdown (run once)", "setupDropdown")
+    .addToUi();
+}
+
+
+// ============================================================
+//  SETUP DROPDOWN
+// ============================================================
+function setupDropdown() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(["Pending", "Confirmed", "Cancelled"], true)
+    .setAllowInvalid(false).build();
+  sheet.getRange("K2:K1000").setDataValidation(rule);
+  SpreadsheetApp.getUi().alert("✅ Done! Column K now has a dropdown.");
+}
+
+
+// ============================================================
+//  HELPERS
+// ============================================================
+function getOrderFromRow(sheet, row) {
+  const d = sheet.getRange(row, 1, 1, COL_STATUS).getValues()[0];
+  return {
+    date: d[0], name: d[1], phone: d[2], wilaya: d[3], address: d[4],
+    color: d[5], size: d[6], quantity: d[7], total: d[8], note: d[9] || "—"
+  };
+}
+
+function formatDate(dateVal) {
+  if (!dateVal) return "—";
+  const d = new Date(dateVal);
+  return isNaN(d) ? String(dateVal) : d.toLocaleDateString("en-GB");
+}
+
+function openUrl(url) {
+  const html = HtmlService.createHtmlOutput(
+    `<script>window.open('${url}','_blank');google.script.host.close();</script>`
+  );
+  SpreadsheetApp.getUi().showModalDialog(html, "Opening doc...");
+}
