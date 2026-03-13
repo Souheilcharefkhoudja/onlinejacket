@@ -608,7 +608,8 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwmLvi59rtql8n9luKmkNlDhDcCFVMyxlay02hGSZSOga-92_bFO_FD5Yb2wZShGslIVw/exec';
 const WEB3FORMS_KEY    = '30674636-aca2-4f7c-952c-c3bd20a45594';
-const COMMUNE_API      = '/api/communes'; // Vercel serverless → api/communes.js
+const GUEPEX_API_ID    = '08467949173865045243';
+const GUEPEX_API_TOKEN = '6tDv0VDFh5MKfvcyQtO3eouLUT8Sc7w5FngPzXRrOHPyq29zWY4Jlpr2dB1jaiRJ';
 const BASE             = 8500;
 const TOTAL_STOCK      = 400;
 
@@ -773,7 +774,7 @@ function selectDelivery(el, type) {
   refreshPricing();
 }
 
-// ─── GUEPEX Communes via Vercel /api/communes ─────────────────────────────────
+// ─── GUEPEX Communes (direct browser fetch) ───────────────────────────────────
 async function loadCommunes(wilayaId) {
   const sel     = document.getElementById('f-commune');
   const loading = document.getElementById('commune-loading');
@@ -783,14 +784,40 @@ async function loadCommunes(wilayaId) {
   clearErr('err-commune','f-commune');
 
   try {
-    const res  = await fetch(`${COMMUNE_API}?wilaya_id=${wilayaId}`);
-    const data = await res.json();
+    let allCommunes = [];
+    let page = 1;
 
-    if (!data.communes || data.communes.length === 0) {
+    while (true) {
+      const url = `https://api.guepex.app/v1/communes/?wilaya_id=${wilayaId}&page=${page}`;
+      const res = await fetch(url, {
+        headers: {
+          'X-API-ID':    GUEPEX_API_ID,
+          'X-API-TOKEN': GUEPEX_API_TOKEN,
+        }
+      });
+
+      if (!res.ok) break;
+      const data = await res.json();
+      if (!data.data || data.data.length === 0) break;
+
+      for (const c of data.data) {
+        if (c.is_deliverable) {
+          allCommunes.push({ id: c.id, name: c.name, has_stop_desk: c.has_stop_desk });
+        }
+      }
+
+      if (!data.has_more) break;
+      page++;
+      if (page > 20) break;
+    }
+
+    allCommunes.sort((a, b) => a.name.localeCompare(b.name));
+
+    if (allCommunes.length === 0) {
       sel.innerHTML = '<option value="">Aucune commune disponible</option>';
     } else {
       sel.innerHTML = '<option value="">— Choisir une commune —</option>';
-      data.communes.forEach(c => {
+      allCommunes.forEach(c => {
         const o = document.createElement('option');
         o.value = c.name;
         o.textContent = c.name;
