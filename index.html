@@ -97,6 +97,14 @@ nav a:hover::after { transform: scaleX(1); }
 .accord-icon.open { transform: rotate(45deg); }
 .accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
 .accord-body p { padding-bottom: 1.2rem; }
+/* Delivery table inside accordion */
+.delivery-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin-bottom: 1rem; }
+.delivery-table th { background: var(--black); color: var(--gold); padding: 0.5rem 0.7rem; text-align: left; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+.delivery-table td { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-mid); }
+.delivery-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+.delivery-table .zone-label { font-weight: 600; color: var(--text-dark); }
+.delivery-service-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin: 0.8rem 0 0.4rem; font-weight: 600; }
+
 .field-error { display: none; color: var(--red); font-size: 0.68rem; letter-spacing: 0.1em; margin-top: 0.2rem; }
 .trust-bar { background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
 .trust-item { flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.6rem 1rem; text-align: center; border-right: 1px solid var(--border); }
@@ -129,20 +137,37 @@ nav a:hover::after { transform: scaleX(1); }
 .form-group input, .form-group select, .form-group textarea { padding: 0.85rem 1rem; border: 1px solid #e0dbd4; background: #faf9f6; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: white; }
 .form-group textarea { resize: vertical; min-height: 80px; }
+
+/* ── SERVICE TYPE SELECTOR ── */
+.service-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
+.service-opt { display: flex; align-items: flex-start; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
+.service-opt:hover { border-color: #c0b8a8; }
+.service-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.service-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; margin-top: 3px; flex-shrink: 0; }
+.service-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dark); font-weight: 600; margin-bottom: 0.15rem; }
+.service-badge { display: inline-block; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.15rem 0.5rem; border: 1px solid; margin-bottom: 0.3rem; }
+.badge-express { color: #b5341f; border-color: rgba(181,52,31,0.4); background: rgba(181,52,31,0.06); }
+.badge-eco { color: var(--gold-muted); border-color: var(--border); background: rgba(201,168,76,0.06); }
+.service-desc { font-size: 0.72rem; color: var(--text-light); line-height: 1.4; }
+
+/* ── DELIVERY TYPE SELECTOR ── */
 .delivery-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
 .delivery-opt { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
 .delivery-opt:hover { border-color: #c0b8a8; }
 .delivery-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
 .delivery-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; }
 .delivery-name { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
-.delivery-price { font-size: 0.82rem; color: var(--gold-muted); }
+.delivery-price { font-size: 0.82rem; color: var(--gold-muted); font-weight: 500; }
+.delivery-price-note { font-size: 0.62rem; color: var(--text-light); margin-top: 0.1rem; }
+
+/* ── WILAYA PRICING HINT ── */
+.wilaya-hint { grid-column: 1/-1; display: none; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; background: rgba(201,168,76,0.06); border: 1px solid var(--border); font-size: 0.72rem; color: var(--text-mid); }
+.wilaya-hint.show { display: flex; }
+.wilaya-hint strong { color: var(--gold-muted); }
 
 /* ===== ITEMS ===== */
 .items-section { grid-column: 1/-1; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.4rem; }
-.item-card {
-  border: 1px solid #e0dbd4; background: #faf9f6; padding: 1.2rem;
-  position: relative; transition: border-color 0.2s;
-}
+.item-card { border: 1px solid #e0dbd4; background: #faf9f6; padding: 1.2rem; position: relative; transition: border-color 0.2s; }
 .item-card:hover { border-color: rgba(201,168,76,0.4); }
 .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .item-number { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
@@ -160,17 +185,10 @@ nav a:hover::after { transform: scaleX(1); }
 .item-size-name { font-size: 0.7rem; color: var(--text-mid); margin-top: 0.3rem; min-height: 1rem; }
 .item-error { display: none; color: var(--red); font-size: 0.62rem; margin-top: 0.2rem; }
 
-.btn-add-item {
-  grid-column: 1/-1;
-  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-  padding: 0.9rem; border: 1px dashed rgba(201,168,76,0.4); background: none;
-  cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-muted);
-  transition: all 0.25s; margin-top: 0.4rem;
-}
+.btn-add-item { grid-column: 1/-1; display: flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.9rem; border: 1px dashed rgba(201,168,76,0.4); background: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-muted); transition: all 0.25s; margin-top: 0.4rem; }
 .btn-add-item:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.04); }
 
-.summary-bar { grid-column: 1/-1; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white); margin-top: 0.8rem; }
+.summary-bar { grid-column: 1/-1; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white); margin-top: 0.8rem; }
 .summary-cell { padding: 0.9rem 1rem; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.2rem; }
 .summary-cell:last-child { border-right: none; }
 .summary-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
@@ -216,10 +234,12 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
   .product-name { font-size: 2.2rem; }
   .form-grid { grid-template-columns: 1fr; }
   .form-group.full { grid-column: 1; }
-  .delivery-wrap { grid-template-columns: 1fr; }
+  .service-wrap { grid-template-columns: 1fr; grid-column: 1; }
+  .delivery-wrap { grid-template-columns: 1fr; grid-column: 1; }
+  .wilaya-hint { grid-column: 1; }
   .items-section { grid-column: 1; }
   .btn-add-item { grid-column: 1; }
-  .summary-bar { grid-column: 1; grid-template-columns: repeat(3,1fr); }
+  .summary-bar { grid-column: 1; grid-template-columns: repeat(2,1fr); }
   .total-bar { grid-column: 1; }
   .btn-submit-wrap { grid-column: 1; }
   .item-row { grid-template-columns: 1fr; }
@@ -327,8 +347,35 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
         <div class="accord-body"><p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p></div>
       </div>
       <div class="accord">
-        <button class="accord-btn" onclick="toggleAcc(this)">Livraison en Algérie <span class="accord-icon">+</span></button>
-        <div class="accord-body"><p>Livraison disponible dans les <strong>58 wilayas</strong>. Bureau de poste / Yalitsal : 400 DA. Livraison à domicile : 700 DA. Paiement à la livraison uniquement (cash). Délai : 3–7 jours ouvrables.</p></div>
+        <button class="accord-btn" onclick="toggleAcc(this)">Livraison & Tarifs par Wilaya <span class="accord-icon">+</span></button>
+        <div class="accord-body">
+          <p>Livraison disponible dans les <strong>58 wilayas</strong> via GUEPEX Express. Paiement à la livraison uniquement (cash).</p>
+          <div class="delivery-service-title">⚡ E-Commerce Express (24h) — depuis Alger</div>
+          <table class="delivery-table">
+            <thead><tr><th>Zone / Wilaya(s)</th><th>Domicile</th><th>Stop-Desk</th><th>Délai</th></tr></thead>
+            <tbody>
+              <tr><td class="zone-label">Alger</td><td>590 DA</td><td>450 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Blida · Boumerdès · Tipaza</td><td>700 DA</td><td>550 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Zone 2 — Nord (Oran, Sétif, Annaba, Constantine, Tizi Ouzou…)</td><td>900 DA</td><td>650 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Zone 3 — Hauts Plateaux (Laghouat, Biskra, Djelfa, Ghardaïa…)</td><td>950 DA</td><td>750 DA</td><td>J+1 / J+2</td></tr>
+              <tr><td class="zone-label">Zone 4 — Grand Sud (Adrar, Béchar, Naâma…)</td><td>1 050 DA</td><td>850 DA</td><td>J+2 / J+3</td></tr>
+              <tr><td class="zone-label">Zone 5 — Extrême Sud (Tamanrasset, Illizi, Tindouf, Djanet…)</td><td>1 600 DA</td><td>1 400 DA</td><td>J+5 / J+6</td></tr>
+            </tbody>
+          </table>
+          <div class="delivery-service-title">🕐 E-Commerce Économique (48h+) — depuis Alger</div>
+          <table class="delivery-table">
+            <thead><tr><th>Zone / Wilaya(s)</th><th>Domicile</th><th>Stop-Desk</th><th>Délai</th></tr></thead>
+            <tbody>
+              <tr><td class="zone-label">Alger</td><td>500 DA</td><td>400 DA</td><td>J+2</td></tr>
+              <tr><td class="zone-label">Blida · Boumerdès · Tipaza</td><td>550 DA</td><td>450 DA</td><td>J+2</td></tr>
+              <tr><td class="zone-label">Zone 2 — Nord (Oran, Sétif, Annaba, Constantine, Tizi Ouzou…)</td><td>700 DA</td><td>600 DA</td><td>J+2</td></tr>
+              <tr><td class="zone-label">Zone 3 — Hauts Plateaux (Laghouat, Biskra, Djelfa, Ghardaïa…)</td><td>850 DA</td><td>700 DA</td><td>J+2 / J+3</td></tr>
+              <tr><td class="zone-label">Zone 4 — Grand Sud (Adrar, Béchar, Naâma…)</td><td>1 650 DA</td><td>1 550 DA</td><td>J+3 / J+4</td></tr>
+              <tr><td class="zone-label">Zone 5 — Extrême Sud (Tamanrasset, Illizi, Tindouf, Djanet…)</td><td>1 650 DA</td><td>1 550 DA</td><td>J+6 / J+7</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.75rem;color:var(--text-light);">Le tarif exact est calculé automatiquement lors de votre commande selon votre wilaya.</p>
+        </div>
       </div>
       <div class="accord">
         <button class="accord-btn" onclick="toggleAcc(this)">Guide des Tailles <span class="accord-icon">+</span></button>
@@ -341,7 +388,7 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 <div class="trust-bar">
   <div class="trust-item"><div class="trust-icon">💵</div><div class="trust-label">Paiement à<br>la Livraison</div><div class="trust-sub">Cash uniquement</div></div>
   <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">58 Wilayas<br>Couvertes</div><div class="trust-sub">Tout le territoire</div></div>
-  <div class="trust-item"><div class="trust-icon">📦</div><div class="trust-label">Expédition<br>3–7 Jours</div><div class="trust-sub">Jours ouvrables</div></div>
+  <div class="trust-item"><div class="trust-icon">⚡</div><div class="trust-label">Express 24h<br>disponible</div><div class="trust-sub">GUEPEX</div></div>
   <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">Retours<br>14 Jours</div><div class="trust-sub">Satisfait ou remboursé</div></div>
   <div class="trust-item"><div class="trust-icon">🔢</div><div class="trust-label">Pièce<br>Numérotée</div><div class="trust-sub">Édition limitée</div></div>
 </div>
@@ -378,28 +425,64 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
           </div>
           <div class="form-group">
             <label>Wilaya / الولاية *</label>
-            <select id="f-wilaya" required>
+            <select id="f-wilaya" required onchange="onWilayaChange()">
               <option value="">— Choisir une wilaya —</option>
-              <option>01 - Adrar</option><option>02 - Chlef</option><option>03 - Laghouat</option>
-              <option>04 - Oum El Bouaghi</option><option>05 - Batna</option><option>06 - Béjaïa</option>
-              <option>07 - Biskra</option><option>08 - Béchar</option><option>09 - Blida</option>
-              <option>10 - Bouira</option><option>11 - Tamanrasset</option><option>12 - Tébessa</option>
-              <option>13 - Tlemcen</option><option>14 - Tiaret</option><option>15 - Tizi Ouzou</option>
-              <option>16 - Alger</option><option>17 - Djelfa</option><option>18 - Jijel</option>
-              <option>19 - Sétif</option><option>20 - Saïda</option><option>21 - Skikda</option>
-              <option>22 - Sidi Bel Abbès</option><option>23 - Annaba</option><option>24 - Guelma</option>
-              <option>25 - Constantine</option><option>26 - Médéa</option><option>27 - Mostaganem</option>
-              <option>28 - M'Sila</option><option>29 - Mascara</option><option>30 - Ouargla</option>
-              <option>31 - Oran</option><option>32 - El Bayadh</option><option>33 - Illizi</option>
-              <option>34 - Bordj Bou Arréridj</option><option>35 - Boumerdès</option><option>36 - El Tarf</option>
-              <option>37 - Tindouf</option><option>38 - Tissemsilt</option><option>39 - El Oued</option>
-              <option>40 - Khenchela</option><option>41 - Souk Ahras</option><option>42 - Tipaza</option>
-              <option>43 - Mila</option><option>44 - Aïn Defla</option><option>45 - Naâma</option>
-              <option>46 - Aïn Témouchent</option><option>47 - Ghardaïa</option><option>48 - Relizane</option>
-              <option>49 - El M'Ghair</option><option>50 - El Meniaa</option><option>51 - Ouled Djellal</option>
-              <option>52 - Bordj Badji Mokhtar</option><option>53 - Béni Abbès</option><option>54 - Timimoun</option>
-              <option>55 - Touggourt</option><option>56 - Djanet</option><option>57 - In Salah</option>
-              <option>58 - In Guezzam</option>
+              <option value="Alger">16 - Alger</option>
+              <option value="Blida">09 - Blida</option>
+              <option value="Boumerdès">35 - Boumerdès</option>
+              <option value="Tipaza">42 - Tipaza</option>
+              <option value="Chlef">02 - Chlef</option>
+              <option value="Oum El Bouaghi">04 - Oum El Bouaghi</option>
+              <option value="Batna">05 - Batna</option>
+              <option value="Béjaïa">06 - Béjaïa</option>
+              <option value="Biskra">07 - Biskra</option>
+              <option value="Béchar">08 - Béchar</option>
+              <option value="Bouira">10 - Bouira</option>
+              <option value="Tamanrasset">11 - Tamanrasset</option>
+              <option value="Tébessa">12 - Tébessa</option>
+              <option value="Tlemcen">13 - Tlemcen</option>
+              <option value="Tiaret">14 - Tiaret</option>
+              <option value="Tizi Ouzou">15 - Tizi Ouzou</option>
+              <option value="Djelfa">17 - Djelfa</option>
+              <option value="Jijel">18 - Jijel</option>
+              <option value="Sétif">19 - Sétif</option>
+              <option value="Saïda">20 - Saïda</option>
+              <option value="Skikda">21 - Skikda</option>
+              <option value="Sidi Bel Abbès">22 - Sidi Bel Abbès</option>
+              <option value="Annaba">23 - Annaba</option>
+              <option value="Guelma">24 - Guelma</option>
+              <option value="Constantine">25 - Constantine</option>
+              <option value="Médéa">26 - Médéa</option>
+              <option value="Mostaganem">27 - Mostaganem</option>
+              <option value="M'Sila">28 - M'Sila</option>
+              <option value="Mascara">29 - Mascara</option>
+              <option value="Ouargla">30 - Ouargla</option>
+              <option value="Oran">31 - Oran</option>
+              <option value="El Bayadh">32 - El Bayadh</option>
+              <option value="Illizi">33 - Illizi</option>
+              <option value="Bordj Bou Arreridj">34 - Bordj Bou Arréridj</option>
+              <option value="El Tarf">36 - El Tarf</option>
+              <option value="Tindouf">37 - Tindouf</option>
+              <option value="Tissemsilt">38 - Tissemsilt</option>
+              <option value="El Oued">39 - El Oued</option>
+              <option value="Khenchela">40 - Khenchela</option>
+              <option value="Souk Ahras">41 - Souk Ahras</option>
+              <option value="Mila">43 - Mila</option>
+              <option value="Aïn Defla">44 - Aïn Defla</option>
+              <option value="Naâma">45 - Naâma</option>
+              <option value="Aïn Témouchent">46 - Aïn Témouchent</option>
+              <option value="Ghardaïa">47 - Ghardaïa</option>
+              <option value="Relizane">48 - Relizane</option>
+              <option value="El M'Ghair">49 - El M'Ghair</option>
+              <option value="El Menia">50 - El Meniaa</option>
+              <option value="Ouled Djellal">51 - Ouled Djellal</option>
+              <option value="Bordj Badji Mokhtar">52 - Bordj Badji Mokhtar</option>
+              <option value="Béni Abbès">53 - Béni Abbès</option>
+              <option value="Timimoun">54 - Timimoun</option>
+              <option value="Touggourt">55 - Touggourt</option>
+              <option value="Djanet">56 - Djanet</option>
+              <option value="In Salah">57 - In Salah</option>
+              <option value="In Guezzam">58 - In Guezzam</option>
             </select>
           </div>
           <div class="form-group">
@@ -407,15 +490,56 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
             <input type="text" id="f-address" placeholder="Rue, commune..." required>
           </div>
 
+          <!-- SERVICE TYPE (Express 24h vs Économique) -->
+          <div class="form-group full" style="margin-bottom:0;">
+            <label>Service de Livraison / نوع التوصيل *</label>
+          </div>
+          <div class="service-wrap">
+            <div class="service-opt selected" onclick="selectService(this,'express')">
+              <input type="radio" name="service_type" value="express" checked>
+              <div>
+                <div class="service-badge badge-express">⚡ Express</div>
+                <div class="service-name">E-Commerce 24h</div>
+                <div class="service-desc">Livraison en 24h pour la plupart des wilayas</div>
+              </div>
+            </div>
+            <div class="service-opt" onclick="selectService(this,'eco')">
+              <input type="radio" name="service_type" value="eco">
+              <div>
+                <div class="service-badge badge-eco">🕐 Économique</div>
+                <div class="service-name">E-Commerce 48h+</div>
+                <div class="service-desc">Tarif réduit, livraison en 2–7 jours</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DELIVERY TYPE (Domicile vs Stop-Desk) -->
+          <div class="form-group full" style="margin-bottom:0; margin-top:0.6rem;">
+            <label>Mode de Livraison / طريقة التوصيل *</label>
+          </div>
           <div class="delivery-wrap">
-            <div class="delivery-opt selected" onclick="selectDelivery(this, 400)">
-              <input type="radio" name="delivery_type" value="400" checked>
-              <div><div class="delivery-name">🏢 Bureau / Yalitsal</div><div class="delivery-price">400 DA</div></div>
+            <div class="delivery-opt selected" onclick="selectDelivery(this,'domicile')">
+              <input type="radio" name="delivery_type" value="domicile" checked>
+              <div>
+                <div class="delivery-name">🏠 Livraison à Domicile</div>
+                <div class="delivery-price" id="price-domicile">— DA</div>
+                <div class="delivery-price-note">Selon votre wilaya</div>
+              </div>
             </div>
-            <div class="delivery-opt" onclick="selectDelivery(this, 700)">
-              <input type="radio" name="delivery_type" value="700">
-              <div><div class="delivery-name">🏠 Livraison à Domicile</div><div class="delivery-price">700 DA</div></div>
+            <div class="delivery-opt" onclick="selectDelivery(this,'stopdesk')">
+              <input type="radio" name="delivery_type" value="stopdesk">
+              <div>
+                <div class="delivery-name">🏢 Stop-Desk / Bureau</div>
+                <div class="delivery-price" id="price-stopdesk">— DA</div>
+                <div class="delivery-price-note">Retrait en agence GUEPEX</div>
+              </div>
             </div>
+          </div>
+
+          <!-- WILAYA HINT -->
+          <div class="wilaya-hint" id="wilayaHint">
+            <span>📦</span>
+            <span id="wilayaHintText">Sélectionnez votre wilaya pour voir les frais de livraison</span>
           </div>
 
           <!-- ITEMS -->
@@ -424,13 +548,14 @@ footer { background: var(--black); border-top: 1px solid var(--border); padding:
 
           <div class="summary-bar">
             <div class="summary-cell"><div class="summary-label">Articles</div><div class="summary-val" id="sum-items">1</div></div>
-            <div class="summary-cell"><div class="summary-label">Livraison</div><div class="summary-val" id="sum-delivery">Bureau (400 DA)</div></div>
-            <div class="summary-cell"><div class="summary-label">Total</div><div class="summary-val" id="sum-total">8 900 DA</div></div>
+            <div class="summary-cell"><div class="summary-label">Service</div><div class="summary-val" id="sum-service">Express 24h</div></div>
+            <div class="summary-cell"><div class="summary-label">Livraison</div><div class="summary-val" id="sum-delivery">— DA</div></div>
+            <div class="summary-cell"><div class="summary-label">Total</div><div class="summary-val" id="sum-total">— DA</div></div>
           </div>
 
           <div class="total-bar">
             <span class="total-label">Total à Payer · المبلغ الإجمالي</span>
-            <span class="total-amount"><span id="totalPrice">8 900</span> <span>DA</span></span>
+            <span class="total-amount"><span id="totalPrice">—</span> <span>DA</span></span>
           </div>
 
           <div class="form-group full">
@@ -489,8 +614,73 @@ const COLORS = [
 ];
 const SIZES = ['S','M','L','XL'];
 
-let deliveryFee = 400;
-let items = []; // array of {color, size}
+// ── GUEPEX Pricing Data ──
+// Format: wilayaName => { express: {domicile, stopdesk, delai}, eco: {domicile, stopdesk, delai} }
+const WILAYA_PRICES = {
+  'Alger':              { express: { domicile: 590,  stopdesk: 450,  delai: 'J+1' },   eco: { domicile: 500,  stopdesk: 400,  delai: 'J+2' } },
+  'Blida':              { express: { domicile: 700,  stopdesk: 550,  delai: 'J+1' },   eco: { domicile: 550,  stopdesk: 450,  delai: 'J+2' } },
+  'Boumerdès':          { express: { domicile: 700,  stopdesk: 550,  delai: 'J+1' },   eco: { domicile: 550,  stopdesk: 450,  delai: 'J+2' } },
+  'Tipaza':             { express: { domicile: 700,  stopdesk: 550,  delai: 'J+1' },   eco: { domicile: 550,  stopdesk: 450,  delai: 'J+2' } },
+  'Chlef':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Oum El Bouaghi':     { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Batna':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Béjaïa':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Bouira':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Tlemcen':            { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Tiaret':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Tizi Ouzou':         { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Jijel':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Sétif':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Saïda':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Skikda':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Sidi Bel Abbès':     { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Annaba':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Guelma':             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Constantine':        { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Médéa':              { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Mostaganem':         { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  "M'Sila":             { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Mascara':            { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Oran':               { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Bordj Bou Arreridj': { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'El Tarf':            { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Tissemsilt':         { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Khenchela':          { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Souk Ahras':         { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Mila':               { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Aïn Defla':          { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Aïn Témouchent':     { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Relizane':           { express: { domicile: 900,  stopdesk: 650,  delai: 'J+1' },   eco: { domicile: 700,  stopdesk: 600,  delai: 'J+2' } },
+  'Laghouat':           { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Biskra':             { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Tébessa':            { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Djelfa':             { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Ouargla':            { express: { domicile: 950,  stopdesk: 750,  delai: 'J+2' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+3' } },
+  'El Oued':            { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Ghardaïa':           { express: { domicile: 950,  stopdesk: 750,  delai: 'J+2' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+3' } },
+  'Ouled Djellal':      { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'Touggourt':          { express: { domicile: 950,  stopdesk: 750,  delai: 'J+2' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+3' } },
+  "El M'Ghair":         { express: { domicile: 950,  stopdesk: 750,  delai: 'J+1' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+2' } },
+  'El Menia':           { express: { domicile: 950,  stopdesk: 750,  delai: 'J+2' },   eco: { domicile: 850,  stopdesk: 700,  delai: 'J+3' } },
+  'Adrar':              { express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'Béchar':             { express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'El Bayadh':          { express: { domicile: 1050, stopdesk: 850,  delai: 'J+2' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+3' } },
+  'Naâma':              { express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'Timimoun':           { express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'Bordj Badji Mokhtar':{ express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'Béni Abbès':         { express: { domicile: 1050, stopdesk: 850,  delai: 'J+3' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+4' } },
+  'Tamanrasset':        { express: { domicile: 1600, stopdesk: 1400, delai: 'J+5' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+6' } },
+  'Illizi':             { express: { domicile: 1600, stopdesk: 1400, delai: 'J+6' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+7' } },
+  'Tindouf':            { express: { domicile: 1600, stopdesk: 1400, delai: 'J+5' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+6' } },
+  'In Salah':           { express: { domicile: 1600, stopdesk: 1400, delai: 'J+5' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+6' } },
+  'In Guezzam':         { express: { domicile: 1600, stopdesk: 1400, delai: 'J+5' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+6' } },
+  'Djanet':             { express: { domicile: 1600, stopdesk: 1400, delai: 'J+6' },   eco: { domicile: 1650, stopdesk: 1550, delai: 'J+7' } },
+};
+
+let selectedService = 'express'; // 'express' | 'eco'
+let selectedDeliveryType = 'domicile'; // 'domicile' | 'stopdesk'
+let deliveryFee = 0;
+let items = [];
 let selectedColor = '', selectedSize = '', selectedQty = 1;
 const thumbPanelMap = ['navy-blue','bordeaux-red','midnight-black','sahara-gold','forest-green'];
 
@@ -510,7 +700,7 @@ function switchThumb(el, idx) {
   if (panel) panel.classList.add('active');
 }
 
-// ── Product panel selectors (preview only) ──
+// ── Product panel selectors ──
 function selectColor(dotEl) {
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
   dotEl.classList.add('active');
@@ -530,6 +720,90 @@ function changeQty(delta) {
   document.getElementById('qtyValue').textContent = selectedQty;
 }
 
+// ── Service selector ──
+function selectService(el, type) {
+  document.querySelectorAll('.service-opt').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  selectedService = type;
+  document.getElementById('sum-service').textContent = type === 'express' ? 'Express 24h' : 'Économique';
+  refreshPricing();
+}
+
+// ── Delivery type selector ──
+function selectDelivery(el, type) {
+  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  selectedDeliveryType = type;
+  refreshPricing();
+}
+
+// ── Wilaya change ──
+function onWilayaChange() {
+  refreshPricing();
+}
+
+// ── Core pricing logic ──
+function refreshPricing() {
+  const wilaya = document.getElementById('f-wilaya').value;
+  const hint = document.getElementById('wilayaHint');
+  const hintText = document.getElementById('wilayaHintText');
+
+  if (!wilaya) {
+    deliveryFee = 0;
+    document.getElementById('price-domicile').textContent = '— DA';
+    document.getElementById('price-stopdesk').textContent = '— DA';
+    hint.classList.remove('show');
+    updateTotal();
+    return;
+  }
+
+  const prices = WILAYA_PRICES[wilaya];
+  if (!prices) {
+    hint.classList.add('show');
+    hintText.innerHTML = `⚠ Tarif non disponible pour <strong>${wilaya}</strong> — contactez-nous.`;
+    updateTotal();
+    return;
+  }
+
+  const svc = prices[selectedService];
+  document.getElementById('price-domicile').textContent = svc.domicile.toLocaleString('fr-DZ') + ' DA';
+  document.getElementById('price-stopdesk').textContent = svc.stopdesk.toLocaleString('fr-DZ') + ' DA';
+
+  deliveryFee = selectedDeliveryType === 'domicile' ? svc.domicile : svc.stopdesk;
+
+  hint.classList.add('show');
+  const modeLabel = selectedDeliveryType === 'domicile' ? 'Domicile' : 'Stop-Desk';
+  const svcLabel = selectedService === 'express' ? '⚡ Express 24h' : '🕐 Économique';
+  hintText.innerHTML = `<strong>${wilaya}</strong> — ${svcLabel} · ${modeLabel} : <strong>${deliveryFee.toLocaleString('fr-DZ')} DA</strong> · Délai : <strong>${svc.delai}</strong>`;
+
+  updateTotal();
+}
+
+// ── Total ──
+function updateTotal() {
+  const count = items.length || 1;
+  const productTotal = BASE * count;
+  const grandTotal = productTotal + deliveryFee;
+
+  const wilaya = document.getElementById('f-wilaya').value;
+  const deliveryStr = wilaya && deliveryFee > 0
+    ? deliveryFee.toLocaleString('fr-DZ') + ' DA'
+    : '— DA';
+
+  document.getElementById('sum-items').textContent = count + (count > 1 ? ' articles' : ' article');
+  document.getElementById('sum-delivery').textContent = deliveryStr;
+
+  if (wilaya && deliveryFee > 0) {
+    document.getElementById('sum-total').textContent = grandTotal.toLocaleString('fr-DZ') + ' DA';
+    document.getElementById('totalPrice').textContent = grandTotal.toLocaleString('fr-DZ');
+  } else {
+    document.getElementById('sum-total').textContent = productTotal.toLocaleString('fr-DZ') + ' + livraison';
+    document.getElementById('totalPrice').textContent = '—';
+  }
+}
+
 // ── Items ──
 function addItem() {
   const id = Date.now();
@@ -537,40 +811,31 @@ function addItem() {
   renderItems();
   updateTotal();
 }
-
 function removeItem(id) {
   items = items.filter(i => i.id !== id);
   renderItems();
   updateTotal();
 }
-
 function setItemColor(id, label) {
   const item = items.find(i => i.id === id);
-  if (item) { item.color = label; }
-  // update dot UI
-  document.querySelectorAll(`[data-item-id="${id}"] .item-cdot`).forEach(d => {
-    d.classList.toggle('active', d.dataset.label === label);
-  });
+  if (item) item.color = label;
+  document.querySelectorAll(`[data-item-id="${id}"] .item-cdot`).forEach(d => d.classList.toggle('active', d.dataset.label === label));
   const nameEl = document.getElementById('icolor-' + id);
   if (nameEl) nameEl.textContent = label;
   const err = document.getElementById('ierr-color-' + id);
   if (err) err.style.display = 'none';
   updateTotal();
 }
-
 function setItemSize(id, size) {
   const item = items.find(i => i.id === id);
-  if (item) { item.size = size; }
-  document.querySelectorAll(`[data-item-id="${id}"] .item-sz`).forEach(b => {
-    b.classList.toggle('active', b.textContent === size);
-  });
+  if (item) item.size = size;
+  document.querySelectorAll(`[data-item-id="${id}"] .item-sz`).forEach(b => b.classList.toggle('active', b.textContent === size));
   const nameEl = document.getElementById('isize-' + id);
   if (nameEl) nameEl.textContent = size;
   const err = document.getElementById('ierr-size-' + id);
   if (err) err.style.display = 'none';
   updateTotal();
 }
-
 function renderItems() {
   const section = document.getElementById('itemsSection');
   section.innerHTML = '';
@@ -605,25 +870,6 @@ function renderItems() {
   });
 }
 
-// ── Delivery ──
-function selectDelivery(el, fee) {
-  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
-  el.classList.add('selected');
-  el.querySelector('input').checked = true;
-  deliveryFee = fee;
-  document.getElementById('sum-delivery').textContent = fee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
-  updateTotal();
-}
-
-// ── Total ──
-function updateTotal() {
-  const count = items.length || 1;
-  const total = (BASE * count) + deliveryFee;
-  document.getElementById('totalPrice').textContent = total.toLocaleString('fr-DZ');
-  document.getElementById('sum-items').textContent = items.length ? items.length + (items.length > 1 ? ' articles' : ' article') : '1 article';
-  document.getElementById('sum-total').textContent = total.toLocaleString('fr-DZ') + ' DA';
-}
-
 // ── Accordion ──
 function toggleAcc(btn) {
   const body = btn.nextElementSibling;
@@ -631,17 +877,19 @@ function toggleAcc(btn) {
   const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
   document.querySelectorAll('.accord-body').forEach(b => b.style.maxHeight = '0px');
   document.querySelectorAll('.accord-icon').forEach(i => { i.textContent = '+'; i.classList.remove('open'); });
-  if (!isOpen) { body.style.maxHeight = '300px'; icon.classList.add('open'); }
+  if (!isOpen) { body.style.maxHeight = body.scrollHeight + 'px'; icon.classList.add('open'); }
 }
 
 // ── Submit ──
 async function submitOrder(e) {
   e.preventDefault();
 
-  // Validate items
+  const wilaya = document.getElementById('f-wilaya').value;
+  if (!wilaya) { alert('Veuillez sélectionner votre wilaya.'); return; }
+  if (!WILAYA_PRICES[wilaya]) { alert('Wilaya non couverte pour le moment.'); return; }
+
   let hasError = false;
   if (items.length === 0) {
-    // fallback: use product panel selection
     if (!selectedColor) { document.getElementById('colorError').style.display = 'block'; hasError = true; }
     if (!selectedSize)  { document.getElementById('sizeError').style.display = 'block'; hasError = true; }
   } else {
@@ -654,10 +902,11 @@ async function submitOrder(e) {
 
   const name     = document.getElementById('f-name').value.trim();
   const phone    = document.getElementById('f-phone').value.trim();
-  const wilaya   = document.getElementById('f-wilaya').value;
   const address  = document.getElementById('f-address').value.trim();
   const note     = document.getElementById('f-note').value.trim();
-  const delivery = deliveryFee === 400 ? 'Bureau (400 DA)' : 'Domicile (700 DA)';
+  const svcLabel = selectedService === 'express' ? 'Express 24h' : 'Économique 48h+';
+  const modeLabel= selectedDeliveryType === 'domicile' ? 'Domicile' : 'Stop-Desk';
+  const delivery = `${svcLabel} · ${modeLabel} (${deliveryFee} DA)`;
   const orderRef = 'DZ-' + Date.now().toString().slice(-6);
   const timestamp = new Date().toLocaleString('fr-DZ');
 
@@ -669,7 +918,6 @@ async function submitOrder(e) {
   btn.disabled = true;
   btn.innerHTML = '<span class="btn-submit-inner"><span class="spinner"></span><span>Envoi en cours...</span></span>';
 
-  // Build items string
   const itemsArr = items.length > 0 ? items : [{ color: selectedColor, size: selectedSize }];
   const itemsStr = itemsArr.map((it, i) => `Article ${i+1}: ${it.color} / ${it.size}`).join(' | ');
   const count = itemsArr.length;
@@ -679,10 +927,11 @@ async function submitOrder(e) {
   const orderData = {
     timestamp, ref: orderRef,
     nom: name, telephone: phone, wilaya, adresse: address,
+    service: svcLabel, mode_livraison: modeLabel,
     couleur: itemsArr.map(i => i.color).join(', '),
     taille:  itemsArr.map(i => i.size).join(', '),
-    quantite: count, livraison: delivery, total: totalStr,
-    note: note || '—', articles: itemsStr, statut: 'Pending'
+    quantite: count, livraison: delivery, frais_livraison: deliveryFee + ' DA',
+    total: totalStr, note: note || '—', articles: itemsStr, statut: 'Pending'
   };
 
   let sheetOk = false, emailOk = false;
@@ -703,7 +952,7 @@ async function submitOrder(e) {
       'NOUVELLE COMMANDE #' + orderRef + '\n\n' +
       'Client   : ' + name + '\nTel      : ' + phone + '\nWilaya   : ' + wilaya + '\nAdresse  : ' + address + '\n\n' +
       itemsArr.map((it,i) => `Article ${i+1}: ${it.color} / ${it.size}`).join('\n') + '\n\n' +
-      'Livraison: ' + delivery + '\nTotal    : ' + totalStr + '\nNote     : ' + (note||'—') + '\nDate     : ' + timestamp
+      'Service  : ' + svcLabel + '\nMode     : ' + modeLabel + '\nLivraison: ' + deliveryFee + ' DA\nTotal    : ' + totalStr + '\nNote     : ' + (note||'—') + '\nDate     : ' + timestamp
     );
     const res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
     const data = await res.json();
@@ -727,15 +976,21 @@ async function submitOrder(e) {
   // Reset
   document.getElementById('orderForm').reset();
   items = []; renderItems();
-  selectedColor = ''; selectedSize = ''; selectedQty = 1; deliveryFee = 400;
+  selectedColor = ''; selectedSize = ''; selectedQty = 1;
+  selectedService = 'express'; selectedDeliveryType = 'domicile'; deliveryFee = 0;
   document.querySelectorAll('.cdot').forEach(d => d.classList.remove('active'));
   document.querySelectorAll('.sz').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.service-opt').forEach(d => d.classList.remove('selected'));
+  document.querySelector('.service-opt').classList.add('selected');
   document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
   document.querySelector('.delivery-opt').classList.add('selected');
   document.getElementById('colorName').textContent = 'Sélectionner';
   document.getElementById('sizeName').textContent = 'Sélectionner';
   document.getElementById('qtyValue').textContent = '1';
-  document.getElementById('sum-delivery').textContent = 'Bureau (400 DA)';
+  document.getElementById('wilayaHint').classList.remove('show');
+  document.getElementById('price-domicile').textContent = '— DA';
+  document.getElementById('price-stopdesk').textContent = '— DA';
+  document.getElementById('sum-service').textContent = 'Express 24h';
   updateTotal();
 
   btn.disabled = false;
@@ -747,7 +1002,7 @@ function closeSuccess() {
   document.body.style.overflow = '';
 }
 
-// Init — start with 1 item
+// Init
 addItem();
 updateTotal();
 </script>
