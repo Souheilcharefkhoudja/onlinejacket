@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JACKETS.DZ — Exclusive CNY Jacket</title>
+<script defer src="/_vercel/insights/script.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -634,7 +635,6 @@ const COLORS = [
 ];
 const SIZES = ['S','M','L','XL'];
 
-// Real inventory — updated stock (after +2M for all, +2XL for Rose)
 const STOCK = {
   'Tigre':  { S:0,  M:10, L:0, XL:7  },
   'Jaune':  { S:6,  M:8,  L:5, XL:9  },
@@ -780,7 +780,6 @@ function selectColor(dotEl) {
   const panel = document.getElementById('panel-'+dotEl.dataset.color);
   if (panel) { document.querySelectorAll('.color-panel').forEach(p=>p.classList.remove('active')); panel.classList.add('active'); }
   clearErr('colorError');
-  // Reset size selection and refresh size buttons
   selectedSize = '';
   document.getElementById('sizeName').textContent = 'Sélectionner';
   refreshSizeButtons();
@@ -833,34 +832,25 @@ function changeQty(delta) {
   document.getElementById('qtyValue').textContent = selectedQty;
 }
 
-// ─── RESET FORM BELOW CHANGED FIELD ──────────────────────────────────────────
-// Any change resets everything below that step
 function resetFromMode() {
-  // reset wilaya
   const wSel = document.getElementById('f-wilaya');
   wSel.value = '';
-  // reset commune/stopdesk/address/service
   resetFromWilaya();
-  // hide wilaya section until shown explicitly? No — wilaya always shows after mode
   show('wilaya-section');
 }
 
 function resetFromWilaya() {
-  // Reset commune
   const cSel = document.getElementById('f-commune');
   cSel.innerHTML = "<option value=''>— Choisir la wilaya d'abord —</option>";
   cSel.disabled = true;
-  // Reset stopdesk
   const sSel = document.getElementById('f-stopdesk');
   sSel.innerHTML = "<option value=''>— Choisir la wilaya d'abord —</option>";
   sSel.disabled = true;
-  // Hide downstream sections
   hide('commune-section');
   hide('stopdesk-section');
   hide('address-section');
   hide('service-section');
   hide('service-wrap');
-  // Reset pricing
   deliveryFee = 0;
   document.getElementById('price-domicile').textContent = '— DA';
   document.getElementById('price-stopdesk').textContent = '— DA';
@@ -875,23 +865,19 @@ function resetFromCommune() {
   updateTotal();
 }
 
-// ─── DELIVERY TYPE ────────────────────────────────────────────────────────────
 function selectDelivery(el, type) {
   document.querySelectorAll('.delivery-opt').forEach(d=>d.classList.remove('selected'));
   el.classList.add('selected');
   el.querySelector('input').checked = true;
   selectedDeliveryType = type;
-  // Reset everything below
   resetFromMode();
 }
 
-// ─── WILAYA CHANGE ────────────────────────────────────────────────────────────
 function onWilayaChange() {
   const sel = document.getElementById('f-wilaya');
   const opt = sel.options[sel.selectedIndex];
   const wId = opt ? opt.dataset.id : null;
   clearErr('err-wilaya','f-wilaya');
-  // Reset everything below wilaya
   resetFromWilaya();
 
   if (!wId) return;
@@ -906,32 +892,27 @@ function onWilayaChange() {
   refreshPricing();
 }
 
-// ─── COMMUNE CHANGE ───────────────────────────────────────────────────────────
 function onCommuneChange() {
   clearErr('err-commune','f-commune');
   resetFromCommune();
   const sel = document.getElementById('f-commune');
   if (!sel.value) return;
-  // Show address + service
   show('address-section');
   show('service-section');
   show('service-wrap');
   refreshPricing();
 }
 
-// ─── STOPDESK CHANGE ──────────────────────────────────────────────────────────
 function onStopdeskChange() {
   clearErr('err-stopdesk','f-stopdesk');
   resetFromCommune();
   const sel = document.getElementById('f-stopdesk');
   if (!sel.value) return;
-  // No address for stopdesk, just service
   show('service-section');
   show('service-wrap');
   refreshPricing();
 }
 
-// ─── SERVICE ──────────────────────────────────────────────────────────────────
 function selectService(el, type) {
   document.querySelectorAll('.service-opt').forEach(d=>d.classList.remove('selected'));
   el.classList.add('selected'); el.querySelector('input').checked = true;
@@ -940,7 +921,6 @@ function selectService(el, type) {
   refreshPricing();
 }
 
-// ─── COMMUNES (cached) ────────────────────────────────────────────────────────
 async function prefetchCommunes() {
   try {
     const res  = await fetch(COMMUNE_API);
@@ -1003,7 +983,6 @@ async function loadStopdesks(wilayaId) {
 
     if (offices.length === 0) {
       sel.innerHTML = '<option value="">Aucun bureau — choisissez Domicile</option>';
-      // auto-switch back to domicile
       selectDelivery(document.getElementById('opt-domicile'), 'domicile');
       const wSel = document.getElementById('f-wilaya');
       const opt  = wSel.options[wSel.selectedIndex];
@@ -1024,7 +1003,6 @@ async function loadStopdesks(wilayaId) {
   loading.classList.remove('show');
 }
 
-// ─── PRICING ──────────────────────────────────────────────────────────────────
 function refreshPricing() {
   const wilaya = document.getElementById('f-wilaya').value;
   if (!wilaya) return;
@@ -1038,7 +1016,6 @@ function refreshPricing() {
 
   deliveryFee = selectedDeliveryType === 'domicile' ? svc.domicile : svc.stopdesk;
 
-  const mL = selectedDeliveryType === 'domicile' ? 'Domicile' : 'Stop-Desk';
   document.getElementById('sum-service').textContent = selectedService === 'express' ? 'Express 24h' : 'Économique';
 
   const hint = document.getElementById('wilayaHintText');
@@ -1057,7 +1034,6 @@ function updateTotal() {
   document.getElementById('totalPrice').textContent   = deliveryFee ? total.toLocaleString('fr-DZ') : '—';
 }
 
-// ─── ITEMS ────────────────────────────────────────────────────────────────────
 function renderItems() {
   const sec = document.getElementById('itemsSection');
   sec.innerHTML = '';
@@ -1106,7 +1082,6 @@ function removeItem(i) {
   if (selectedColor) refreshSizeButtons();
 }
 
-// ─── SUBMIT ───────────────────────────────────────────────────────────────────
 document.getElementById('orderForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
@@ -1223,7 +1198,6 @@ document.getElementById('orderForm').addEventListener('submit', async function(e
   document.getElementById('successOverlay').classList.add('show');
   document.body.style.overflow='hidden';
 
-  // Full reset
   document.getElementById('orderForm').reset();
   items=[]; renderItems();
   selectedColor=''; selectedSize=''; selectedQty=1;
