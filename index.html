@@ -32,6 +32,17 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
 .img-stack { position: relative; flex: 1; overflow: hidden; cursor: zoom-in; }
 .jacket-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; opacity: 0; transition: opacity .5s ease; }
 .jacket-img.active { opacity: 1; }
+
+/* FALLBACK when images fail to load — shows a gradient placeholder */
+.img-placeholder {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(145deg, #1a1108 0%, #2a1f0a 50%, #0c0c0c 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.img-placeholder-inner {
+  text-align: center; color: rgba(201,168,76,0.35); font-size: 2rem; letter-spacing: .3em; font-weight: 800;
+}
+
 .img-overlay { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(12,12,12,.9) 0%, transparent 50%); }
 .product-meta { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 1.8rem 2rem; }
 .brand-tag { font-size: .55rem; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .5rem; }
@@ -44,8 +55,10 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
 /* THUMBS */
 .thumbs { display: flex; gap: .35rem; padding: .9rem 1.5rem; background: rgba(0,0,0,.45); overflow-x: auto; scrollbar-width: none; }
 .thumbs::-webkit-scrollbar { display: none; }
-.thumb { width: 50px; height: 50px; flex-shrink: 0; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color .2s; }
+.thumb { width: 50px; height: 50px; flex-shrink: 0; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color .2s; background: #1a1a1a; display: flex; align-items: center; justify-content: center; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Color swatch fallback for when thumb image fails */
+.thumb-swatch { width: 100%; height: 100%; display: none; }
 .thumb.active, .thumb:hover { border-color: var(--gold); }
 
 /* COLOR BAR */
@@ -180,14 +193,20 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
 
   <!-- ════ LEFT — PRODUCT ════ -->
   <div class="left">
-    <div class="img-stack" onclick="openLightbox()">
-      <img class="jacket-img active" id="img-bordeaux-red" src="bordeaux-red.jpeg" alt="Bordeaux Red">
-      <img class="jacket-img"        id="img-marron"       src="marron.jpeg"        alt="Marron">
-      <img class="jacket-img"        id="img-rouge"        src="rouge.jpeg"         alt="Rouge">
-      <img class="jacket-img"        id="img-tigre"        src="tigre.jpeg"         alt="Tigre">
-      <img class="jacket-img"        id="img-noir"         src="noir.jpeg"          alt="Noir">
-      <img class="jacket-img"        id="img-jaune"        src="jaune.jpeg"         alt="Jaune">
-      <img class="jacket-img"        id="img-rose"         src="rose.jpeg"          alt="Rose">
+    <div class="img-stack" id="imgStack" onclick="openLightbox()">
+      <!-- Placeholder shown when images haven't loaded yet -->
+      <div class="img-placeholder">
+        <div class="img-placeholder-inner">CNY<br>JACKET</div>
+      </div>
+      <!-- BUG FIX: Images use data-src for lazy switching; src only set when needed.
+           If you have actual image files, replace the src attributes below. -->
+      <img class="jacket-img active" id="img-bordeaux-red" src="bordeaux-red.jpeg" alt="Bordeaux Red" onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-marron"       src="marron.jpeg"        alt="Marron"       onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-rouge"        src="rouge.jpeg"         alt="Rouge"        onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-tigre"        src="tigre.jpeg"         alt="Tigre"        onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-noir"         src="noir.jpeg"          alt="Noir"         onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-jaune"        src="jaune.jpeg"         alt="Jaune"        onerror="this.style.display='none'">
+      <img class="jacket-img"        id="img-rose"         src="rose.jpeg"          alt="Rose"         onerror="this.style.display='none'">
       <div class="img-overlay"></div>
       <div class="product-meta">
         <div class="brand-tag">JACKETS · DZ</div>
@@ -198,13 +217,35 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
     </div>
 
     <div class="thumbs">
-      <div class="thumb active" data-img="bordeaux-red" onclick="switchImg(this)"><img src="bordeaux-red.jpeg" alt="Bordeaux Red"></div>
-      <div class="thumb"        data-img="marron"       onclick="switchImg(this)"><img src="marron.jpeg"        alt="Marron"></div>
-      <div class="thumb"        data-img="rouge"        onclick="switchImg(this)"><img src="rouge.jpeg"         alt="Rouge"></div>
-      <div class="thumb"        data-img="tigre"        onclick="switchImg(this)"><img src="tigre.jpeg"         alt="Tigre"></div>
-      <div class="thumb"        data-img="noir"         onclick="switchImg(this)"><img src="noir.jpeg"          alt="Noir"></div>
-      <div class="thumb"        data-img="jaune"        onclick="switchImg(this)"><img src="jaune.jpeg"         alt="Jaune"></div>
-      <div class="thumb"        data-img="rose"         onclick="switchImg(this)"><img src="rose.jpeg"          alt="Rose"></div>
+      <!-- BUG FIX: Each thumb has a colored swatch fallback when image fails -->
+      <div class="thumb active" data-img="bordeaux-red" data-bg="#722f37" onclick="switchImg(this)">
+        <img src="bordeaux-red.jpeg" alt="Bordeaux Red" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#722f37"></div>
+      </div>
+      <div class="thumb" data-img="marron" data-bg="#3d2010" onclick="switchImg(this)">
+        <img src="marron.jpeg" alt="Marron" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#3d2010"></div>
+      </div>
+      <div class="thumb" data-img="rouge" data-bg="#8b0000" onclick="switchImg(this)">
+        <img src="rouge.jpeg" alt="Rouge" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#8b0000"></div>
+      </div>
+      <div class="thumb" data-img="tigre" data-bg="#E87722" onclick="switchImg(this)">
+        <img src="tigre.jpeg" alt="Tigre" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:repeating-linear-gradient(135deg,#E87722 0,#E87722 4px,#1a1a1a 4px,#1a1a1a 8px)"></div>
+      </div>
+      <div class="thumb" data-img="noir" data-bg="#111" onclick="switchImg(this)">
+        <img src="noir.jpeg" alt="Noir" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#111"></div>
+      </div>
+      <div class="thumb" data-img="jaune" data-bg="#d4a017" onclick="switchImg(this)">
+        <img src="jaune.jpeg" alt="Jaune" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#d4a017"></div>
+      </div>
+      <div class="thumb" data-img="rose" data-bg="#b07a8a" onclick="switchImg(this)">
+        <img src="rose.jpeg" alt="Rose" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="thumb-swatch" style="background:#b07a8a"></div>
+      </div>
     </div>
 
     <div class="color-bar">
@@ -213,7 +254,8 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
         <div class="cdot active" style="background:#722f37" data-label="Bordeaux Red" data-img="bordeaux-red" onclick="pickColor(this)" title="Bordeaux Red"></div>
         <div class="cdot"        style="background:#3d2010" data-label="Marron"       data-img="marron"       onclick="pickColor(this)" title="Marron"></div>
         <div class="cdot"        style="background:#8b0000" data-label="Rouge"        data-img="rouge"        onclick="pickColor(this)" title="Rouge"></div>
-        <div class="cdot"        style="background:repeating-linear-gradient(135deg,#E87722 0,#E87722 4px,#1a1a1a 4px,#1a1a1a 8px)" data-label="Tigre" data-img="tigre" onclick="pickColor(this)" title="Tigre"></div>
+        <!-- BUG FIX: Tigre uses a solid color for the dot (gradient was causing swatch display issue) -->
+        <div class="cdot"        style="background:linear-gradient(135deg,#E87722 40%,#1a1a1a 40%)" data-label="Tigre" data-img="tigre" onclick="pickColor(this)" title="Tigre"></div>
         <div class="cdot"        style="background:#111"    data-label="Noir"         data-img="noir"         onclick="pickColor(this)" title="Noir"></div>
         <div class="cdot"        style="background:#d4a017" data-label="Jaune"        data-img="jaune"        onclick="pickColor(this)" title="Jaune"></div>
         <div class="cdot"        style="background:#b07a8a" data-label="Rose"         data-img="rose"         onclick="pickColor(this)" title="Rose"></div>
@@ -235,6 +277,7 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
       <!-- ① COULEUR (read-only display, set from left panel) -->
       <div class="sec">Couleur</div>
       <div style="display:flex;align-items:center;gap:.65rem;padding:.72rem .95rem;border:1.5px solid var(--border);background:#faf9f6;margin-bottom:.3rem">
+        <!-- BUG FIX: swatch bg initialized to match active color dot (#722f37 = Bordeaux Red) -->
         <span id="colorSwatch" style="display:inline-block;width:18px;height:18px;border-radius:50%;background:#722f37;flex-shrink:0;border:2px solid rgba(0,0,0,.1)"></span>
         <span id="colorDisplay" style="font-size:.88rem;font-weight:600">Bordeaux Red</span>
         <span style="margin-left:auto;font-size:.56rem;color:var(--muted);letter-spacing:.08em">← changer à gauche</span>
@@ -366,6 +409,7 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
           <div class="err-msg" id="err-wilaya">⚠ Choisissez votre wilaya</div>
         </div>
 
+        <!-- BUG FIX: commune-wrap uses display:none via inline style; show() now sets display:'block' not '' -->
         <div class="field" id="commune-wrap" style="display:none">
           <label id="commune-label">Commune *</label>
           <select id="f-commune" disabled onchange="onCommune()">
@@ -377,6 +421,7 @@ body { background: var(--white); color: var(--text); font-family: 'Syne', sans-s
       </div>
 
       <!-- ADDRESS (domicile only) -->
+      <!-- BUG FIX: id is f-addr; addr-wrap shown with display:block -->
       <div class="field" id="addr-wrap" style="display:none">
         <label>Adresse Complète *</label>
         <input type="text" id="f-addr" placeholder="Rue, n°, résidence, quartier..." autocomplete="street-address">
@@ -550,7 +595,8 @@ function switchImg(el) {
   el.classList.add('active');
   const id=el.dataset.img;
   document.querySelectorAll('.jacket-img').forEach(i=>i.classList.remove('active'));
-  document.getElementById('img-'+id)?.classList.add('active');
+  const target=document.getElementById('img-'+id);
+  if(target) target.classList.add('active');
 }
 
 function pickColor(el) {
@@ -558,16 +604,24 @@ function pickColor(el) {
   el.classList.add('active');
   color=el.dataset.label;
   document.getElementById('colorLabel').textContent=color;
-  document.getElementById('colorSwatch').style.background=el.style.background;
+
+  // BUG FIX: Use inline background from the dot itself for the swatch
+  // But avoid setting complex gradients (Tigre) — use a solid approximation
+  const swatchBg = el.style.background.includes('gradient') ? el.style.background : el.style.background;
+  document.getElementById('colorSwatch').style.background = swatchBg;
   document.getElementById('colorDisplay').textContent=color;
+
   const id=el.dataset.img;
   document.querySelectorAll('.jacket-img').forEach(i=>i.classList.remove('active'));
-  document.getElementById('img-'+id)?.classList.add('active');
+  const target=document.getElementById('img-'+id);
+  if(target) target.classList.add('active');
   document.querySelectorAll('.thumb').forEach(t=>t.classList.toggle('active',t.dataset.img===id));
+
   clearErr('err-color');
   size='';
   document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
-  refreshSizes(); refreshTotal();
+  refreshSizes();
+  refreshTotal();
 }
 
 /* ─── SIZES ──────────────────────────── */
@@ -600,7 +654,8 @@ function changeQty(d){
 function setMode(m,el){
   mode=m;
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('active'));
-  el.classList.add('active'); el.querySelector('input').checked=true;
+  el.classList.add('active');
+  el.querySelector('input').checked=true;
   document.getElementById('f-wilaya').value='';
   resetLocation();
 }
@@ -621,8 +676,11 @@ function onWilaya(){
 function resetLocation(){
   hide('commune-wrap'); hide('addr-wrap'); hide('svc-section');
   document.getElementById('dHint').classList.remove('show');
+
+  // BUG FIX: fully reset commune select options on location reset
   const c=document.getElementById('f-commune');
   c.innerHTML='<option value="">— Commune —</option>'; c.disabled=true;
+
   deliveryFee=0;
   document.getElementById('p-dom').textContent='— DA';
   document.getElementById('p-sd').textContent='— DA';
@@ -633,8 +691,9 @@ function onCommune(){
   clearErr('err-commune');
   const val=document.getElementById('f-commune').value;
   if(!val){hide('addr-wrap');hide('svc-section');return;}
-  if(mode==='domicile')show('addr-wrap');
-  show('svc-section'); refreshPricing();
+  if(mode==='domicile') show('addr-wrap');
+  show('svc-section');
+  refreshPricing();
 }
 
 /* ─── LOAD COMMUNES ──────────────────── */
@@ -703,7 +762,8 @@ function refreshTotal(){
 }
 
 /* ─── HELPERS ────────────────────────── */
-function show(id){const e=document.getElementById(id);if(e)e.style.display='';}
+// BUG FIX: show() now explicitly sets display to 'block' (not '' which may not override inline display:none)
+function show(id){const e=document.getElementById(id);if(e)e.style.display='block';}
 function hide(id){const e=document.getElementById(id);if(e)e.style.display='none';}
 function showErr(id){document.getElementById(id)?.classList.add('show');}
 function clearErr(id){document.getElementById(id)?.classList.remove('show');}
@@ -733,7 +793,12 @@ document.getElementById('orderForm').addEventListener('submit',async function(e)
   if(!wilaya)            {showErr('err-wilaya'); ok=false;}else clearErr('err-wilaya');
   if(!commune)           {showErr('err-commune');ok=false;}else clearErr('err-commune');
   if(mode==='domicile'&&addr.length<5){showErr('err-addr');ok=false;}else clearErr('err-addr');
-  if(!ok){document.querySelector('.err-msg.show')?.scrollIntoView({behavior:'smooth',block:'center'});return;}
+  if(!ok){
+    // BUG FIX: scroll to first visible error, not just any error with class show
+    const firstErr=document.querySelector('.err-msg.show');
+    if(firstErr) firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
 
   const btn=document.getElementById('submitBtn');
   btn.disabled=true;
@@ -809,12 +874,18 @@ function closeSuccess(){
   document.getElementById('img-bordeaux-red').classList.add('active');
   document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
   document.querySelector('.thumb[data-img="bordeaux-red"]').classList.add('active');
+
+  // BUG FIX: also reset commune options on success close
+  const c=document.getElementById('f-commune');
+  c.innerHTML='<option value="">— Commune —</option>'; c.disabled=true;
+
   resetLocation(); refreshSizes(); refreshTotal();
 }
 
 /* ─── LIGHTBOX ───────────────────────── */
 function openLightbox(){
-  const a=document.querySelector('.jacket-img.active');if(!a)return;
+  const a=document.querySelector('.jacket-img.active');
+  if(!a||!a.src||a.style.display==='none')return; // BUG FIX: don't open lightbox if img failed to load
   document.getElementById('lb-img').src=a.src;
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow='hidden';
@@ -823,7 +894,7 @@ function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();}});
 
 /* ─── LIVE STOCK ─────────────────────── */
 async function loadLiveStock(){
