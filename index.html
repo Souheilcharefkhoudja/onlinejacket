@@ -3,912 +3,1234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="favicon.ico">
-<title>JACKETS.DZ — CNY Jacket · Commander</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400&display=swap" rel="stylesheet">
+<title>JACKETS.DZ — Exclusive CNY Jacket</title>
+<script defer src="/_vercel/insights/script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --black: #0c0c0c;
-  --gold: #c9a84c;
-  --gold-light: #e8c96a;
-  --gold-dim: rgba(201,168,76,0.12);
-  --white: #faf8f4;
-  --text: #1a1714;
-  --muted: #7a7268;
-  --border: #e0dbd4;
-  --gold-border: rgba(201,168,76,0.3);
-  --red: #c0392b;
+  --black: #0a0a0a; --off-black: #111111; --charcoal: #1c1c1c; --mid: #2e2e2e;
+  --gold: #c9a84c; --gold-light: #e8c96a; --gold-muted: #9a7a38;
+  --cream: #f7f3ec; --ivory: #faf8f4; --warm-white: #f2ede5;
+  --text-dark: #1a1714; --text-mid: #4a4540; --text-light: #8a8076;
+  --red: #c0392b; --border: rgba(201,168,76,0.2); --border-light: rgba(201,168,76,0.1);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--text); font-family: 'Syne', sans-serif; overflow-x: hidden; }
-
-/* ═══ LAYOUT ═══ */
-.page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
-
-/* ═══ LEFT ═══ */
-.left { position: sticky; top: 0; height: 100vh; background: var(--black); display: flex; flex-direction: column; overflow: hidden; }
-
-.img-stack { position: relative; flex: 1; overflow: hidden; cursor: zoom-in; }
-.jacket-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; opacity: 0; transition: opacity .5s ease; }
-.jacket-img.active { opacity: 1; }
-
-/* FALLBACK when images fail to load — shows a gradient placeholder */
-.img-placeholder {
-  position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(145deg, #1a1108 0%, #2a1f0a 50%, #0c0c0c 100%);
-  display: flex; align-items: center; justify-content: center;
-}
-.img-placeholder-inner {
-  text-align: center; color: rgba(201,168,76,0.35); font-size: 2rem; letter-spacing: .3em; font-weight: 800;
-}
-
-.img-overlay { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgba(12,12,12,.9) 0%, transparent 50%); }
-.product-meta { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 1.8rem 2rem; }
-.brand-tag { font-size: .55rem; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); opacity: .7; margin-bottom: .5rem; }
-.product-title { font-size: 2.2rem; font-weight: 800; color: #fff; line-height: 1; letter-spacing: -.02em; margin-bottom: .4rem; }
-.product-title span { color: var(--gold); }
-.product-sub { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 1rem; }
-.price-tag { display: inline-flex; align-items: baseline; gap: .35rem; background: var(--gold); color: var(--black); padding: .35rem .9rem; font-size: 1rem; font-weight: 700; }
-.price-tag small { font-size: .6rem; opacity: .7; }
-
-/* THUMBS */
-.thumbs { display: flex; gap: .35rem; padding: .9rem 1.5rem; background: rgba(0,0,0,.45); overflow-x: auto; scrollbar-width: none; }
-.thumbs::-webkit-scrollbar { display: none; }
-.thumb { width: 50px; height: 50px; flex-shrink: 0; overflow: hidden; border: 2px solid transparent; cursor: pointer; transition: border-color .2s; background: #1a1a1a; display: flex; align-items: center; justify-content: center; }
-.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* Color swatch fallback for when thumb image fails */
-.thumb-swatch { width: 100%; height: 100%; display: none; }
-.thumb.active, .thumb:hover { border-color: var(--gold); }
-
-/* COLOR BAR */
-.color-bar { display: flex; align-items: center; gap: .6rem; padding: .7rem 1.5rem; background: rgba(0,0,0,.55); border-top: 1px solid rgba(255,255,255,.05); }
-.color-bar-label { font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); white-space: nowrap; }
-.cdots { display: flex; gap: .45rem; flex-wrap: wrap; }
-.cdot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all .2s; box-shadow: 0 1px 4px rgba(0,0,0,.4); flex-shrink: 0; }
-.cdot.active, .cdot:hover { border-color: #fff; transform: scale(1.2); }
-.color-name { font-size: .65rem; color: rgba(255,255,255,.55); min-width: 3.5rem; font-weight: 600; }
-
-/* ═══ RIGHT ═══ */
-.right { overflow-y: auto; padding: 2.5rem 2.5rem 5rem; display: flex; flex-direction: column; }
-
-.form-head { margin-bottom: 2rem; }
-.form-eyebrow { font-size: .55rem; letter-spacing: .38em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
-.form-title { font-size: 1.7rem; font-weight: 800; color: var(--black); letter-spacing: -.02em; line-height: 1.1; }
-.form-title-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 300; font-size: .82rem; color: var(--muted); direction: rtl; margin-top: .25rem; }
-
-/* SECTION LABEL */
-.sec { font-size: .55rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 1.6rem 0 .75rem; display: flex; align-items: center; gap: .5rem; }
-.sec::after { content: ''; flex: 1; height: 1px; background: rgba(0,0,0,.07); }
-
-/* FIELD */
-.field { display: flex; flex-direction: column; gap: .3rem; margin-bottom: .9rem; }
-.field label { font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.field input, .field select, .field textarea { padding: .78rem .95rem; border: 1.5px solid var(--border); background: #faf9f6; font-family: 'Syne', sans-serif; font-size: .88rem; color: var(--text); outline: none; border-radius: 0; -webkit-appearance: none; transition: border-color .2s, background .2s; }
-.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); background: #fff; }
-.field textarea { resize: vertical; min-height: 65px; }
-.field select:disabled { opacity: .4; cursor: not-allowed; }
-.field-hint { font-size: .58rem; color: var(--muted); }
-.err-msg { display: none; font-size: .6rem; color: var(--red); margin-top: .1rem; }
-.err-msg.show { display: block; }
-
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
-
-/* QTY */
-.qty-wrap { display: flex; align-items: center; border: 1.5px solid var(--border); width: fit-content; margin-bottom: .9rem; }
-.qty-btn { width: 42px; height: 42px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text); transition: background .2s; }
-.qty-btn:hover { background: rgba(0,0,0,.05); }
-.qty-val { width: 46px; height: 42px; text-align: center; font-size: 1rem; font-weight: 600; display: flex; align-items: center; justify-content: center; border-left: 1.5px solid var(--border); border-right: 1.5px solid var(--border); }
-
-/* SIZES */
-.sizes { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .3rem; }
-.sz { width: 52px; height: 52px; border: 1.5px solid var(--border); background: none; cursor: pointer; font-family: 'Syne', sans-serif; font-size: .72rem; font-weight: 600; color: var(--text); transition: all .2s; }
-.sz:hover:not(:disabled) { border-color: var(--black); }
+body { background: var(--ivory); color: var(--text-dark); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; font-size: 0.95rem; line-height: 1.6; }
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.4; }
+.announce { background: var(--black); color: var(--gold); text-align: center; padding: 0.55rem 1rem; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.announce span { opacity: 0.6; margin: 0 1rem; }
+header { position: sticky; top: 0; z-index: 200; background: rgba(250,248,244,0.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 72px; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--black); letter-spacing: 0.12em; text-transform: uppercase; }
+.logo-dot { color: var(--gold); }
+nav { display: flex; gap: 2rem; align-items: center; }
+nav a { color: var(--text-mid); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 400; transition: color 0.3s; position: relative; }
+nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+nav a:hover { color: var(--black); }
+nav a:hover::after { transform: scaleX(1); }
+.nav-cta { background: var(--black) !important; color: var(--gold) !important; padding: 0.6rem 1.4rem !important; letter-spacing: 0.15em !important; font-weight: 500 !important; }
+.nav-cta::after { display: none !important; }
+.hero { position: relative; background: var(--black); min-height: 88vh; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, #1e1612 0%, var(--black) 70%); }
+.hero-pattern { position: absolute; inset: 0; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='0.6'%3E%3Cpath d='M30 2 L58 17 L58 43 L30 58 L2 43 L2 17 Z'/%3E%3Cpath d='M30 10 L50 22 L50 38 L30 50 L10 38 L10 22 Z'/%3E%3C/g%3E%3C/svg%3E"); background-size: 60px 60px; }
+.hero-inner { position: relative; z-index: 2; padding: 4rem 2rem; animation: heroFade 1.2s ease both; }
+@keyframes heroFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.8rem; font-size: 0.65rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 1.8rem; }
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.5; }
+.hero-title { font-size: clamp(3rem, 8vw, 7rem); font-weight: 200; color: var(--cream); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 1rem; }
+.hero-title em { display: block; font-style: italic; color: var(--gold); font-size: 0.45em; letter-spacing: 0.15em; font-weight: 400; margin-top: 0.6rem; text-transform: uppercase; }
+.hero-badges { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.hero-badge { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,168,76,0.7); display: flex; align-items: center; gap: 0.5rem; }
+.hero-badge::before { content: '◆'; font-size: 0.4rem; }
+.hero-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 3; color: var(--gold); opacity: 0.5; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; animation: scrollBounce 2s ease-in-out infinite; }
+.hero-scroll::after { content: ''; display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+@keyframes scrollBounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+.product-section { max-width: 1280px; margin: 0 auto; padding: 6rem 4rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start; }
+.gallery { position: sticky; top: 90px; }
+.main-img-wrap { position: relative; overflow: hidden; background: var(--warm-white); border: 1px solid var(--border); }
+.main-img-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
+.jacket-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.main-img-wrap:hover .jacket-img { transform: scale(1.03); }
+.img-label { position: absolute; bottom: 1.2rem; left: 1.2rem; z-index: 3; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); background: rgba(10,10,10,0.6); padding: 0.3rem 0.8rem; backdrop-filter: blur(8px); text-transform: uppercase; }
+.thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.5rem; }
+.thumb { aspect-ratio: 1; overflow: hidden; border: 1px solid transparent; cursor: pointer; transition: border-color 0.3s; background: var(--warm-white); }
+.thumb:hover, .thumb.active { border-color: var(--gold); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.thumb:hover img { transform: scale(1.05); }
+.color-panel { display: none; }
+.color-panel.active { display: block; }
+.product-info { padding-top: 0.5rem; }
+.tags { display: flex; gap: 0.6rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.tag { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; padding: 0.3rem 0.9rem; border: 1px solid; }
+.tag-red { color: #b5341f; border-color: rgba(181,52,31,0.35); background: rgba(181,52,31,0.06); }
+.tag-gold { color: var(--gold-muted); border-color: var(--border); background: rgba(201,168,76,0.06); }
+.tag-black { color: var(--cream); border-color: rgba(255,255,255,0.15); background: var(--black); }
+.product-name { font-size: 3rem; font-weight: 200; color: var(--black); line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 0.4rem; }
+.product-name-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 1rem; color: var(--text-light); direction: rtl; margin-bottom: 1.2rem; }
+.stars { display: flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.85rem; }
+.stars span { color: var(--text-light); font-size: 0.78rem; }
+.sep { width: 100%; height: 1px; background: linear-gradient(90deg, var(--border), transparent); margin: 1.8rem 0; }
+.price-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; }
+.price-main { font-size: 2.8rem; font-weight: 500; color: var(--black); letter-spacing: -0.02em; }
+.price-currency { font-size: 1rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.1em; }
+.price-note { font-size: 0.78rem; color: var(--text-light); font-style: italic; }
+.opt-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); font-weight: 500; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.6rem; }
+.opt-label strong { color: var(--text-dark); font-weight: 500; }
+.color-dots { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.cdot { width: 28px; height: 28px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.25s; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.cdot:hover, .cdot.active { border-color: var(--black); transform: scale(1.18); }
+.sizes { display: flex; gap: 0.4rem; margin-bottom: 0.3rem; }
+.sz { width: 52px; height: 52px; border: 1px solid #d0c8bb; background: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; color: var(--text-dark); transition: all 0.2s; text-transform: uppercase; }
+.sz:hover { border-color: var(--black); background: rgba(10,10,10,0.04); }
 .sz.active { background: var(--black); color: var(--gold); border-color: var(--black); }
-.sz.unavail { opacity: .22; cursor: not-allowed; text-decoration: line-through; }
-
-/* DELIVERY OPTS */
-.opts { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
-.opt { display: flex; align-items: center; gap: .65rem; padding: .85rem 1rem; border: 1.5px solid var(--border); cursor: pointer; background: #faf9f6; transition: all .2s; }
-.opt:hover { border-color: #bbb; }
-.opt.active { border-color: var(--gold); background: var(--gold-dim); }
-.opt input[type=radio] { accent-color: var(--gold); width: 13px; height: 13px; flex-shrink: 0; }
-.opt-title { font-size: .65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: .1rem; }
-.opt-price { font-size: .78rem; color: var(--gold); font-weight: 600; }
-.opt-note { font-size: .56rem; color: var(--muted); }
-
-/* SPINNER */
-.spinner-row { display: none; align-items: center; gap: .4rem; font-size: .62rem; color: var(--gold); margin-top: .25rem; }
-.spinner-row.show { display: flex; }
-.spin { width: 10px; height: 10px; border: 1.5px solid rgba(201,168,76,.25); border-top-color: var(--gold); border-radius: 50%; animation: spin .6s linear infinite; }
+.qty-row { display: flex; align-items: center; border: 1px solid #d0c8bb; width: fit-content; }
+.qty-btn { width: 44px; height: 44px; background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-dark); transition: background 0.2s; font-weight: 300; }
+.qty-btn:hover { background: rgba(10,10,10,0.05); }
+.qty-val { width: 48px; text-align: center; font-size: 1rem; border-left: 1px solid #d0c8bb; border-right: 1px solid #d0c8bb; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
+.cta-group { display: flex; gap: 0.8rem; margin-top: 2rem; flex-direction: column; }
+.btn-primary { width: 100%; padding: 1.1rem 2rem; background: var(--black); color: var(--gold); border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; transition: all 0.3s; text-decoration: none; display: block; text-align: center; }
+.btn-primary:hover { background: var(--charcoal); }
+.accords { margin-top: 2rem; border-top: 1px solid rgba(0,0,0,0.08); }
+.accord { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.accord-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; transition: color 0.2s; }
+.accord-btn:hover { color: var(--gold-muted); }
+.accord-icon { font-size: 1.1rem; font-weight: 200; color: var(--gold); transition: transform 0.3s; }
+.accord-icon.open { transform: rotate(45deg); }
+.accord-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; font-size: 0.88rem; color: var(--text-mid); line-height: 1.8; }
+.accord-body p { padding-bottom: 1.2rem; }
+.delivery-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; margin-bottom: 1rem; }
+.delivery-table th { background: var(--black); color: var(--gold); padding: 0.5rem 0.7rem; text-align: left; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; }
+.delivery-table td { padding: 0.45rem 0.7rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-mid); }
+.delivery-table tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+.delivery-table .zone-label { font-weight: 600; color: var(--text-dark); }
+.delivery-service-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin: 0.8rem 0 0.4rem; font-weight: 600; }
+.sz.sz-unavail { opacity: 0.32; cursor: not-allowed; text-decoration: line-through; border-color: #e0dbd4; color: var(--text-light); }
+.sz.sz-unavail:hover { border-color: #e0dbd4; background: none; }
+.stock-badge { display:inline-block; font-size:0.6rem; letter-spacing:0.12em; padding:0.15rem 0.55rem; border:1px solid rgba(201,168,76,0.35); color:var(--gold-muted); background:rgba(201,168,76,0.07); margin-left:0.4rem; vertical-align:middle; }
+.stock-badge.low { border-color:rgba(192,57,43,0.4); color:#b5341f; background:rgba(192,57,43,0.06); }
+.field-error { display: none; color: var(--red); font-size: 0.68rem; margin-top: 0.25rem; }
+.field-error.show { display: block; }
+.input-error { border-color: var(--red) !important; background: rgba(192,57,43,0.04) !important; }
+.trust-bar { background: var(--black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
+.trust-item { flex: 1; max-width: 220px; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 1.6rem 1rem; text-align: center; border-right: 1px solid var(--border); }
+.trust-item:last-child { border-right: none; }
+.trust-icon { font-size: 1.3rem; }
+.trust-label { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 500; line-height: 1.5; }
+.trust-sub { font-size: 0.7rem; color: rgba(247,243,236,0.35); }
+.video-section { position: relative; overflow: hidden; background: var(--black); }
+.video-section video { width: 100%; display: block; max-height: 75vh; object-fit: cover; opacity: 0.82; }
+.video-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, var(--gold), transparent); z-index: 2; }
+.video-section::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 180px; background: linear-gradient(0deg, var(--ivory) 0%, transparent 100%); z-index: 2; pointer-events: none; }
+.video-caption { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); z-index: 3; text-align: center; white-space: nowrap; }
+.video-caption-label { display: inline-block; font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); padding: 0.5rem 2rem; background: rgba(10,10,10,0.7); backdrop-filter: blur(8px); border: 1px solid var(--border); }
+.section-divider { display: flex; align-items: center; gap: 1.5rem; padding: 2rem 4rem; }
+.div-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+.div-text { font-size: 0.6rem; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-light); white-space: nowrap; }
+.div-diamond { color: var(--gold); font-size: 0.5rem; }
+.order-section { max-width: 900px; margin: 0 auto; padding: 2rem 4rem 6rem; }
+.order-header { text-align: center; margin-bottom: 3rem; }
+.order-eyebrow { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+.order-eyebrow::before, .order-eyebrow::after { content: '——'; opacity: 0.4; }
+.order-title { font-size: 2.2rem; font-weight: 700; color: var(--black); letter-spacing: -0.01em; }
+.order-title-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: var(--text-light); direction: rtl; margin-top: 0.4rem; }
+.form-card { background: white; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 4px 40px rgba(0,0,0,0.06); }
+.form-inner { padding: 2.5rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group.full { grid-column: 1/-1; }
+.form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); font-weight: 500; }
+.form-group input, .form-group select, .form-group textarea { padding: 0.85rem 1rem; border: 1px solid #e0dbd4; background: #faf9f6; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-dark); outline: none; transition: border-color 0.25s, background 0.25s; -webkit-appearance: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); background: white; }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group select:disabled { opacity: 0.45; cursor: not-allowed; }
+.phone-hint { font-size: 0.62rem; color: var(--text-light); }
+.commune-loading { display: none; align-items: center; gap: 0.5rem; font-size: 0.7rem; color: var(--gold-muted); }
+.commune-loading.show { display: flex; }
+.mini-spin { width: 11px; height: 11px; border: 1.5px solid rgba(201,168,76,0.25); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+.stopdesk-notice { display: none; font-size: 0.68rem; color: var(--text-light); font-style: italic; grid-column: 1/-1; margin-top: -0.3rem; }
+.stopdesk-notice.show { display: block; }
+.service-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
+.service-opt { display: flex; align-items: flex-start; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
+.service-opt:hover { border-color: #c0b8a8; }
+.service-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.service-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; margin-top: 3px; flex-shrink: 0; }
+.service-name { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dark); font-weight: 600; margin-bottom: 0.15rem; }
+.service-badge { display: inline-block; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.15rem 0.5rem; border: 1px solid; margin-bottom: 0.3rem; }
+.badge-express { color: #b5341f; border-color: rgba(181,52,31,0.4); background: rgba(181,52,31,0.06); }
+.badge-eco { color: var(--gold-muted); border-color: var(--border); background: rgba(201,168,76,0.06); }
+.service-desc { font-size: 0.72rem; color: var(--text-light); line-height: 1.4; }
+.delivery-wrap { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.4rem; }
+.delivery-opt { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; border: 1px solid #e0dbd4; cursor: pointer; transition: all 0.25s; background: #faf9f6; }
+.delivery-opt:hover:not(.disabled) { border-color: #c0b8a8; }
+.delivery-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+.delivery-opt.disabled { opacity: 0.38; cursor: not-allowed; pointer-events: none; }
+.delivery-opt input[type="radio"] { accent-color: var(--gold); width: 14px; height: 14px; }
+.delivery-name { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dark); font-weight: 500; margin-bottom: 0.2rem; }
+.delivery-price { font-size: 0.82rem; color: var(--gold-muted); font-weight: 500; }
+.delivery-price-note { font-size: 0.62rem; color: var(--text-light); margin-top: 0.1rem; }
+.wilaya-hint { grid-column: 1/-1; display: none; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; background: rgba(201,168,76,0.06); border: 1px solid var(--border); font-size: 0.72rem; color: var(--text-mid); }
+.wilaya-hint.show { display: flex; }
+.wilaya-hint strong { color: var(--gold-muted); }
+.items-section { grid-column: 1/-1; display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.4rem; }
+.item-card { border: 1px solid #e0dbd4; background: #faf9f6; padding: 1.2rem; position: relative; transition: border-color 0.2s; }
+.item-card:hover { border-color: rgba(201,168,76,0.4); }
+.item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.item-number { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.item-remove { background: none; border: none; cursor: pointer; color: var(--text-light); font-size: 1rem; line-height: 1; transition: color 0.2s; padding: 0.2rem 0.4rem; }
+.item-remove:hover { color: var(--red); }
+.item-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+.item-colors { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.item-cdot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+.item-cdot:hover, .item-cdot.active { border-color: var(--black); transform: scale(1.2); }
+.item-sizes { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.item-sz { width: 40px; height: 40px; border: 1px solid #d0c8bb; background: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; font-weight: 500; color: var(--text-dark); transition: all 0.2s; }
+.item-sz:hover { border-color: var(--black); }
+.item-sz.active { background: var(--black); color: var(--gold); border-color: var(--black); }
+.item-color-name { font-size: 0.7rem; color: var(--text-mid); margin-top: 0.3rem; min-height: 1rem; }
+.item-size-name { font-size: 0.7rem; color: var(--text-mid); margin-top: 0.3rem; min-height: 1rem; }
+.item-error { display: none; color: var(--red); font-size: 0.62rem; margin-top: 0.2rem; }
+.btn-add-item { grid-column: 1/-1; display: flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.9rem; border: 1px dashed rgba(201,168,76,0.4); background: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-muted); transition: all 0.25s; margin-top: 0.4rem; }
+.btn-add-item:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.04); }
+.summary-bar { grid-column: 1/-1; display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid rgba(0,0,0,0.08); background: var(--warm-white); margin-top: 0.8rem; }
+.summary-cell { padding: 0.9rem 1rem; border-right: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 0.2rem; }
+.summary-cell:last-child { border-right: none; }
+.summary-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
+.summary-val { font-size: 0.85rem; color: var(--text-dark); font-weight: 400; }
+.total-bar { grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 1.5rem; background: var(--black); }
+.total-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(247,243,236,0.5); }
+.total-amount { font-size: 1.8rem; color: var(--gold); font-weight: 500; }
+.total-amount span { font-size: 0.85rem; margin-left: 0.3rem; color: rgba(201,168,76,0.6); }
+.btn-submit-wrap { grid-column: 1/-1; margin-top: 1rem; }
+.btn-submit { width: 100%; padding: 1.4rem 2rem; background: linear-gradient(135deg, #c9a84c 0%, #e8c96a 50%, #c9a84c 100%); background-size: 200% 200%; color: var(--black); border: none; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 4px 24px rgba(201,168,76,0.4); animation: btnPulse 2.5s ease-in-out infinite; }
+@keyframes btnPulse { 0%,100% { box-shadow: 0 4px 24px rgba(201,168,76,0.4), 0 0 0 0 rgba(201,168,76,0.3); background-position: 0% 50%; } 50% { box-shadow: 0 4px 32px rgba(201,168,76,0.6), 0 0 0 10px rgba(201,168,76,0); background-position: 100% 50%; } }
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(201,168,76,0.6); animation: none; }
+.btn-submit:active { transform: translateY(0); }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; animation: none; transform: none; }
+.btn-submit-inner { display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+.btn-submit-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 400; font-size: 0.9rem; opacity: 0.75; }
+.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(0,0,0,0.2); border-top-color: var(--black); border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* DELIVERY HINT */
-.d-hint { display: none; align-items: center; gap: .55rem; padding: .6rem .85rem; background: var(--gold-dim); border: 1px solid var(--gold-border); font-size: .68rem; color: var(--text); margin-top: .5rem; }
-.d-hint.show { display: flex; }
-
-/* SERVICE */
-.svc-opts { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
-.svc-opt { display: flex; align-items: flex-start; gap: .65rem; padding: .85rem 1rem; border: 1.5px solid var(--border); cursor: pointer; background: #faf9f6; transition: all .2s; }
-.svc-opt:hover { border-color: #bbb; }
-.svc-opt.active { border-color: var(--gold); background: var(--gold-dim); }
-.svc-opt input { accent-color: var(--gold); width: 13px; height: 13px; flex-shrink: 0; margin-top: 2px; }
-.svc-badge { display: inline-block; font-size: .5rem; letter-spacing: .1em; text-transform: uppercase; padding: .12rem .45rem; border: 1px solid; margin-bottom: .2rem; }
-.badge-exp { color: #b5341f; border-color: rgba(181,52,31,.35); background: rgba(181,52,31,.06); }
-.badge-eco { color: #8a6e28; border-color: var(--gold-border); background: var(--gold-dim); }
-.svc-name { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; }
-.svc-desc { font-size: .58rem; color: var(--muted); line-height: 1.4; }
-
-/* SUMMARY */
-.summary { background: var(--black); padding: 1.1rem 1.4rem; margin-top: 1.8rem; display: flex; justify-content: space-between; align-items: center; }
-.sum-label { font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); line-height: 1.8; }
-.sum-total { font-size: 1.55rem; font-weight: 800; color: var(--gold); }
-.sum-total sup { font-size: .72rem; color: rgba(201,168,76,.55); margin-left: .15rem; }
-
-/* SUBMIT */
-.btn-submit { width: 100%; padding: 1.15rem; margin-top: .9rem; background: linear-gradient(135deg, #c9a84c, #e8c96a 50%, #c9a84c); background-size: 200%; color: var(--black); border: none; cursor: pointer; font-family: 'Syne', sans-serif; font-size: .78rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; box-shadow: 0 4px 20px rgba(201,168,76,.4); animation: btnpulse 2.5s ease-in-out infinite; transition: all .3s; }
-@keyframes btnpulse { 0%,100% { box-shadow: 0 4px 20px rgba(201,168,76,.4), 0 0 0 0 rgba(201,168,76,.2); background-position: 0%; } 50% { box-shadow: 0 6px 30px rgba(201,168,76,.55), 0 0 0 8px rgba(201,168,76,0); background-position: 100%; } }
-.btn-submit:hover { transform: translateY(-2px); animation: none; box-shadow: 0 8px 32px rgba(201,168,76,.5); }
-.btn-submit:disabled { opacity: .55; cursor: not-allowed; animation: none; transform: none; }
-.btn-inner { display: flex; align-items: center; justify-content: center; gap: .65rem; }
-.btn-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 400; font-size: .82rem; opacity: .6; }
-
-.cash-note { display: flex; align-items: center; justify-content: center; gap: .4rem; margin-top: .75rem; font-size: .6rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-.cash-note::before, .cash-note::after { content: ''; flex: 1; height: 1px; background: rgba(0,0,0,.07); }
-
-/* SUCCESS */
-.success-wrap { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(12,12,12,.96); backdrop-filter: blur(18px); align-items: center; justify-content: center; text-align: center; }
-.success-wrap.show { display: flex; }
-.success-box { max-width: 420px; padding: 2.5rem 2rem; }
-.suc-icon { font-size: 2.8rem; margin-bottom: 1rem; }
-.suc-title { font-size: 1.7rem; font-weight: 800; color: var(--gold); margin-bottom: .7rem; }
-.suc-ref { font-size: .65rem; color: rgba(201,168,76,.5); letter-spacing: .15em; margin-bottom: .7rem; }
-.suc-msg { color: rgba(250,248,244,.65); font-size: .88rem; line-height: 1.8; margin-bottom: .7rem; }
-.suc-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-size: .82rem; color: rgba(201,168,76,.4); direction: rtl; margin-bottom: 1.5rem; }
-.suc-cash { font-size: .68rem; color: var(--gold); border: 1px solid rgba(201,168,76,.25); padding: .65rem 1rem; margin-bottom: 1.5rem; letter-spacing: .07em; }
-.btn-close { padding: .75rem 2.2rem; background: var(--gold); color: var(--black); border: none; font-family: 'Syne', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: background .2s; }
-.btn-close:hover { background: var(--gold-light); }
-
-/* LIGHTBOX */
-.lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.96); align-items: center; justify-content: center; cursor: zoom-out; }
-.lightbox.open { display: flex; }
-.lightbox img { max-width: 95vw; max-height: 95vh; object-fit: contain; }
-.lb-close { position: absolute; top: 1rem; right: 1.4rem; font-size: 2rem; color: #fff; cursor: pointer; opacity: .6; line-height: 1; }
-.lb-close:hover { opacity: 1; }
-
-/* MOBILE */
-@media (max-width: 760px) {
-  .page { grid-template-columns: 1fr; }
-  .left { position: relative; height: 72vw; max-height: 400px; }
-  .right { padding: 1.6rem 1.1rem 4rem; }
-  .two-col, .opts, .svc-opts { grid-template-columns: 1fr; }
-  .form-title { font-size: 1.45rem; }
-  .product-title { font-size: 1.8rem; }
+.success-overlay { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(10,10,10,0.97); backdrop-filter: blur(20px); align-items: center; justify-content: center; text-align: center; }
+.success-overlay.show { display: flex; }
+.success-box { max-width: 480px; padding: 3rem 2rem; }
+.success-icon { font-size: 3.5rem; margin-bottom: 1.5rem; }
+.success-title { font-size: 2rem; color: var(--gold); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1rem; }
+.success-ref { font-size: 0.75rem; color: rgba(201,168,76,0.6); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
+.success-msg { color: rgba(247,243,236,0.7); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+.success-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.9rem; color: rgba(201,168,76,0.6); direction: rtl; margin-bottom: 2rem; }
+.success-note { font-size: 0.75rem; color: var(--gold); opacity: 0.7; border: 1px solid var(--border); padding: 0.8rem; margin-bottom: 2rem; letter-spacing: 0.1em; }
+.btn-close-success { padding: 0.9rem 3rem; background: var(--gold); color: var(--black); border: none; font-family: 'Outfit', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-weight: 600; transition: background 0.3s; }
+.btn-close-success:hover { background: var(--gold-light); }
+footer { background: var(--black); border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-size: 1.2rem; color: var(--gold); letter-spacing: 0.1em; }
+.footer-ar { font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 200; font-size: 0.8rem; color: rgba(201,168,76,0.5); direction: rtl; }
+.footer-copy { font-size: 0.65rem; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: uppercase; }
+@media (max-width: 900px) {
+  header { padding: 0 1.5rem; height: 60px; }
+  .logo { font-size: 1.15rem; }
+  nav { gap: 1rem; }
+  nav a { font-size: 0.6rem; }
+  .product-section { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
+  .gallery { position: static; }
+  .product-name { font-size: 2.2rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.full, .service-wrap, .delivery-wrap, .wilaya-hint,
+  .items-section, .btn-add-item, .summary-bar, .total-bar, .btn-submit-wrap, .stopdesk-notice { grid-column: 1; }
+  .service-wrap, .delivery-wrap { grid-template-columns: 1fr; }
+  .summary-bar { grid-template-columns: repeat(2,1fr); }
+  .item-row { grid-template-columns: 1fr; }
+  .order-section { padding: 2rem 1.5rem 4rem; }
+  .section-divider { padding: 1.5rem; }
+  .trust-bar { flex-wrap: wrap; }
+  .trust-item { max-width: 50%; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<div class="page">
+<div class="announce">
+  Livraison dans les 58 Wilayas <span>◆</span> Paiement à la Livraison <span>◆</span> التوصيل إلى 58 ولاية
+</div>
 
-  <!-- ════ LEFT — PRODUCT ════ -->
-  <div class="left">
-    <div class="img-stack" id="imgStack" onclick="openLightbox()">
-      <!-- Placeholder shown when images haven't loaded yet -->
-      <div class="img-placeholder">
-        <div class="img-placeholder-inner">CNY<br>JACKET</div>
-      </div>
-      <!-- BUG FIX: Images use data-src for lazy switching; src only set when needed.
-           If you have actual image files, replace the src attributes below. -->
-      <img class="jacket-img active" id="img-bordeaux-red" src="bordeaux-red.jpeg" alt="Bordeaux Red" onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-marron"       src="marron.jpeg"        alt="Marron"       onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-rouge"        src="rouge.jpeg"         alt="Rouge"        onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-tigre"        src="tigre.jpeg"         alt="Tigre"        onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-noir"         src="noir.jpeg"          alt="Noir"         onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-jaune"        src="jaune.jpeg"         alt="Jaune"        onerror="this.style.display='none'">
-      <img class="jacket-img"        id="img-rose"         src="rose.jpeg"          alt="Rose"         onerror="this.style.display='none'">
-      <div class="img-overlay"></div>
-      <div class="product-meta">
-        <div class="brand-tag">JACKETS · DZ</div>
-        <div class="product-title">CNY <span>Jacket</span></div>
-        <div class="product-sub">Chinese New Year · Édition Limitée 2026</div>
-        <div class="price-tag">8 500 <small>DA</small></div>
-      </div>
+<header>
+  <div class="logo">JACKETS<span class="logo-dot">.</span>DZ</div>
+  <nav>
+    <a href="#">Collection</a>
+    <a href="#">À Propos</a>
+    <a href="#order" class="nav-cta">Commander</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Édition Limitée · 2026</div>
+    <h1 class="hero-title">CNY<br>Jacket<em>Chinese New Year · 2026</em></h1>
+    <div class="hero-badges">
+      <div class="hero-badge">Velours Suédé Premium</div>
+      <div class="hero-badge">Pièce Numérotée</div>
+      <div class="hero-badge">8 500 DA</div>
     </div>
+  </div>
+  <div class="hero-scroll">Découvrir</div>
+</section>
 
+<section class="product-section">
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <div class="color-panel active" id="panel-navy-blue"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=85" alt="Navy Blue" class="jacket-img"><div class="img-label">Navy Blue</div></div>
+      <div class="color-panel" id="panel-bordeaux-red"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=800&q=85" alt="Bordeaux Red" class="jacket-img"><div class="img-label">Bordeaux Red</div></div>
+      <div class="color-panel" id="panel-midnight-black"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=85" alt="Midnight Black" class="jacket-img"><div class="img-label">Midnight Black</div></div>
+      <div class="color-panel" id="panel-sahara-gold"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=85" alt="Sahara Gold" class="jacket-img"><div class="img-label">Sahara Gold</div></div>
+      <div class="color-panel" id="panel-forest-green"><img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&q=85" alt="Forest Green" class="jacket-img"><div class="img-label">Forest Green</div></div>
+    </div>
     <div class="thumbs">
-      <!-- BUG FIX: Each thumb has a colored swatch fallback when image fails -->
-      <div class="thumb active" data-img="bordeaux-red" data-bg="#722f37" onclick="switchImg(this)">
-        <img src="bordeaux-red.jpeg" alt="Bordeaux Red" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#722f37"></div>
-      </div>
-      <div class="thumb" data-img="marron" data-bg="#3d2010" onclick="switchImg(this)">
-        <img src="marron.jpeg" alt="Marron" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#3d2010"></div>
-      </div>
-      <div class="thumb" data-img="rouge" data-bg="#8b0000" onclick="switchImg(this)">
-        <img src="rouge.jpeg" alt="Rouge" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#8b0000"></div>
-      </div>
-      <div class="thumb" data-img="tigre" data-bg="#E87722" onclick="switchImg(this)">
-        <img src="tigre.jpeg" alt="Tigre" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:repeating-linear-gradient(135deg,#E87722 0,#E87722 4px,#1a1a1a 4px,#1a1a1a 8px)"></div>
-      </div>
-      <div class="thumb" data-img="noir" data-bg="#111" onclick="switchImg(this)">
-        <img src="noir.jpeg" alt="Noir" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#111"></div>
-      </div>
-      <div class="thumb" data-img="jaune" data-bg="#d4a017" onclick="switchImg(this)">
-        <img src="jaune.jpeg" alt="Jaune" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#d4a017"></div>
-      </div>
-      <div class="thumb" data-img="rose" data-bg="#b07a8a" onclick="switchImg(this)">
-        <img src="rose.jpeg" alt="Rose" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="thumb-swatch" style="background:#b07a8a"></div>
-      </div>
-    </div>
-
-    <div class="color-bar">
-      <span class="color-bar-label">Couleur</span>
-      <div class="cdots">
-        <div class="cdot active" style="background:#722f37" data-label="Bordeaux Red" data-img="bordeaux-red" onclick="pickColor(this)" title="Bordeaux Red"></div>
-        <div class="cdot"        style="background:#3d2010" data-label="Marron"       data-img="marron"       onclick="pickColor(this)" title="Marron"></div>
-        <div class="cdot"        style="background:#8b0000" data-label="Rouge"        data-img="rouge"        onclick="pickColor(this)" title="Rouge"></div>
-        <!-- BUG FIX: Tigre uses a solid color for the dot (gradient was causing swatch display issue) -->
-        <div class="cdot"        style="background:linear-gradient(135deg,#E87722 40%,#1a1a1a 40%)" data-label="Tigre" data-img="tigre" onclick="pickColor(this)" title="Tigre"></div>
-        <div class="cdot"        style="background:#111"    data-label="Noir"         data-img="noir"         onclick="pickColor(this)" title="Noir"></div>
-        <div class="cdot"        style="background:#d4a017" data-label="Jaune"        data-img="jaune"        onclick="pickColor(this)" title="Jaune"></div>
-        <div class="cdot"        style="background:#b07a8a" data-label="Rose"         data-img="rose"         onclick="pickColor(this)" title="Rose"></div>
-      </div>
-      <span class="color-name" id="colorLabel">Bordeaux Red</span>
+      <div class="thumb active" onclick="switchThumb(this,0)"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,1)"><img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,2)"><img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&q=80" alt=""></div>
+      <div class="thumb" onclick="switchThumb(this,3)"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=80" alt=""></div>
     </div>
   </div>
-
-  <!-- ════ RIGHT — FORM ════ -->
-  <div class="right">
-    <div class="form-head">
-      <div class="form-eyebrow">Commander maintenant</div>
-      <div class="form-title">Votre Commande</div>
-      <div class="form-title-ar">أدخل بياناتك — التوصيل لكل الجزائر</div>
+  <div class="product-info">
+    <div class="tags">
+      <span class="tag tag-red">Édition Limitée</span>
+      <span class="tag tag-gold">Chinese New Year 2026</span>
+      <span class="tag tag-black">🇩🇿 Algérie</span>
     </div>
-
-    <form id="orderForm" novalidate>
-
-      <!-- ① COULEUR (read-only display, set from left panel) -->
-      <div class="sec">Couleur</div>
-      <div style="display:flex;align-items:center;gap:.65rem;padding:.72rem .95rem;border:1.5px solid var(--border);background:#faf9f6;margin-bottom:.3rem">
-        <!-- BUG FIX: swatch bg initialized to match active color dot (#722f37 = Bordeaux Red) -->
-        <span id="colorSwatch" style="display:inline-block;width:18px;height:18px;border-radius:50%;background:#722f37;flex-shrink:0;border:2px solid rgba(0,0,0,.1)"></span>
-        <span id="colorDisplay" style="font-size:.88rem;font-weight:600">Bordeaux Red</span>
-        <span style="margin-left:auto;font-size:.56rem;color:var(--muted);letter-spacing:.08em">← changer à gauche</span>
+    <h2 class="product-name">Exclusive<br>CNY Jacket</h2>
+    <div class="product-name-ar">جاكيت حصري · نوفي العام الصيني الجديد</div>
+    <div class="stars">★★★★★ <span>214 avis · مراجعة</span></div>
+    <div class="sep"></div>
+    <div class="price-row"><span class="price-main">8 500</span><span class="price-currency">DA</span></div>
+    <div class="price-note">+ Frais de livraison selon wilaya · + رسوم التوصيل</div>
+    <div class="sep"></div>
+    <div class="opt-label">Couleur — <strong id="colorName">Sélectionner</strong></div>
+    <div class="color-dots">
+      <div class="cdot" style="background:#c8860a;" data-label="Tigre"  data-color="tigre"  onclick="selectColor(this)" title="Tigre"></div>
+      <div class="cdot" style="background:#f5c518;border:2px solid #bba800;" data-label="Jaune"  data-color="jaune"  onclick="selectColor(this)" title="Jaune"></div>
+      <div class="cdot" style="background:#6b3a8a;" data-label="Violet" data-color="violet" onclick="selectColor(this)" title="Violet"></div>
+      <div class="cdot" style="background:#1a4a3a;" data-label="Vert"   data-color="vert"   onclick="selectColor(this)" title="Vert"></div>
+      <div class="cdot" style="background:#1a1a1a;" data-label="Noir"   data-color="noir"   onclick="selectColor(this)" title="Noir"></div>
+      <div class="cdot" style="background:#c0392b;" data-label="Rouge"  data-color="rouge"  onclick="selectColor(this)" title="Rouge"></div>
+      <div class="cdot" style="background:#e75480;" data-label="Rose"   data-color="rose"   onclick="selectColor(this)" title="Rose"></div>
+    </div>
+    <div class="field-error" id="colorError">⚠ Veuillez sélectionner une couleur</div><br>
+    <div class="opt-label">Taille — <strong id="sizeName">Sélectionner</strong></div>
+    <div class="sizes">
+      <button class="sz" type="button" data-size="S"  onclick="selectSize(this,'S')">S</button>
+      <button class="sz" type="button" data-size="M"  onclick="selectSize(this,'M')">M</button>
+      <button class="sz" type="button" data-size="L"  onclick="selectSize(this,'L')">L</button>
+      <button class="sz" type="button" data-size="XL" onclick="selectSize(this,'XL')">XL</button>
+    </div>
+    <div class="field-error" id="sizeError">⚠ Veuillez sélectionner une taille</div><br>
+    <div class="opt-label">Quantité</div>
+    <div class="qty-row">
+      <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-val" id="qtyValue">1</div>
+      <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+    <div class="cta-group">
+      <a href="#order" class="btn-primary">Commander Maintenant &nbsp;·&nbsp; اطلب الآن</a>
+    </div>
+    <div class="accords">
+      <div class="accord">
+        <button class="accord-btn" onclick="toggleAcc(this)">Description du Produit <span class="accord-icon">+</span></button>
+        <div class="accord-body"><p>Veste exclusive en édition limitée inspirée du Nouvel An Chinois, réinterprétée avec une touche algérienne. Matière velours suédé premium, bandes iconiques, fermeture traditionnelle chinoise à brandebourgs. Pièce numérotée, fabriquée en quantité limitée.</p></div>
       </div>
-      <div class="err-msg" id="err-color">⚠ Veuillez sélectionner une couleur</div>
-
-      <!-- ② TAILLE -->
-      <div class="sec">Taille</div>
-      <div class="sizes" id="sizeRow">
-        <button type="button" class="sz" data-s="S"  onclick="pickSize(this)">S</button>
-        <button type="button" class="sz" data-s="M"  onclick="pickSize(this)">M</button>
-        <button type="button" class="sz" data-s="L"  onclick="pickSize(this)">L</button>
-        <button type="button" class="sz" data-s="XL" onclick="pickSize(this)">XL</button>
-      </div>
-      <div style="font-size:.56rem;color:var(--muted);margin-top:.3rem;margin-bottom:.1rem">S: 86–91 · M: 91–97 · L: 97–102 · XL: 102–109 cm — coupe oversized</div>
-      <div class="err-msg" id="err-size">⚠ Veuillez choisir une taille</div>
-
-      <!-- ③ QUANTITÉ -->
-      <div class="sec">Quantité</div>
-      <div class="qty-wrap">
-        <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
-        <div class="qty-val" id="qtyVal">1</div>
-        <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
-      </div>
-
-      <!-- ④ COORDONNÉES -->
-      <div class="sec">Coordonnées</div>
-      <div class="two-col">
-        <div class="field">
-          <label>Nom Complet *</label>
-          <input type="text" id="f-name" placeholder="Ahmed Benali" autocomplete="name">
-          <div class="err-msg" id="err-name">⚠ Nom requis (min. 3 caractères)</div>
+      <div class="accord">
+        <button class="accord-btn" onclick="toggleAcc(this)">Livraison & Tarifs par Wilaya <span class="accord-icon">+</span></button>
+        <div class="accord-body">
+          <p>Livraison disponible dans les <strong>58 wilayas</strong> via GUEPEX. Paiement à la livraison uniquement (cash).</p>
+          <div class="delivery-service-title">⚡ Express 24h</div>
+          <table class="delivery-table">
+            <thead><tr><th>Zone</th><th>Domicile</th><th>Stop-Desk</th><th>Délai</th></tr></thead>
+            <tbody>
+              <tr><td class="zone-label">Alger</td><td>590 DA</td><td>450 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Blida · Boumerdès · Tipaza</td><td>700 DA</td><td>550 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Zone Nord</td><td>900 DA</td><td>650 DA</td><td>J+1</td></tr>
+              <tr><td class="zone-label">Hauts Plateaux</td><td>950 DA</td><td>750 DA</td><td>J+1/J+2</td></tr>
+              <tr><td class="zone-label">Grand Sud</td><td>1 050 DA</td><td>850 DA</td><td>J+2/J+3</td></tr>
+              <tr><td class="zone-label">Extrême Sud</td><td>1 600 DA</td><td>1 400 DA</td><td>J+5/J+6</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.75rem;color:var(--text-light);">Le tarif est calculé automatiquement selon votre wilaya et commune.</p>
         </div>
-        <div class="field">
-          <label>Téléphone *</label>
-          <input type="tel" id="f-phone" placeholder="0555 123 456" maxlength="12" oninput="fmtPhone(this)" autocomplete="tel">
-          <div class="field-hint">05x / 06x / 07x — 10 chiffres</div>
-          <div class="err-msg" id="err-phone">⚠ Numéro invalide</div>
-        </div>
       </div>
+      <div class="accord">
+        <button class="accord-btn" onclick="toggleAcc(this)">Guide des Tailles <span class="accord-icon">+</span></button>
+        <div class="accord-body"><p>S: 86–91 cm &nbsp;·&nbsp; M: 91–97 cm &nbsp;·&nbsp; L: 97–102 cm &nbsp;·&nbsp; XL: 102–109 cm. Coupe oversized recommandée — prenez votre taille habituelle.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- ⑤ MODE DE LIVRAISON -->
-      <div class="sec">Mode de Livraison</div>
-      <div class="opts">
-        <label class="opt active" id="opt-dom" onclick="setMode('domicile',this)">
-          <input type="radio" name="mode" value="domicile" checked>
-          <div>
-            <div class="opt-title">🏠 Domicile</div>
-            <div class="opt-price" id="p-dom">— DA</div>
-            <div class="opt-note">Livraison chez vous</div>
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">💵</div><div class="trust-label">Paiement à<br>la Livraison</div><div class="trust-sub">Cash uniquement</div></div>
+  <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-label">58 Wilayas<br>Couvertes</div><div class="trust-sub">Tout le territoire</div></div>
+  <div class="trust-item"><div class="trust-icon">⚡</div><div class="trust-label">Express 24h<br>disponible</div><div class="trust-sub">GUEPEX</div></div>
+  <div class="trust-item"><div class="trust-icon">↩️</div><div class="trust-label">Retours<br>14 Jours</div><div class="trust-sub">Satisfait ou remboursé</div></div>
+  <div class="trust-item"><div class="trust-icon">🔢</div><div class="trust-label">Pièce<br>Numérotée</div><div class="trust-sub">Édition limitée</div></div>
+</div>
+
+<div class="video-section">
+  <video autoplay muted loop playsinline><source src="adidas_originals_CNY_2025.mp4" type="video/mp4"></video>
+  <div class="video-caption"><div class="video-caption-label">✦ &nbsp; CAMPAGNE OFFICIELLE &nbsp;·&nbsp; ADIDAS CNY 2026 &nbsp; ✦</div></div>
+</div>
+
+<div class="section-divider">
+  <div class="div-line"></div><span class="div-diamond">◆</span>
+  <span class="div-text">Passer votre Commande</span>
+  <span class="div-diamond">◆</span><div class="div-line"></div>
+</div>
+
+<div class="order-section" id="order">
+  <div class="order-header">
+    <div class="order-eyebrow">Commander</div>
+    <h2 class="order-title">Passer votre Commande</h2>
+    <div class="order-title-ar">أدخل بياناتك لنوصل إليك في أي مكان بالجزائر</div>
+  </div>
+  <div class="form-card">
+    <div class="form-inner">
+      <form id="orderForm" onsubmit="submitOrder(event)" novalidate>
+        <div class="form-grid">
+
+          <!-- NAME -->
+          <div class="form-group">
+            <label>Nom Complet / الاسم الكامل *</label>
+            <input type="text" id="f-name" placeholder="Ahmed Benali" autocomplete="name">
+            <div class="field-error" id="err-name">⚠ Veuillez entrer votre nom complet</div>
           </div>
-        </label>
-        <label class="opt" id="opt-sd" onclick="setMode('stopdesk',this)">
-          <input type="radio" name="mode" value="stopdesk">
-          <div>
-            <div class="opt-title">🏢 Stop-Desk</div>
-            <div class="opt-price" id="p-sd">— DA</div>
-            <div class="opt-note">Retrait agence GUEPEX</div>
+
+          <!-- PHONE -->
+          <div class="form-group">
+            <label>Numéro de Téléphone / رقم الهاتف *</label>
+            <input type="tel" id="f-phone" placeholder="0555 123 456" maxlength="12" autocomplete="tel" oninput="formatPhone(this)">
+            <div class="phone-hint">10 chiffres · Ex : 0555 123 456</div>
+            <div class="field-error" id="err-phone">⚠ Numéro invalide — 10 chiffres requis (05x / 06x / 07x)</div>
           </div>
-        </label>
-      </div>
 
-      <!-- ⑥ WILAYA + COMMUNE -->
-      <div class="sec">Localisation</div>
-      <div class="two-col">
-        <div class="field">
-          <label>Wilaya *</label>
-          <select id="f-wilaya" onchange="onWilaya()">
-            <option value="">— Wilaya —</option>
-            <option value="Adrar" data-id="1">01 - Adrar</option>
-            <option value="Chlef" data-id="2">02 - Chlef</option>
-            <option value="Laghouat" data-id="3">03 - Laghouat</option>
-            <option value="Oum El Bouaghi" data-id="4">04 - Oum El Bouaghi</option>
-            <option value="Batna" data-id="5">05 - Batna</option>
-            <option value="Béjaïa" data-id="6">06 - Béjaïa</option>
-            <option value="Biskra" data-id="7">07 - Biskra</option>
-            <option value="Béchar" data-id="8">08 - Béchar</option>
-            <option value="Blida" data-id="9">09 - Blida</option>
-            <option value="Bouira" data-id="10">10 - Bouira</option>
-            <option value="Tamanrasset" data-id="11">11 - Tamanrasset</option>
-            <option value="Tébessa" data-id="12">12 - Tébessa</option>
-            <option value="Tlemcen" data-id="13">13 - Tlemcen</option>
-            <option value="Tiaret" data-id="14">14 - Tiaret</option>
-            <option value="Tizi Ouzou" data-id="15">15 - Tizi Ouzou</option>
-            <option value="Alger" data-id="16">16 - Alger</option>
-            <option value="Djelfa" data-id="17">17 - Djelfa</option>
-            <option value="Jijel" data-id="18">18 - Jijel</option>
-            <option value="Sétif" data-id="19">19 - Sétif</option>
-            <option value="Saïda" data-id="20">20 - Saïda</option>
-            <option value="Skikda" data-id="21">21 - Skikda</option>
-            <option value="Sidi Bel Abbès" data-id="22">22 - Sidi Bel Abbès</option>
-            <option value="Annaba" data-id="23">23 - Annaba</option>
-            <option value="Guelma" data-id="24">24 - Guelma</option>
-            <option value="Constantine" data-id="25">25 - Constantine</option>
-            <option value="Médéa" data-id="26">26 - Médéa</option>
-            <option value="Mostaganem" data-id="27">27 - Mostaganem</option>
-            <option value="M'Sila" data-id="28">28 - M'Sila</option>
-            <option value="Mascara" data-id="29">29 - Mascara</option>
-            <option value="Ouargla" data-id="30">30 - Ouargla</option>
-            <option value="Oran" data-id="31">31 - Oran</option>
-            <option value="El Bayadh" data-id="32">32 - El Bayadh</option>
-            <option value="Illizi" data-id="33">33 - Illizi</option>
-            <option value="Bordj Bou Arreridj" data-id="34">34 - Bordj Bou Arréridj</option>
-            <option value="Boumerdès" data-id="35">35 - Boumerdès</option>
-            <option value="El Tarf" data-id="36">36 - El Tarf</option>
-            <option value="Tindouf" data-id="37">37 - Tindouf</option>
-            <option value="Tissemsilt" data-id="38">38 - Tissemsilt</option>
-            <option value="El Oued" data-id="39">39 - El Oued</option>
-            <option value="Khenchela" data-id="40">40 - Khenchela</option>
-            <option value="Souk Ahras" data-id="41">41 - Souk Ahras</option>
-            <option value="Tipaza" data-id="42">42 - Tipaza</option>
-            <option value="Mila" data-id="43">43 - Mila</option>
-            <option value="Aïn Defla" data-id="44">44 - Aïn Defla</option>
-            <option value="Naâma" data-id="45">45 - Naâma</option>
-            <option value="Aïn Témouchent" data-id="46">46 - Aïn Témouchent</option>
-            <option value="Ghardaïa" data-id="47">47 - Ghardaïa</option>
-            <option value="Relizane" data-id="48">48 - Relizane</option>
-            <option value="El M'Ghair" data-id="49">49 - El M'Ghair</option>
-            <option value="El Menia" data-id="50">50 - El Meniaa</option>
-            <option value="Ouled Djellal" data-id="51">51 - Ouled Djellal</option>
-            <option value="Bordj Badji Mokhtar" data-id="52">52 - Bordj Badji Mokhtar</option>
-            <option value="Béni Abbès" data-id="53">53 - Béni Abbès</option>
-            <option value="Timimoun" data-id="54">54 - Timimoun</option>
-            <option value="Touggourt" data-id="55">55 - Touggourt</option>
-            <option value="Djanet" data-id="56">56 - Djanet</option>
-            <option value="In Salah" data-id="57">57 - In Salah</option>
-            <option value="In Guezzam" data-id="58">58 - In Guezzam</option>
-          </select>
-          <div class="err-msg" id="err-wilaya">⚠ Choisissez votre wilaya</div>
-        </div>
-
-        <!-- BUG FIX: commune-wrap uses display:none via inline style; show() now sets display:'block' not '' -->
-        <div class="field" id="commune-wrap" style="display:none">
-          <label id="commune-label">Commune *</label>
-          <select id="f-commune" disabled onchange="onCommune()">
-            <option value="">— Commune —</option>
-          </select>
-          <div class="spinner-row" id="commune-spin"><div class="spin"></div> Chargement...</div>
-          <div class="err-msg" id="err-commune">⚠ Choisissez votre commune</div>
-        </div>
-      </div>
-
-      <!-- ADDRESS (domicile only) -->
-      <!-- BUG FIX: id is f-addr; addr-wrap shown with display:block -->
-      <div class="field" id="addr-wrap" style="display:none">
-        <label>Adresse Complète *</label>
-        <input type="text" id="f-addr" placeholder="Rue, n°, résidence, quartier..." autocomplete="street-address">
-        <div class="err-msg" id="err-addr">⚠ Adresse requise (min. 5 caractères)</div>
-      </div>
-
-      <!-- DELIVERY HINT -->
-      <div class="d-hint" id="dHint"><span>📦</span><strong id="dHintText">—</strong></div>
-
-      <!-- ⑦ SERVICE -->
-      <div id="svc-section" style="display:none">
-        <div class="sec">Service</div>
-        <div class="svc-opts">
-          <label class="svc-opt active" id="svc-express" onclick="setSvc('express',this)">
-            <input type="radio" name="svc" value="express" checked>
-            <div>
-              <div class="svc-badge badge-exp">⚡ Express</div>
-              <div class="svc-name">24h</div>
-              <div class="svc-desc">Livraison rapide</div>
+          <!-- STEP 1: MODE SELECTION — always first -->
+          <div class="form-group full" style="margin-bottom:0;">
+            <label>Mode de Livraison / طريقة التوصيل *</label>
+          </div>
+          <div class="delivery-wrap">
+            <div class="delivery-opt selected" id="opt-domicile" onclick="selectDelivery(this,'domicile')">
+              <input type="radio" name="delivery_type" value="domicile" checked>
+              <div>
+                <div class="delivery-name">🏠 Livraison à Domicile</div>
+                <div class="delivery-price" id="price-domicile">— DA</div>
+                <div class="delivery-price-note">Livraison chez vous</div>
+              </div>
             </div>
-          </label>
-          <label class="svc-opt" id="svc-eco" onclick="setSvc('eco',this)">
-            <input type="radio" name="svc" value="eco">
-            <div>
-              <div class="svc-badge badge-eco">🕐 Éco</div>
-              <div class="svc-name">48h+</div>
-              <div class="svc-desc">Tarif réduit</div>
+            <div class="delivery-opt" id="opt-stopdesk" onclick="selectDelivery(this,'stopdesk')">
+              <input type="radio" name="delivery_type" value="stopdesk">
+              <div>
+                <div class="delivery-name">🏢 Stop-Desk / Bureau</div>
+                <div class="delivery-price" id="price-stopdesk">— DA</div>
+                <div class="delivery-price-note">Retrait en agence GUEPEX</div>
+              </div>
             </div>
-          </label>
+          </div>
+
+          <!-- STEP 2: WILAYA -->
+          <div class="form-group" id="wilaya-section">
+            <label>Wilaya / الولاية *</label>
+            <select id="f-wilaya" onchange="onWilayaChange()">
+              <option value="">— Choisir une wilaya —</option>
+              <option value="Adrar" data-id="1">01 - Adrar</option>
+              <option value="Chlef" data-id="2">02 - Chlef</option>
+              <option value="Laghouat" data-id="3">03 - Laghouat</option>
+              <option value="Oum El Bouaghi" data-id="4">04 - Oum El Bouaghi</option>
+              <option value="Batna" data-id="5">05 - Batna</option>
+              <option value="Béjaïa" data-id="6">06 - Béjaïa</option>
+              <option value="Biskra" data-id="7">07 - Biskra</option>
+              <option value="Béchar" data-id="8">08 - Béchar</option>
+              <option value="Blida" data-id="9">09 - Blida</option>
+              <option value="Bouira" data-id="10">10 - Bouira</option>
+              <option value="Tamanrasset" data-id="11">11 - Tamanrasset</option>
+              <option value="Tébessa" data-id="12">12 - Tébessa</option>
+              <option value="Tlemcen" data-id="13">13 - Tlemcen</option>
+              <option value="Tiaret" data-id="14">14 - Tiaret</option>
+              <option value="Tizi Ouzou" data-id="15">15 - Tizi Ouzou</option>
+              <option value="Alger" data-id="16">16 - Alger</option>
+              <option value="Djelfa" data-id="17">17 - Djelfa</option>
+              <option value="Jijel" data-id="18">18 - Jijel</option>
+              <option value="Sétif" data-id="19">19 - Sétif</option>
+              <option value="Saïda" data-id="20">20 - Saïda</option>
+              <option value="Skikda" data-id="21">21 - Skikda</option>
+              <option value="Sidi Bel Abbès" data-id="22">22 - Sidi Bel Abbès</option>
+              <option value="Annaba" data-id="23">23 - Annaba</option>
+              <option value="Guelma" data-id="24">24 - Guelma</option>
+              <option value="Constantine" data-id="25">25 - Constantine</option>
+              <option value="Médéa" data-id="26">26 - Médéa</option>
+              <option value="Mostaganem" data-id="27">27 - Mostaganem</option>
+              <option value="M'Sila" data-id="28">28 - M'Sila</option>
+              <option value="Mascara" data-id="29">29 - Mascara</option>
+              <option value="Ouargla" data-id="30">30 - Ouargla</option>
+              <option value="Oran" data-id="31">31 - Oran</option>
+              <option value="El Bayadh" data-id="32">32 - El Bayadh</option>
+              <option value="Illizi" data-id="33">33 - Illizi</option>
+              <option value="Bordj Bou Arreridj" data-id="34">34 - Bordj Bou Arréridj</option>
+              <option value="Boumerdès" data-id="35">35 - Boumerdès</option>
+              <option value="El Tarf" data-id="36">36 - El Tarf</option>
+              <option value="Tindouf" data-id="37">37 - Tindouf</option>
+              <option value="Tissemsilt" data-id="38">38 - Tissemsilt</option>
+              <option value="El Oued" data-id="39">39 - El Oued</option>
+              <option value="Khenchela" data-id="40">40 - Khenchela</option>
+              <option value="Souk Ahras" data-id="41">41 - Souk Ahras</option>
+              <option value="Tipaza" data-id="42">42 - Tipaza</option>
+              <option value="Mila" data-id="43">43 - Mila</option>
+              <option value="Aïn Defla" data-id="44">44 - Aïn Defla</option>
+              <option value="Naâma" data-id="45">45 - Naâma</option>
+              <option value="Aïn Témouchent" data-id="46">46 - Aïn Témouchent</option>
+              <option value="Ghardaïa" data-id="47">47 - Ghardaïa</option>
+              <option value="Relizane" data-id="48">48 - Relizane</option>
+              <option value="El M'Ghair" data-id="49">49 - El M'Ghair</option>
+              <option value="El Menia" data-id="50">50 - El Meniaa</option>
+              <option value="Ouled Djellal" data-id="51">51 - Ouled Djellal</option>
+              <option value="Bordj Badji Mokhtar" data-id="52">52 - Bordj Badji Mokhtar</option>
+              <option value="Béni Abbès" data-id="53">53 - Béni Abbès</option>
+              <option value="Timimoun" data-id="54">54 - Timimoun</option>
+              <option value="Touggourt" data-id="55">55 - Touggourt</option>
+              <option value="Djanet" data-id="56">56 - Djanet</option>
+              <option value="In Salah" data-id="57">57 - In Salah</option>
+              <option value="In Guezzam" data-id="58">58 - In Guezzam</option>
+            </select>
+            <div class="field-error" id="err-wilaya">⚠ Veuillez sélectionner votre wilaya</div>
+          </div>
+
+          <!-- STEP 3a: COMMUNE (domicile) -->
+          <div class="form-group" id="commune-section" style="display:none;">
+            <label>Commune / البلدية *</label>
+            <select id="f-commune" disabled onchange="onCommuneChange()">
+              <option value="">— Choisir la wilaya d'abord —</option>
+            </select>
+            <div class="commune-loading" id="commune-loading">
+              <div class="mini-spin"></div><span>Chargement des communes...</span>
+            </div>
+            <div class="field-error" id="err-commune">⚠ Veuillez sélectionner votre commune</div>
+          </div>
+
+          <!-- STEP 3b: STOP-DESK BUREAU -->
+          <div class="form-group" id="stopdesk-section" style="display:none;">
+            <label>Bureau Stop-Desk / مكتب الاستلام *</label>
+            <select id="f-stopdesk" disabled onchange="onStopdeskChange()">
+              <option value="">— Choisir la wilaya d'abord —</option>
+            </select>
+            <div class="commune-loading" id="stopdesk-loading">
+              <div class="mini-spin"></div><span>Chargement des bureaux...</span>
+            </div>
+            <div class="field-error" id="err-stopdesk">⚠ Veuillez sélectionner un bureau Stop-Desk</div>
+          </div>
+
+          <!-- STEP 4: ADDRESS (domicile only) -->
+          <div class="form-group full" id="address-section" style="display:none;">
+            <label>Adresse Complète / العنوان الكامل *</label>
+            <input type="text" id="f-address" placeholder="Rue, numéro, résidence, quartier..." autocomplete="street-address">
+            <div class="field-error" id="err-address">⚠ Veuillez entrer votre adresse complète (min. 5 caractères)</div>
+          </div>
+
+          <!-- SERVICE TYPE -->
+          <div class="form-group full" id="service-section" style="display:none; margin-bottom:0;">
+            <label>Service de Livraison / نوع التوصيل *</label>
+          </div>
+          <div class="service-wrap" id="service-wrap" style="display:none;">
+            <div class="service-opt selected" onclick="selectService(this,'express')">
+              <input type="radio" name="service_type" value="express" checked>
+              <div>
+                <div class="service-badge badge-express">⚡ Express</div>
+                <div class="service-name">E-Commerce 24h</div>
+                <div class="service-desc">Livraison en 24h pour la plupart des wilayas</div>
+              </div>
+            </div>
+            <div class="service-opt" onclick="selectService(this,'eco')">
+              <input type="radio" name="service_type" value="eco">
+              <div>
+                <div class="service-badge badge-eco">🕐 Économique</div>
+                <div class="service-name">E-Commerce 48h+</div>
+                <div class="service-desc">Tarif réduit, livraison en 2–7 jours</div>
+              </div>
+            </div>
+          </div>
+          <div id="stopdesk-notice" style="display:none;"></div>
+
+          <!-- PRICING HINT -->
+          <div class="wilaya-hint" id="wilayaHint">
+            <span>📦</span>
+            <span id="wilayaHintText">Sélectionnez votre wilaya pour voir les frais de livraison</span>
+          </div>
+
+          <!-- ITEMS -->
+          <div class="items-section" id="itemsSection"></div>
+          <button type="button" class="btn-add-item" onclick="addItem()">＋ &nbsp; Ajouter un article</button>
+
+          <div class="summary-bar">
+            <div class="summary-cell"><div class="summary-label">Articles</div><div class="summary-val" id="sum-items">1</div></div>
+            <div class="summary-cell"><div class="summary-label">Service</div><div class="summary-val" id="sum-service">Express 24h</div></div>
+            <div class="summary-cell"><div class="summary-label">Livraison</div><div class="summary-val" id="sum-delivery">— DA</div></div>
+            <div class="summary-cell"><div class="summary-label">Total</div><div class="summary-val" id="sum-total">— DA</div></div>
+          </div>
+
+          <div class="total-bar">
+            <span class="total-label">Total à Payer · المبلغ الإجمالي</span>
+            <span class="total-amount"><span id="totalPrice">—</span> <span>DA</span></span>
+          </div>
+
+          <div class="form-group full">
+            <label>Note / ملاحظة (optionnel)</label>
+            <textarea id="f-note" placeholder="Précisions sur votre commande..."></textarea>
+          </div>
+
+          <div class="btn-submit-wrap">
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span class="btn-submit-inner">
+                <span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span>
+                <span class="btn-submit-ar">تأكيد الطلب</span>
+              </span>
+            </button>
+          </div>
+
         </div>
-      </div>
-
-      <!-- ⑧ NOTE -->
-      <div class="field" style="margin-top:1.2rem">
-        <label>Note (optionnel)</label>
-        <textarea id="f-note" placeholder="Précisions sur votre commande..."></textarea>
-      </div>
-
-      <!-- SUMMARY -->
-      <div class="summary">
-        <div class="sum-label">
-          Total à payer<br>
-          <span style="font-size:.52rem;color:rgba(255,255,255,.22)" id="sum-detail">— article · livraison —</span>
-        </div>
-        <div class="sum-total"><span id="totalAmt">—</span><sup>DA</sup></div>
-      </div>
-
-      <!-- SUBMIT -->
-      <button type="submit" class="btn-submit" id="submitBtn">
-        <div class="btn-inner">
-          <span>✦ &nbsp; Confirmer la Commande</span>
-          <span class="btn-ar">تأكيد الطلب</span>
-        </div>
-      </button>
-      <div class="cash-note">💵 &nbsp; Paiement à la livraison — Cash uniquement</div>
-
-    </form>
+      </form>
+    </div>
   </div>
 </div>
 
-<!-- SUCCESS -->
-<div class="success-wrap" id="successWrap">
+<div class="success-overlay" id="successOverlay">
   <div class="success-box">
-    <div class="suc-icon">✅</div>
-    <div class="suc-title">Commande Confirmée !</div>
-    <div class="suc-ref" id="sRef"></div>
-    <div class="suc-msg">Merci ! Nous vous appelons dans les <strong>24h</strong> pour confirmer et organiser la livraison.</div>
-    <div class="suc-ar">شكراً! سنتصل بك خلال 24 ساعة لتأكيد الطلب وترتيب التوصيل.</div>
-    <div class="suc-cash">💵 Paiement uniquement à la livraison — Aucun paiement en ligne</div>
-    <button class="btn-close" onclick="closeSuccess()">Retour à la boutique</button>
+    <div class="success-icon">✅</div>
+    <div class="success-title">Commande Confirmée</div>
+    <div class="success-ref" id="orderRef"></div>
+    <div class="success-msg">Merci pour votre commande ! Nous vous contacterons dans les <strong>24 heures</strong> pour confirmer et organiser la livraison.</div>
+    <div class="success-ar">شكراً لطلبك! سنتصل بك خلال 24 ساعة لتأكيد الطلب وترتيب التوصيل.</div>
+    <div class="success-note">💵 Paiement à la livraison uniquement — Pas de paiement en ligne requis</div>
+    <button class="btn-close-success" onclick="closeSuccess()">Retour à la Boutique</button>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lb-close">×</span>
-  <img id="lb-img" src="" alt="">
-</div>
+<footer>
+  <div class="footer-logo">JACKETS.DZ</div>
+  <div class="footer-ar">الجزائر — أناقة بلا حدود · 58 ولاية</div>
+  <div class="footer-copy">© 2026 JACKETS.DZ · Paiement à la Livraison · Cash Only</div>
+</footer>
 
 <script>
-/* ─── CONFIG ─────────────────────────── */
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
 const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwmLvi59rtql8n9luKmkNlDhDcCFVMyxlay02hGSZSOga-92_bFO_FD5Yb2wZShGslIVw/exec';
 const WEB3FORMS_KEY    = '30674636-aca2-4f7c-952c-c3bd20a45594';
+const COMMUNE_API = '/api/communes';
 const BASE             = 8500;
+const TOTAL_STOCK      = 178;
 
-const COMMUNE_SOURCES = [
-  '/api/communes',
-  'https://onlinejacket.vercel.app/api/communes',
-  'https://raw.githubusercontent.com/dzdelivery/communes-dz/main/communes.json'
+const COLORS = [
+  { label:'Tigre',  bg:'#c8860a', color:'tigre'  },
+  { label:'Jaune',  bg:'#f5c518', color:'jaune',  border:'#bba800' },
+  { label:'Violet', bg:'#6b3a8a', color:'violet' },
+  { label:'Vert',   bg:'#1a4a3a', color:'vert'   },
+  { label:'Noir',   bg:'#1a1a1a', color:'noir'   },
+  { label:'Rouge',  bg:'#c0392b', color:'rouge'  },
+  { label:'Rose',   bg:'#e75480', color:'rose'   },
 ];
+const SIZES = ['S','M','L','XL'];
 
-/* ─── STOCK (fallback; /api/stock overwrites at load) */
-let STOCK = {
-  'Bordeaux Red': {S:5,  M:8,  L:6,  XL:4},
-  'Marron':       {S:7,  M:10, L:5,  XL:6},
-  'Rouge':        {S:7,  M:2,  L:4,  XL:0},
-  'Tigre':        {S:0,  M:10, L:0,  XL:7},
-  'Noir':         {S:9,  M:2,  L:8,  XL:8},
-  'Jaune':        {S:6,  M:8,  L:5,  XL:9},
-  'Rose':         {S:0,  M:0,  L:0,  XL:5},
+const STOCK = {
+  'Tigre':  { S:0,  M:10, L:0, XL:7  },
+  'Jaune':  { S:6,  M:8,  L:5, XL:9  },
+  'Violet': { S:9,  M:10, L:8, XL:9  },
+  'Vert':   { S:11, M:11, L:4, XL:8  },
+  'Noir':   { S:9,  M:2,  L:8, XL:8  },
+  'Rouge':  { S:7,  M:2,  L:4, XL:0  },
+  'Rose':   { S:0,  M:0,  L:0, XL:5  },
 };
 
-/* ─── DELIVERY PRICES ────────────────── */
-const WP = {
-  'Alger':              {e:{d:590, s:450, t:'J+1'},eco:{d:500, s:400, t:'J+2'}},
-  'Blida':              {e:{d:700, s:550, t:'J+1'},eco:{d:550, s:450, t:'J+2'}},
-  'Boumerdès':          {e:{d:700, s:550, t:'J+1'},eco:{d:550, s:450, t:'J+2'}},
-  'Tipaza':             {e:{d:700, s:550, t:'J+1'},eco:{d:550, s:450, t:'J+2'}},
-  'Chlef':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Oum El Bouaghi':     {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Batna':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Béjaïa':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Bouira':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Tlemcen':            {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Tiaret':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Tizi Ouzou':         {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Jijel':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Sétif':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Saïda':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Skikda':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Sidi Bel Abbès':     {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Annaba':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Guelma':             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Constantine':        {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Médéa':              {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Mostaganem':         {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  "M'Sila":             {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Mascara':            {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Oran':               {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Bordj Bou Arreridj': {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'El Tarf':            {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Tissemsilt':         {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Khenchela':          {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Souk Ahras':         {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Mila':               {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Aïn Defla':          {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Aïn Témouchent':     {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Relizane':           {e:{d:900, s:650, t:'J+1'},eco:{d:700, s:600, t:'J+2'}},
-  'Laghouat':           {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Biskra':             {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Tébessa':            {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Djelfa':             {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Ouargla':            {e:{d:950, s:750, t:'J+2'},eco:{d:850, s:700, t:'J+3'}},
-  'El Oued':            {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Ghardaïa':           {e:{d:950, s:750, t:'J+2'},eco:{d:850, s:700, t:'J+3'}},
-  'Ouled Djellal':      {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'Touggourt':          {e:{d:950, s:750, t:'J+2'},eco:{d:850, s:700, t:'J+3'}},
-  "El M'Ghair":         {e:{d:950, s:750, t:'J+1'},eco:{d:850, s:700, t:'J+2'}},
-  'El Menia':           {e:{d:950, s:750, t:'J+2'},eco:{d:850, s:700, t:'J+3'}},
-  'Adrar':              {e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'Béchar':             {e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'El Bayadh':          {e:{d:1050,s:850, t:'J+2'},eco:{d:1650,s:1550,t:'J+3'}},
-  'Naâma':              {e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'Timimoun':           {e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'Bordj Badji Mokhtar':{e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'Béni Abbès':         {e:{d:1050,s:850, t:'J+3'},eco:{d:1650,s:1550,t:'J+4'}},
-  'Tamanrasset':        {e:{d:1600,s:1400,t:'J+5'},eco:{d:1650,s:1550,t:'J+6'}},
-  'Illizi':             {e:{d:1600,s:1400,t:'J+6'},eco:{d:1650,s:1550,t:'J+7'}},
-  'Tindouf':            {e:{d:1600,s:1400,t:'J+5'},eco:{d:1650,s:1550,t:'J+6'}},
-  'In Salah':           {e:{d:1600,s:1400,t:'J+5'},eco:{d:1650,s:1550,t:'J+6'}},
-  'In Guezzam':         {e:{d:1600,s:1400,t:'J+5'},eco:{d:1650,s:1550,t:'J+6'}},
-  'Djanet':             {e:{d:1600,s:1400,t:'J+6'},eco:{d:1650,s:1550,t:'J+7'}}
+function getStock(color, size) {
+  if (!color || !size) return null;
+  return (STOCK[color] && STOCK[color][size] !== undefined) ? STOCK[color][size] : 0;
+}
+
+function getTotalOrdered(color, size) {
+  return items.filter(i => i.color === color && i.size === size).length;
+}
+
+function getAvailable(color, size) {
+  const stock = getStock(color, size);
+  if (stock === null) return 0;
+  return Math.max(0, stock - getTotalOrdered(color, size));
+}
+
+const WILAYA_PRICES = {
+  'Alger':               { express:{domicile:590,  stopdesk:450,  delai:'J+1'}, eco:{domicile:500,  stopdesk:400,  delai:'J+2'} },
+  'Blida':               { express:{domicile:700,  stopdesk:550,  delai:'J+1'}, eco:{domicile:550,  stopdesk:450,  delai:'J+2'} },
+  'Boumerdès':           { express:{domicile:700,  stopdesk:550,  delai:'J+1'}, eco:{domicile:550,  stopdesk:450,  delai:'J+2'} },
+  'Tipaza':              { express:{domicile:700,  stopdesk:550,  delai:'J+1'}, eco:{domicile:550,  stopdesk:450,  delai:'J+2'} },
+  'Chlef':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Oum El Bouaghi':      { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Batna':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Béjaïa':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Bouira':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Tlemcen':             { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Tiaret':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Tizi Ouzou':          { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Jijel':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Sétif':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Saïda':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Skikda':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Sidi Bel Abbès':      { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Annaba':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Guelma':              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Constantine':         { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Médéa':               { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Mostaganem':          { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  "M'Sila":              { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Mascara':             { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Oran':                { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Bordj Bou Arreridj':  { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'El Tarf':             { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Tissemsilt':          { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Khenchela':           { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Souk Ahras':          { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Mila':                { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Aïn Defla':           { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Aïn Témouchent':      { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Relizane':            { express:{domicile:900,  stopdesk:650,  delai:'J+1'}, eco:{domicile:700,  stopdesk:600,  delai:'J+2'} },
+  'Laghouat':            { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Biskra':              { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Tébessa':             { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Djelfa':              { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Ouargla':             { express:{domicile:950,  stopdesk:750,  delai:'J+2'}, eco:{domicile:850,  stopdesk:700,  delai:'J+3'} },
+  'El Oued':             { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Ghardaïa':            { express:{domicile:950,  stopdesk:750,  delai:'J+2'}, eco:{domicile:850,  stopdesk:700,  delai:'J+3'} },
+  'Ouled Djellal':       { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'Touggourt':           { express:{domicile:950,  stopdesk:750,  delai:'J+2'}, eco:{domicile:850,  stopdesk:700,  delai:'J+3'} },
+  "El M'Ghair":          { express:{domicile:950,  stopdesk:750,  delai:'J+1'}, eco:{domicile:850,  stopdesk:700,  delai:'J+2'} },
+  'El Menia':            { express:{domicile:950,  stopdesk:750,  delai:'J+2'}, eco:{domicile:850,  stopdesk:700,  delai:'J+3'} },
+  'Adrar':               { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'Béchar':              { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'El Bayadh':           { express:{domicile:1050, stopdesk:850,  delai:'J+2'}, eco:{domicile:1650, stopdesk:1550, delai:'J+3'} },
+  'Naâma':               { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'Timimoun':            { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'Bordj Badji Mokhtar': { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'Béni Abbès':          { express:{domicile:1050, stopdesk:850,  delai:'J+3'}, eco:{domicile:1650, stopdesk:1550, delai:'J+4'} },
+  'Tamanrasset':         { express:{domicile:1600, stopdesk:1400, delai:'J+5'}, eco:{domicile:1650, stopdesk:1550, delai:'J+6'} },
+  'Illizi':              { express:{domicile:1600, stopdesk:1400, delai:'J+6'}, eco:{domicile:1650, stopdesk:1550, delai:'J+7'} },
+  'Tindouf':             { express:{domicile:1600, stopdesk:1400, delai:'J+5'}, eco:{domicile:1650, stopdesk:1550, delai:'J+6'} },
+  'In Salah':            { express:{domicile:1600, stopdesk:1400, delai:'J+5'}, eco:{domicile:1650, stopdesk:1550, delai:'J+6'} },
+  'In Guezzam':          { express:{domicile:1600, stopdesk:1400, delai:'J+5'}, eco:{domicile:1650, stopdesk:1550, delai:'J+6'} },
+  'Djanet':              { express:{domicile:1600, stopdesk:1400, delai:'J+6'}, eco:{domicile:1650, stopdesk:1550, delai:'J+7'} },
 };
 
-/* ─── STATE ──────────────────────────── */
-let color='Bordeaux Red', size='', qty=1, mode='domicile', svc='express', deliveryFee=0, communesCache=null;
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let selectedService      = 'express';
+let selectedDeliveryType = 'domicile';
+let deliveryFee          = 0;
+let items                = [];
+let selectedColor        = '';
+let selectedSize         = '';
+let selectedQty          = 1;
+let allCommunesCache     = null;
+const thumbPanelMap      = ['navy-blue','bordeaux-red','midnight-black','sahara-gold','forest-green'];
 
-/* ─── GALLERY ────────────────────────── */
-function switchImg(el) {
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const cleanPhone = v  => v.replace(/\D/g,'');
+const getSold    = () => parseInt(localStorage.getItem('jdz_sold')||'0');
+const addSold    = n  => localStorage.setItem('jdz_sold', getSold()+n);
+const getPhones  = () => JSON.parse(localStorage.getItem('jdz_phones')||'[]');
+const savePhone  = p  => { const a=getPhones(); a.push(cleanPhone(p)); localStorage.setItem('jdz_phones',JSON.stringify(a)); };
+const phoneUsed  = p  => getPhones().includes(cleanPhone(p));
+
+function isValidPhone(v) {
+  const d = cleanPhone(v);
+  return d.length === 10 && /^0[5-7]/.test(d);
+}
+function formatPhone(input) {
+  const d = cleanPhone(input.value).slice(0,10);
+  let out = d;
+  if (d.length > 4 && d.length <= 7) out = d.slice(0,4)+' '+d.slice(4);
+  else if (d.length > 7)              out = d.slice(0,4)+' '+d.slice(4,7)+' '+d.slice(7);
+  input.value = out;
+}
+function showErr(eId, iId) {
+  document.getElementById(eId).classList.add('show');
+  if (iId) document.getElementById(iId)?.classList.add('input-error');
+}
+function clearErr(eId, iId) {
+  document.getElementById(eId).classList.remove('show');
+  if (iId) document.getElementById(iId)?.classList.remove('input-error');
+}
+function show(id) { const el=document.getElementById(id); if(el) el.style.display=''; }
+function hide(id) { const el=document.getElementById(id); if(el) el.style.display='none'; }
+
+// ─── Gallery ──────────────────────────────────────────────────────────────────
+function switchThumb(el, idx) {
   document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
-  const id=el.dataset.img;
-  document.querySelectorAll('.jacket-img').forEach(i=>i.classList.remove('active'));
-  const target=document.getElementById('img-'+id);
-  if(target) target.classList.add('active');
+  document.querySelectorAll('.color-panel').forEach(p=>p.classList.remove('active'));
+  const panel = document.getElementById('panel-'+thumbPanelMap[idx]);
+  if (panel) panel.classList.add('active');
 }
 
-function pickColor(el) {
+// ─── Product selectors ────────────────────────────────────────────────────────
+function selectColor(dotEl) {
   document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('active'));
-  el.classList.add('active');
-  color=el.dataset.label;
-  document.getElementById('colorLabel').textContent=color;
-
-  // BUG FIX: Use inline background from the dot itself for the swatch
-  // But avoid setting complex gradients (Tigre) — use a solid approximation
-  const swatchBg = el.style.background.includes('gradient') ? el.style.background : el.style.background;
-  document.getElementById('colorSwatch').style.background = swatchBg;
-  document.getElementById('colorDisplay').textContent=color;
-
-  const id=el.dataset.img;
-  document.querySelectorAll('.jacket-img').forEach(i=>i.classList.remove('active'));
-  const target=document.getElementById('img-'+id);
-  if(target) target.classList.add('active');
-  document.querySelectorAll('.thumb').forEach(t=>t.classList.toggle('active',t.dataset.img===id));
-
-  clearErr('err-color');
-  size='';
-  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
-  refreshSizes();
-  refreshTotal();
+  dotEl.classList.add('active');
+  selectedColor = dotEl.dataset.label;
+  document.getElementById('colorName').textContent = selectedColor;
+  const panel = document.getElementById('panel-'+dotEl.dataset.color);
+  if (panel) { document.querySelectorAll('.color-panel').forEach(p=>p.classList.remove('active')); panel.classList.add('active'); }
+  clearErr('colorError');
+  selectedSize = '';
+  document.getElementById('sizeName').textContent = 'Sélectionner';
+  refreshSizeButtons();
 }
-
-/* ─── SIZES ──────────────────────────── */
-function stockOf(c,s){return Math.max(0,STOCK[c]?.[s]??0);}
-
-function refreshSizes(){
-  document.querySelectorAll('.sz').forEach(btn=>{
-    const s=btn.dataset.s, avail=stockOf(color,s);
-    btn.classList.remove('active','unavail');
-    if(avail<=0){btn.classList.add('unavail');btn.disabled=true;}
-    else{btn.disabled=false;if(s===size)btn.classList.add('active');}
+function refreshSizeButtons() {
+  document.querySelectorAll('.sz').forEach(btn => {
+    const size = btn.dataset.size;
+    const avail = selectedColor ? getAvailable(selectedColor, size) : null;
+    const stock = selectedColor ? getStock(selectedColor, size) : null;
+    btn.classList.remove('active');
+    if (stock === 0) {
+      btn.disabled = true;
+      btn.classList.add('sz-unavail');
+      btn.title = `${size} non disponible en ${selectedColor}`;
+    } else if (avail === 0 && stock > 0) {
+      btn.disabled = true;
+      btn.classList.add('sz-unavail');
+      btn.title = `${size} en ${selectedColor} — plus de stock disponible`;
+    } else {
+      btn.disabled = false;
+      btn.classList.remove('sz-unavail');
+      btn.title = avail !== null ? `${avail} restant(s)` : '';
+    }
   });
 }
-
-function pickSize(btn){
-  if(btn.disabled)return;
-  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  size=btn.dataset.s; clearErr('err-size'); refreshTotal();
-}
-
-/* ─── QTY ────────────────────────────── */
-function changeQty(d){
-  qty=Math.max(1,Math.min(10,qty+d));
-  document.getElementById('qtyVal').textContent=qty;
-  refreshTotal();
-}
-
-/* ─── MODE ───────────────────────────── */
-function setMode(m,el){
-  mode=m;
-  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('active'));
-  el.classList.add('active');
-  el.querySelector('input').checked=true;
-  document.getElementById('f-wilaya').value='';
-  resetLocation();
-}
-
-/* ─── WILAYA ─────────────────────────── */
-function onWilaya(){
-  const sel=document.getElementById('f-wilaya');
-  const opt=sel.options[sel.selectedIndex];
-  const wid=opt?.dataset.id;
-  clearErr('err-wilaya'); resetLocation();
-  if(!wid)return;
-  show('commune-wrap');
-  document.getElementById('commune-label').textContent=mode==='domicile'?'Commune *':'Bureau Stop-Desk *';
-  loadPlaces(wid, mode==='stopdesk');
-  refreshPricing();
-}
-
-function resetLocation(){
-  hide('commune-wrap'); hide('addr-wrap'); hide('svc-section');
-  document.getElementById('dHint').classList.remove('show');
-
-  // BUG FIX: fully reset commune select options on location reset
-  const c=document.getElementById('f-commune');
-  c.innerHTML='<option value="">— Commune —</option>'; c.disabled=true;
-
-  deliveryFee=0;
-  document.getElementById('p-dom').textContent='— DA';
-  document.getElementById('p-sd').textContent='— DA';
-  refreshTotal();
-}
-
-function onCommune(){
-  clearErr('err-commune');
-  const val=document.getElementById('f-commune').value;
-  if(!val){hide('addr-wrap');hide('svc-section');return;}
-  if(mode==='domicile') show('addr-wrap');
-  show('svc-section');
-  refreshPricing();
-}
-
-/* ─── LOAD COMMUNES ──────────────────── */
-async function fetchCommunes(){
-  if(communesCache)return communesCache;
-  for(const url of COMMUNE_SOURCES){
-    try{
-      const r=await fetch(url); if(!r.ok)continue;
-      const d=await r.json();
-      const list=d.communes||d;
-      if(Array.isArray(list)&&list.length){communesCache=list;return list;}
-    }catch{continue;}
-  }
-  return[];
-}
-
-async function loadPlaces(wid,stopDeskOnly){
-  const sel=document.getElementById('f-commune'),spin=document.getElementById('commune-spin');
-  sel.disabled=true; sel.innerHTML='<option value="">Chargement...</option>'; spin.classList.add('show');
-  try{
-    const all=await fetchCommunes();
-    let list=all.filter(c=>String(c.wilaya_id)===String(wid));
-    if(stopDeskOnly)list=list.filter(c=>c.has_stop_desk);
-    list.sort((a,b)=>a.name.localeCompare(b.name));
-    if(!list.length&&stopDeskOnly){
-      setMode('domicile',document.getElementById('opt-dom'));
-      document.getElementById('f-wilaya').dispatchEvent(new Event('change'));
-      return;
-    }
-    sel.innerHTML=`<option value="">${stopDeskOnly?'— Bureau —':'— Commune —'}</option>`;
-    list.forEach(c=>{const o=document.createElement('option');o.value=c.name;o.textContent=c.name;sel.appendChild(o);});
-    sel.disabled=false;
-  }catch{
-    sel.innerHTML='<option value="">Erreur — réessayez</option>'; sel.disabled=false;
-  }
-  spin.classList.remove('show');
-}
-
-/* ─── SERVICE ────────────────────────── */
-function setSvc(s,el){
-  svc=s;
-  document.querySelectorAll('.svc-opt').forEach(o=>o.classList.remove('active'));
-  el.classList.add('active'); el.querySelector('input').checked=true;
-  refreshPricing();
-}
-
-/* ─── PRICING ────────────────────────── */
-function refreshPricing(){
-  const w=document.getElementById('f-wilaya').value; if(!w)return;
-  const p=WP[w]; if(!p)return;
-  const tier=svc==='express'?p.e:p.eco;
-  document.getElementById('p-dom').textContent=tier.d+' DA';
-  document.getElementById('p-sd').textContent=tier.s+' DA';
-  deliveryFee=mode==='domicile'?tier.d:tier.s;
-  document.getElementById('dHintText').textContent=`${w} · ${tier.t} · Livraison ${deliveryFee} DA`;
-  document.getElementById('dHint').classList.add('show');
-  refreshTotal();
-}
-
-/* ─── TOTAL ──────────────────────────── */
-function refreshTotal(){
-  document.getElementById('sum-detail').textContent=
-    `${qty} article${qty>1?'s':''} · livraison ${deliveryFee?deliveryFee+' DA':'—'}`;
-  document.getElementById('totalAmt').textContent=
-    (size&&deliveryFee)?(BASE*qty+deliveryFee).toLocaleString('fr-DZ'):'—';
-}
-
-/* ─── HELPERS ────────────────────────── */
-// BUG FIX: show() now explicitly sets display to 'block' (not '' which may not override inline display:none)
-function show(id){const e=document.getElementById(id);if(e)e.style.display='block';}
-function hide(id){const e=document.getElementById(id);if(e)e.style.display='none';}
-function showErr(id){document.getElementById(id)?.classList.add('show');}
-function clearErr(id){document.getElementById(id)?.classList.remove('show');}
-function fmtPhone(inp){
-  const d=inp.value.replace(/\D/g,'').slice(0,10);
-  let o=d;
-  if(d.length>4&&d.length<=7)o=d.slice(0,4)+' '+d.slice(4);
-  else if(d.length>7)o=d.slice(0,4)+' '+d.slice(4,7)+' '+d.slice(7);
-  inp.value=o;
-}
-function validPhone(v){const d=v.replace(/\D/g,'');return d.length===10&&/^0[5-7]/.test(d);}
-
-/* ─── SUBMIT ─────────────────────────── */
-document.getElementById('orderForm').addEventListener('submit',async function(e){
-  e.preventDefault();
-  const name   =document.getElementById('f-name').value.trim();
-  const phone  =document.getElementById('f-phone').value;
-  const wilaya =document.getElementById('f-wilaya').value;
-  const commune=document.getElementById('f-commune').value;
-  const addr   =document.getElementById('f-addr').value.trim();
-
-  let ok=true;
-  if(!color)             {showErr('err-color');  ok=false;}else clearErr('err-color');
-  if(!size)              {showErr('err-size');   ok=false;}else clearErr('err-size');
-  if(name.length<3)      {showErr('err-name');   ok=false;}else clearErr('err-name');
-  if(!validPhone(phone)) {showErr('err-phone');  ok=false;}else clearErr('err-phone');
-  if(!wilaya)            {showErr('err-wilaya'); ok=false;}else clearErr('err-wilaya');
-  if(!commune)           {showErr('err-commune');ok=false;}else clearErr('err-commune');
-  if(mode==='domicile'&&addr.length<5){showErr('err-addr');ok=false;}else clearErr('err-addr');
-  if(!ok){
-    // BUG FIX: scroll to first visible error, not just any error with class show
-    const firstErr=document.querySelector('.err-msg.show');
-    if(firstErr) firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+function selectSize(btn, size) {
+  if (btn.disabled) return;
+  if (!selectedColor) {
+    showErr('colorError');
+    document.getElementById('colorError').textContent = '⚠ Veuillez d\'abord choisir une couleur';
     return;
   }
+  const avail = getAvailable(selectedColor, size);
+  if (avail <= 0) {
+    showErr('sizeError');
+    document.getElementById('sizeError').textContent =
+      getStock(selectedColor, size) === 0
+        ? `⚠ La taille ${size} n'existe pas en ${selectedColor}`
+        : `⚠ La taille ${size} en ${selectedColor} est épuisée`;
+    return;
+  }
+  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSize = size;
+  document.getElementById('sizeName').textContent = size + ` (${avail} restant${avail>1?'s':''})`;
+  clearErr('sizeError');
+}
+function changeQty(delta) {
+  selectedQty = Math.max(1, Math.min(10, selectedQty+delta));
+  document.getElementById('qtyValue').textContent = selectedQty;
+}
 
-  const btn=document.getElementById('submitBtn');
-  btn.disabled=true;
-  btn.querySelector('.btn-inner').innerHTML='<span>⏳ Envoi en cours...</span>';
+function resetFromMode() {
+  const wSel = document.getElementById('f-wilaya');
+  wSel.value = '';
+  resetFromWilaya();
+  show('wilaya-section');
+}
 
-  const total   =BASE*qty+deliveryFee;
-  const ref     ='DZ-'+Date.now().toString().slice(-6);
-  const cleanPh =phone.replace(/\D/g,'');
-  const svcLabel=svc==='express'?'Express 24h':'Économique 48h+';
-  const modeLbl =mode==='domicile'?'Domicile':'Stop-Desk';
+function resetFromWilaya() {
+  const cSel = document.getElementById('f-commune');
+  cSel.innerHTML = "<option value=''>— Choisir la wilaya d'abord —</option>";
+  cSel.disabled = true;
+  const sSel = document.getElementById('f-stopdesk');
+  sSel.innerHTML = "<option value=''>— Choisir la wilaya d'abord —</option>";
+  sSel.disabled = true;
+  hide('commune-section');
+  hide('stopdesk-section');
+  hide('address-section');
+  hide('service-section');
+  hide('service-wrap');
+  deliveryFee = 0;
+  document.getElementById('price-domicile').textContent = '— DA';
+  document.getElementById('price-stopdesk').textContent = '— DA';
+  updateTotal();
+}
 
-  const payload={
-    timestamp:new Date().toLocaleString('fr-DZ'),ref,
-    nom:name,telephone:cleanPh,wilaya,commune,adresse:addr||'—',
-    couleur:color,taille:size,quantite:qty,
-    service:svcLabel,mode_livraison:modeLbl,
+function resetFromCommune() {
+  hide('address-section');
+  hide('service-section');
+  hide('service-wrap');
+  deliveryFee = 0;
+  updateTotal();
+}
+
+function selectDelivery(el, type) {
+  document.querySelectorAll('.delivery-opt').forEach(d=>d.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input').checked = true;
+  selectedDeliveryType = type;
+  resetFromMode();
+}
+
+function onWilayaChange() {
+  const sel = document.getElementById('f-wilaya');
+  const opt = sel.options[sel.selectedIndex];
+  const wId = opt ? opt.dataset.id : null;
+  clearErr('err-wilaya','f-wilaya');
+  resetFromWilaya();
+
+  if (!wId) return;
+
+  if (selectedDeliveryType === 'domicile') {
+    show('commune-section');
+    loadCommunes(wId);
+  } else {
+    show('stopdesk-section');
+    loadStopdesks(wId);
+  }
+  refreshPricing();
+}
+
+function onCommuneChange() {
+  clearErr('err-commune','f-commune');
+  resetFromCommune();
+  const sel = document.getElementById('f-commune');
+  if (!sel.value) return;
+  show('address-section');
+  show('service-section');
+  show('service-wrap');
+  refreshPricing();
+}
+
+function onStopdeskChange() {
+  clearErr('err-stopdesk','f-stopdesk');
+  resetFromCommune();
+  const sel = document.getElementById('f-stopdesk');
+  if (!sel.value) return;
+  show('service-section');
+  show('service-wrap');
+  refreshPricing();
+}
+
+function selectService(el, type) {
+  document.querySelectorAll('.service-opt').forEach(d=>d.classList.remove('selected'));
+  el.classList.add('selected'); el.querySelector('input').checked = true;
+  selectedService = type;
+  document.getElementById('sum-service').textContent = type==='express' ? 'Express 24h' : 'Économique';
+  refreshPricing();
+}
+
+async function prefetchCommunes() {
+  try {
+    const res  = await fetch(COMMUNE_API);
+    const data = await res.json();
+    if (data.communes) allCommunesCache = data.communes;
+  } catch(err) { console.warn('Prefetch error:', err); }
+}
+
+async function loadCommunes(wilayaId) {
+  const sel     = document.getElementById('f-commune');
+  const loading = document.getElementById('commune-loading');
+  sel.disabled  = true;
+  sel.innerHTML = '<option value="">Chargement...</option>';
+  loading.classList.add('show');
+
+  try {
+    if (!allCommunesCache) {
+      const res  = await fetch(COMMUNE_API);
+      const data = await res.json();
+      if (data.communes) allCommunesCache = data.communes;
+    }
+    const filtered = (allCommunesCache||[])
+      .filter(c => String(c.wilaya_id) === String(wilayaId))
+      .sort((a,b) => a.name.localeCompare(b.name));
+
+    if (filtered.length === 0) {
+      sel.innerHTML = '<option value="">Aucune commune disponible</option>';
+    } else {
+      sel.innerHTML = '<option value="">— Choisir une commune —</option>';
+      filtered.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c.name; o.textContent = c.name;
+        sel.appendChild(o);
+      });
+      sel.disabled = false;
+    }
+  } catch(err) {
+    sel.innerHTML = '<option value="">Erreur — réessayez</option>';
+    sel.disabled = false;
+  }
+  loading.classList.remove('show');
+}
+
+async function loadStopdesks(wilayaId) {
+  const sel     = document.getElementById('f-stopdesk');
+  const loading = document.getElementById('stopdesk-loading');
+  sel.disabled  = true;
+  sel.innerHTML = '<option value="">Chargement...</option>';
+  loading.classList.add('show');
+
+  try {
+    if (!allCommunesCache) {
+      const res  = await fetch(COMMUNE_API);
+      const data = await res.json();
+      if (data.communes) allCommunesCache = data.communes;
+    }
+    const offices = (allCommunesCache||[])
+      .filter(c => String(c.wilaya_id) === String(wilayaId) && c.has_stop_desk)
+      .sort((a,b) => a.name.localeCompare(b.name));
+
+    if (offices.length === 0) {
+      sel.innerHTML = '<option value="">Aucun bureau — choisissez Domicile</option>';
+      selectDelivery(document.getElementById('opt-domicile'), 'domicile');
+      const wSel = document.getElementById('f-wilaya');
+      const opt  = wSel.options[wSel.selectedIndex];
+      if (opt && opt.dataset.id) { show('commune-section'); loadCommunes(opt.dataset.id); }
+    } else {
+      sel.innerHTML = '<option value="">— Choisir un bureau —</option>';
+      offices.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c.name; o.textContent = c.name;
+        sel.appendChild(o);
+      });
+      sel.disabled = false;
+    }
+  } catch(err) {
+    sel.innerHTML = '<option value="">Erreur — réessayez</option>';
+    sel.disabled = false;
+  }
+  loading.classList.remove('show');
+}
+
+function refreshPricing() {
+  const wilaya = document.getElementById('f-wilaya').value;
+  if (!wilaya) return;
+
+  const prices = WILAYA_PRICES[wilaya];
+  if (!prices) return;
+
+  const svc = prices[selectedService] || prices['express'];
+  document.getElementById('price-domicile').textContent = svc.domicile + ' DA';
+  document.getElementById('price-stopdesk').textContent = svc.stopdesk + ' DA';
+
+  deliveryFee = selectedDeliveryType === 'domicile' ? svc.domicile : svc.stopdesk;
+
+  document.getElementById('sum-service').textContent = selectedService === 'express' ? 'Express 24h' : 'Économique';
+
+  const hint = document.getElementById('wilayaHintText');
+  if (hint) hint.textContent = `📦 ${wilaya} — ${svc.delai} — Livraison: ${deliveryFee} DA`;
+  document.getElementById('wilayaHint').classList.add('show');
+
+  updateTotal();
+}
+
+function updateTotal() {
+  const count = items.length || 1;
+  const total = BASE * count + deliveryFee;
+  document.getElementById('sum-items').textContent    = count;
+  document.getElementById('sum-delivery').textContent = deliveryFee ? deliveryFee+' DA' : '— DA';
+  document.getElementById('sum-total').textContent    = deliveryFee ? total.toLocaleString('fr-DZ')+' DA' : '— DA';
+  document.getElementById('totalPrice').textContent   = deliveryFee ? total.toLocaleString('fr-DZ') : '—';
+}
+
+function renderItems() {
+  const sec = document.getElementById('itemsSection');
+  sec.innerHTML = '';
+  items.forEach((item,i) => {
+    const div = document.createElement('div');
+    div.className = 'item-row';
+    div.innerHTML = `
+      <div class="item-label">Article ${i+1}</div>
+      <div class="item-detail">${item.color} / ${item.size}</div>
+      <button type="button" class="item-remove" onclick="removeItem(${i})">✕</button>`;
+    sec.appendChild(div);
+  });
+  updateTotal();
+}
+function addItem() {
+  if (!selectedColor) {
+    showErr('colorError');
+    document.getElementById('colorError').textContent = '⚠ Veuillez choisir une couleur';
+    return;
+  }
+  if (!selectedSize) {
+    showErr('sizeError');
+    document.getElementById('sizeError').textContent = '⚠ Veuillez choisir une taille';
+    return;
+  }
+  const avail = getAvailable(selectedColor, selectedSize);
+  if (avail <= 0) {
+    showErr('sizeError');
+    document.getElementById('sizeError').textContent =
+      getStock(selectedColor, selectedSize) === 0
+        ? `⚠ La taille ${selectedSize} n'existe pas en ${selectedColor}`
+        : `⚠ La taille ${selectedSize} en ${selectedColor} est épuisée`;
+    return;
+  }
+  items.push({ color: selectedColor, size: selectedSize });
+  renderItems();
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('active'));
+  selectedColor = ''; selectedSize = '';
+  document.getElementById('colorName').textContent = 'Sélectionner';
+  document.getElementById('sizeName').textContent  = 'Sélectionner';
+  refreshSizeButtons();
+}
+function removeItem(i) {
+  items.splice(i,1);
+  renderItems();
+  if (selectedColor) refreshSizeButtons();
+}
+
+document.getElementById('orderForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value;
+  const wilaya  = document.getElementById('f-wilaya').value;
+  const commune = selectedDeliveryType === 'domicile'
+    ? document.getElementById('f-commune').value
+    : document.getElementById('f-stopdesk').value;
+  const address = document.getElementById('f-address').value.trim();
+
+  let hasError = false;
+  if (name.length < 3)     { showErr('err-name','f-name');     hasError=true; } else clearErr('err-name','f-name');
+  if (!isValidPhone(phone)){ showErr('err-phone','f-phone');   hasError=true; } else clearErr('err-phone','f-phone');
+  if (!wilaya)             { showErr('err-wilaya','f-wilaya'); hasError=true; } else clearErr('err-wilaya','f-wilaya');
+
+  if (selectedDeliveryType === 'domicile') {
+    if (!commune) { showErr('err-commune','f-commune'); hasError=true; } else clearErr('err-commune','f-commune');
+    if (address.length < 5) { showErr('err-address','f-address'); hasError=true; } else clearErr('err-address','f-address');
+  } else {
+    if (!commune) { showErr('err-stopdesk','f-stopdesk'); hasError=true; } else clearErr('err-stopdesk','f-stopdesk');
+  }
+
+  if (items.length === 0) {
+    if (!selectedColor) {
+      showErr('colorError');
+      document.getElementById('colorError').textContent = '⚠ Veuillez choisir une couleur';
+      hasError=true;
+    }
+    if (!selectedSize) {
+      showErr('sizeError');
+      document.getElementById('sizeError').textContent = selectedColor
+        ? '⚠ Veuillez choisir une taille'
+        : '⚠ Choisissez d\'abord une couleur, puis une taille';
+      hasError=true;
+    }
+    if (selectedColor && selectedSize) {
+      const avail = getAvailable(selectedColor, selectedSize);
+      if (avail <= 0) {
+        showErr('sizeError');
+        document.getElementById('sizeError').textContent =
+          getStock(selectedColor, selectedSize) === 0
+            ? `⚠ La taille ${selectedSize} n'existe pas en ${selectedColor}`
+            : `⚠ La taille ${selectedSize} en ${selectedColor} est épuisée`;
+        hasError=true;
+      }
+    }
+  }
+  if (hasError) return;
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="btn-submit-inner"><span>⏳ &nbsp; Envoi en cours...</span></span>';
+
+  const itemsArr  = items.length>0 ? items : [{color:selectedColor,size:selectedSize}];
+  const count     = itemsArr.length;
+  const total     = BASE*count + deliveryFee;
+  const totalStr  = total.toLocaleString('fr-DZ')+' DA';
+  const svcLabel  = selectedService==='express' ? 'Express 24h' : 'Économique 48h+';
+  const modeLabel = selectedDeliveryType==='domicile' ? 'Domicile' : 'Stop-Desk';
+  const orderRef  = 'DZ-'+Date.now().toString().slice(-6);
+  const timestamp = new Date().toLocaleString('fr-DZ');
+  const cleanedPhone = cleanPhone(phone);
+
+  const orderData = {
+    timestamp, ref:orderRef,
+    nom:name, telephone:cleanedPhone,
+    wilaya, commune, adresse:address,
+    service:svcLabel, mode_livraison:modeLabel, is_stopdesk: selectedDeliveryType==='stopdesk' ? '1' : '0',
+    couleur:itemsArr.map(i=>i.color).join(', '),
+    taille: itemsArr.map(i=>i.size).join(', '),
+    quantite:count,
     frais_livraison:deliveryFee+' DA',
-    total:total.toLocaleString('fr-DZ')+' DA',
+    total:totalStr,
     note:document.getElementById('f-note').value.trim()||'—',
+    articles:itemsArr.map((it,i)=>`Article ${i+1}: ${it.color} / ${it.size}`).join(' | '),
     statut:'Pending'
   };
 
-  let sent=false;
-  try{await fetch(GOOGLE_SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});sent=true;}catch{}
-  try{
+  let sheetOk=false, emailOk=false;
+
+  try {
+    await fetch(GOOGLE_SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(orderData)});
+    sheetOk=true;
+  } catch(err){console.warn('Sheets:',err);}
+
+  try {
     const fd=new FormData();
     fd.append('access_key',WEB3FORMS_KEY);
-    fd.append('subject',`Commande #${ref} — JACKETS.DZ`);
-    fd.append('name',name);fd.append('email','noreply@jackets.dz');
+    fd.append('subject',`Commande #${orderRef} — JACKETS.DZ`);
+    fd.append('from_name','JACKETS.DZ');
+    fd.append('name',name);
+    fd.append('email','noreply@jackets.dz');
     fd.append('message',
-      `#${ref}\n${name} | ${cleanPh}\n${wilaya} / ${commune}\n${addr}\n`+
-      `${color} / ${size} x${qty}\n${modeLbl} · ${svcLabel}\n`+
-      `Livraison: ${deliveryFee} DA · Total: ${payload.total}\nNote: ${payload.note}`
+      `NOUVELLE COMMANDE #${orderRef}\n\n`+
+      `Client   : ${name}\nTel      : ${cleanedPhone}\nWilaya   : ${wilaya}\nCommune  : ${commune}\nMode     : ${modeLabel}\nAdresse  : ${address}\n\n`+
+      itemsArr.map((it,i)=>`Article ${i+1}: ${it.color} / ${it.size}`).join('\n')+'\n\n'+
+      `Service  : ${svcLabel}\nLivraison: ${deliveryFee} DA\nTotal    : ${totalStr}\nNote     : ${orderData.note}\nDate     : ${timestamp}`
     );
-    const r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
-    const d=await r.json();if(d.success)sent=true;
-  }catch{}
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+    const data=await res.json();
+    emailOk=data.success===true;
+  } catch(err){console.warn('Email:',err);}
 
-  if(!sent){
+  if (!sheetOk && !emailOk) {
     btn.disabled=false;
-    btn.querySelector('.btn-inner').innerHTML='<span>✦ &nbsp; Confirmer la Commande</span><span class="btn-ar">تأكيد الطلب</span>';
+    btn.innerHTML='<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
     alert('Erreur réseau. Vérifiez votre connexion et réessayez.');
     return;
   }
 
-  document.getElementById('sRef').textContent='Référence : #'+ref;
-  document.getElementById('successWrap').classList.add('show');
+  savePhone(phone); addSold(count);
+  document.getElementById('orderRef').textContent=`Référence : #${orderRef}`;
+  document.getElementById('successOverlay').classList.add('show');
   document.body.style.overflow='hidden';
+
+  document.getElementById('orderForm').reset();
+  items=[]; renderItems();
+  selectedColor=''; selectedSize=''; selectedQty=1;
+  selectedService='express'; selectedDeliveryType='domicile'; deliveryFee=0;
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('active'));
+  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.service-opt').forEach(d=>d.classList.remove('selected'));
+  document.querySelector('.service-opt').classList.add('selected');
+  document.querySelectorAll('.delivery-opt').forEach(d=>d.classList.remove('selected'));
+  document.getElementById('opt-domicile').classList.add('selected');
+  document.getElementById('colorName').textContent='Sélectionner';
+  document.getElementById('sizeName').textContent='Sélectionner';
+  document.getElementById('qtyValue').textContent='1';
+  document.getElementById('price-domicile').textContent='— DA';
+  document.getElementById('price-stopdesk').textContent='— DA';
+  document.getElementById('sum-service').textContent='Express 24h';
+  hide('commune-section'); hide('stopdesk-section');
+  hide('address-section'); hide('service-section'); hide('service-wrap');
+  updateTotal();
+
   btn.disabled=false;
-  btn.querySelector('.btn-inner').innerHTML='<span>✦ &nbsp; Confirmer la Commande</span><span class="btn-ar">تأكيد الطلب</span>';
+  btn.innerHTML='<span class="btn-submit-inner"><span>✦ &nbsp; Confirmer la Commande &nbsp; ✦</span><span class="btn-submit-ar">تأكيد الطلب</span></span>';
 });
 
-/* ─── CLOSE + RESET ──────────────────── */
-function closeSuccess(){
-  document.getElementById('successWrap').classList.remove('show');
-  document.body.style.overflow='';
-  color='Bordeaux Red';size='';qty=1;mode='domicile';svc='express';deliveryFee=0;
-  document.getElementById('orderForm').reset();
-  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('active'));
-  document.querySelector('.cdot[data-label="Bordeaux Red"]').classList.add('active');
-  document.getElementById('colorLabel').textContent='Bordeaux Red';
-  document.getElementById('colorDisplay').textContent='Bordeaux Red';
-  document.getElementById('colorSwatch').style.background='#722f37';
-  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
-  document.getElementById('qtyVal').textContent='1';
-  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('active'));
-  document.getElementById('opt-dom').classList.add('active');
-  document.querySelector('#opt-dom input').checked=true;
-  document.querySelectorAll('.svc-opt').forEach(o=>o.classList.remove('active'));
-  document.getElementById('svc-express').classList.add('active');
-  document.querySelector('#svc-express input').checked=true;
-  document.querySelectorAll('.jacket-img').forEach(i=>i.classList.remove('active'));
-  document.getElementById('img-bordeaux-red').classList.add('active');
-  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
-  document.querySelector('.thumb[data-img="bordeaux-red"]').classList.add('active');
-
-  // BUG FIX: also reset commune options on success close
-  const c=document.getElementById('f-commune');
-  c.innerHTML='<option value="">— Commune —</option>'; c.disabled=true;
-
-  resetLocation(); refreshSizes(); refreshTotal();
-}
-
-/* ─── LIGHTBOX ───────────────────────── */
-function openLightbox(){
-  const a=document.querySelector('.jacket-img.active');
-  if(!a||!a.src||a.style.display==='none')return; // BUG FIX: don't open lightbox if img failed to load
-  document.getElementById('lb-img').src=a.src;
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
   document.body.style.overflow='';
 }
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();}});
 
-/* ─── LIVE STOCK ─────────────────────── */
-async function loadLiveStock(){
-  try{
-    const r=await fetch('/api/stock');if(!r.ok)return;
-    const d=await r.json();
-    if(d.stock&&Object.keys(d.stock).length){STOCK=d.stock;refreshSizes();}
-  }catch{}
-}
-
-/* ─── INIT ───────────────────────────── */
-refreshSizes();
-refreshTotal();
-loadLiveStock();
+// Init
+renderItems();
+updateTotal();
+prefetchCommunes();
 </script>
 </body>
 </html>
